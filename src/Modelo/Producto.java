@@ -10,18 +10,28 @@ package Modelo;
  * @author negro
  */
 public class Producto {
+    int idProducto;
     String NombreProducto;
     double PrecioVenta;
     double PrecioCosto;
     double IvaProducto;
     double stock;
 
-    public Producto(String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
+    public Producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
+        this.idProducto = idProducto;
         this.NombreProducto = NombreProducto;
         this.PrecioVenta = PrecioVenta;
         this.PrecioCosto = PrecioCosto;
         this.IvaProducto = IvaProducto;
         this.stock = stock;
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombreProducto() {
@@ -63,5 +73,6 @@ public class Producto {
     public void setStock(double stock) {
         this.stock = stock;
     }
-       
+
+    
 }
