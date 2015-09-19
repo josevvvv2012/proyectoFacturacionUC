@@ -12,24 +12,18 @@ package Modelo;
 public class Proveedor {
   
     
-    int idProveedor;
+    
     String nombreProveedor;
     String telefonoProveedor;
     String direccionProveedor;
+    private Proveedor Proveedor;
+    
 
-    public Proveedor(int idProveedor, String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
-        this.idProveedor = idProveedor;
+    private Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
+        
         this.nombreProveedor = nombreProveedor;
         this.telefonoProveedor = telefonoProveedor;
         this.direccionProveedor = direccionProveedor;
-    }
-
-    public int getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(int idProveedor) {
-        this.idProveedor = idProveedor;
     }
 
     public String getNombreProveedor() {
@@ -55,5 +49,14 @@ public class Proveedor {
     public void setDireccionProveedor(String direccionProveedor) {
         this.direccionProveedor = direccionProveedor;
     }
+ 
+    
+       public static Proveedor getInstance(String nombreProveedor, String telefonoProveedor,String direccionProveedor, Proveedor Proveedor){
+        if(Proveedor==null){
+            Proveedor = new Proveedor(nombreProveedor, telefonoProveedor,direccionProveedor);
+        }
+        return Proveedor;
+    }
+    
     
 }

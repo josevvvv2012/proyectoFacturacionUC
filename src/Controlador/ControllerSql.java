@@ -5,6 +5,9 @@
  */
 package Controlador;
 
+import Modelo.Proveedor;
+import Vista.VistaProveedor;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +28,8 @@ import java.util.logging.Logger;
     Connection conexion;
     Statement stm;
     ResultSet rs;
+    private static Proveedor Proveedor;
+    
     
 
     public ControllerSql() {  //class public
@@ -47,16 +52,23 @@ import java.util.logging.Logger;
        //funcion AgregarProveedor
     public boolean AgregarProveedor(String nombreProveedor, String telefonoProveedor,  String direccionProveedor) {
 
-         
+          this.Proveedor = Proveedor.getInstance(nombreProveedor,telefonoProveedor,direccionProveedor, Proveedor);
+     
+//          VistaProveedor.txtDireccion.setText(String.valueOf(Proveedor.getNombreProveedor()));
+//          VistaProveedor.txtTelefono.setText(String.valueOf(Proveedor.getTelefonoProveedor()));
+//        VistaProveedor.txtDireccion.setText(String.valueOf(Proveedor.getDireccionProveedor()));
+
+                   
         try {
             String query = " insert into proveedor(nombreProveedor,telefonoProveedor,Direccion)"
                     + " values (?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, nombreProveedor);
-            preparedStmt.setString(2, telefonoProveedor);
-            preparedStmt.setString(3, direccionProveedor);
+            preparedStmt.setString(1,Proveedor.getNombreProveedor());
+            preparedStmt.setString(2, Proveedor.getTelefonoProveedor());
+            preparedStmt.setString(3, Proveedor.getDireccionProveedor());
+            
           
             // ejecuto mi query
             preparedStmt.execute();
