@@ -5,7 +5,9 @@
  */
 package proyectofacturacion;
 
-import Vista.ScreenSplash;
+import Vista.VistaBienvenida;
+
+
 /**
  *
  * @author negro
@@ -14,9 +16,8 @@ public class Main {
     
     public static void main(String[] args) {
       // TODO code application logic here
-   new ScreenSplash().animar();    
-
-        
+        VistaBienvenida v=new VistaBienvenida();
+        v.setVisible(true);
     }
     
 }
