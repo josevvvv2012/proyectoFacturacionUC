@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author negro
@@ -160,7 +163,17 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_TextPrecioActionPerformed
 
     private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
-        // TODO add your handling code here:
+    if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio, TextProovedor)) {
+                JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+    }      
+    
+    else {
+            // TODO add your handling code here:
+            String Codigo_prod = TextCodProduct.getText();
+            String Descripcion = TextDescripcion.getText();
+            String Telefono = TextCostoproduc.getText();
+}
+    // TODO add your handling code here:
     }//GEN-LAST:event_BotonIngresarActionPerformed
 
     private void TextProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextProovedorActionPerformed
@@ -170,7 +183,14 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     private void TextCodProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextCodProductActionPerformed
-
+    public boolean ValidarCamposVacios(JTextField... textFields) {
+        for (JTextField textField : textFields) {
+            if (textField.getText().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
