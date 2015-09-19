@@ -95,7 +95,7 @@ import java.util.logging.Logger;
 
          
         try {
-            String query = " insert into producto(dir_cliente,nom_cliente,tel_cliente)"
+            String query = " insert into cliente(dir_cliente,nom_cliente,tel_cliente)"
                     + " values (?,?,?)";
 
             // preparo la consulta para mi base de datos
@@ -125,7 +125,7 @@ import java.util.logging.Logger;
 
          
         try {
-            String query = " insert into producto(dir_cliente,nom_cliente,tel_cliente)"
+            String query = " insert into factura(dir_cliente,nom_cliente,tel_cliente)"
                     + " values (?,?,?)";
 
             // preparo la consulta para mi base de datos
