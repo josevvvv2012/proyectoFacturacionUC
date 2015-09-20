@@ -221,7 +221,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     private void Boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_cancelarActionPerformed
         this.setVisible(false);
         VistaPrincipal retornar = new VistaPrincipal();
-        retornar.setVisible(true);        // TODO add your handling code here:
+        retornar.setVisible(true); //       // TODO add your handling code here:
     }//GEN-LAST:event_Boton_cancelarActionPerformed
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
