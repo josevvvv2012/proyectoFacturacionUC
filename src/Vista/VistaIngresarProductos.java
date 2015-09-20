@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControllerSql;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
  * @author negro
  */
 public class VistaIngresarProductos extends javax.swing.JFrame {
+    private ControllerSql obj;
 
     /**
      * Creates new form VistaIngresarProductos
@@ -42,6 +44,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         BotonIngresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         TextProovedor = new javax.swing.JTextField();
+        Boton_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +74,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
 
         LabelPrecioVent.setText("Precio de Venta");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Ingreso de Productos ");
 
         BotonIngresar.setText("Ingresar");
@@ -88,67 +92,77 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             }
         });
 
+        Boton_cancelar.setText("Cancelar");
+        Boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_cancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(BotonIngresar)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LabelProducto)
-                                        .addComponent(LabelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(15, 15, 15)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(TextPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(TextCostoproduc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(TextDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(TextCodProduct, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(LabelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addGap(118, 118, 118)
+                        .addComponent(BotonIngresar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Boton_cancelar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(TextPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TextCostoproduc, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TextDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TextCodProduct, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelProducto)
-                    .addComponent(TextCodProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextCodProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelDescripcion))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelCosto))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelPrecioVent))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextProovedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelDescripcion)
-                    .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelCosto)
-                    .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelPrecioVent)
-                    .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(TextProovedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(BotonIngresar)
-                .addContainerGap())
+                    .addComponent(BotonIngresar)
+                    .addComponent(Boton_cancelar))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -169,9 +183,29 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     
     else {
             // TODO add your handling code here:
-            String Codigo_prod = TextCodProduct.getText();
-            String Descripcion = TextDescripcion.getText();
-            String Telefono = TextCostoproduc.getText();
+            int id_producto = Integer.parseInt(TextCodProduct.getText());
+            String Descripcion_prod = TextDescripcion.getText();
+            double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+            double Precio_prod = Double.parseDouble(TextPrecio.getText());
+            int Codigo_proveedor = Integer.parseInt(TextProovedor.getText());
+            try {
+                obj =new ControllerSql();
+                boolean res= obj.AgregarProducto(id_producto,Descripcion_prod, Costo_Venta_prod, Precio_prod, Codigo_proveedor);
+            if (res == true) {
+                    JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
+                    this.setVisible(false);
+                    VistaPrincipal retornar = new VistaPrincipal();
+                    //  retornar.desactivarBotonesInterfaz();
+                    retornar.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                            + "de datos");
+            }
+        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
+        }
+               
 }
     // TODO add your handling code here:
     }//GEN-LAST:event_BotonIngresarActionPerformed
@@ -183,6 +217,12 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     private void TextCodProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextCodProductActionPerformed
+
+    private void Boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_cancelarActionPerformed
+        this.setVisible(false);
+        VistaPrincipal retornar = new VistaPrincipal();
+        retornar.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton_cancelarActionPerformed
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -228,6 +268,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresar;
+    private javax.swing.JButton Boton_cancelar;
     private javax.swing.JLabel LabelCosto;
     private javax.swing.JLabel LabelDescripcion;
     private javax.swing.JLabel LabelPrecioVent;

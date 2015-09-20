@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -79,19 +79,20 @@ import java.util.logging.Logger;
     }
     
       //funcion AgregarProducto
-    public boolean AgregarProducto(String descripcion, Double costo,  Double precio_venta , int id_proveedor) {
+    public boolean AgregarProducto(int id_producto,String descripcion, Double costo,  Double precio_venta , int id_proveedor) {
 
          
         try {
-            String query = " insert into producto(descripcion,costo,precio_venta ,id_proveedor)"
+            String query = " insert into producto(id_producto,descripcion,costo,precio_venta ,id_proveedor)"
                     + " values (?,?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, descripcion);
-            preparedStmt.setDouble(2, costo);
-            preparedStmt.setDouble(3, precio_venta);
-            preparedStmt.setInt(3, id_proveedor);
+            preparedStmt.setInt(1, id_producto);
+            preparedStmt.setString(2, descripcion);
+            preparedStmt.setDouble(3, costo);
+            preparedStmt.setDouble(4, precio_venta);
+            preparedStmt.setInt(5, id_proveedor);
           
             // ejecuto mi query
             preparedStmt.execute();
