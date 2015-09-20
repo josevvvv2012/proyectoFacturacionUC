@@ -5,11 +5,18 @@
  */
 package Vista;
 
+import Controlador.ControllerSql;
+import Modelo.Funciones;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author negro
  */
 public class VistaCliente extends javax.swing.JFrame {
+     Funciones Funciones;
+    ControllerSql obj;
 
     /**
      * Creates new form VistaClientes
@@ -54,6 +61,11 @@ public class VistaCliente extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Direccion");
 
@@ -63,12 +75,6 @@ public class VistaCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelar)
-                .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,6 +87,12 @@ public class VistaCliente extends javax.swing.JFrame {
                     .addComponent(txtDireccion)
                     .addComponent(txtTelefono))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,11 +110,11 @@ public class VistaCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
-                .addGap(43, 43, 43))
+                .addGap(102, 102, 102))
         );
 
         pack();
@@ -114,8 +126,50 @@ public class VistaCliente extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+         if (ValidarCamposVacios(txt_nombre_cliente, txtDireccion, txtTelefono)) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+
+        } else {
+            // TODO add your handling code here:
+            
+            String NombreCliente = txt_nombre_cliente.getText();
+            String Direccion = txtDireccion.getText();
+            int Telefono =Integer.valueOf( txtTelefono.getText());
+
+            try {
+                obj = new ControllerSql();
+                boolean res = obj.AgregarCliente(NombreCliente, Direccion, Telefono);
+                if (res == true) {
+                    JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
+                    this.setVisible(false);
+                    VistaPrincipal retornar = new VistaPrincipal();
+                    //  retornar.desactivarBotonesInterfaz();
+                    retornar.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo Empleado ya existe en la base"
+                            + "de datos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
+
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+        VistaPrincipal retornar = new VistaPrincipal();
+        retornar.setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+public boolean ValidarCamposVacios(JTextField... textFields) {
+        for (JTextField textField : textFields) {
+            if (textField.getText().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */

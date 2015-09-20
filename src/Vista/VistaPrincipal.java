@@ -36,6 +36,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         btnProveedor = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
+        BotonClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,12 +54,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BotonClientes.setText("Clientes");
+        BotonClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonClientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(BotonClientes)
+                .addGap(38, 38, 38)
                 .addComponent(btnProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConfig)
@@ -70,7 +80,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(245, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProveedor)
-                    .addComponent(btnConfig))
+                    .addComponent(btnConfig)
+                    .addComponent(BotonClientes))
                 .addGap(74, 74, 74))
         );
 
@@ -89,6 +100,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
        vistaInterfaz = new vista.VistaConexionBD();
         vistaInterfaz.setVisible(true);
     }//GEN-LAST:event_btnConfigActionPerformed
+
+    private void BotonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonClientesActionPerformed
+        // TODO add your handling code here:
+         VistaCliente = new VistaCliente();
+        VistaCliente.setVisible(true);
+       
+    }//GEN-LAST:event_BotonClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +147,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonClientes;
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnProveedor;
     // End of variables declaration//GEN-END:variables
