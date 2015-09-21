@@ -45,6 +45,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TextProovedor = new javax.swing.JTextField();
         Boton_cancelar = new javax.swing.JButton();
+        LitsadeProovedores = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +85,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Proovedor");
+        jLabel6.setText("Codigo Proovedor");
 
         TextProovedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +97,13 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         Boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_cancelarActionPerformed(evt);
+            }
+        });
+
+        LitsadeProovedores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione opcion", "Alqueria", "Ajax", "Kodak", "Cocacola", "Pepsi", "Postobon" }));
+        LitsadeProovedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LitsadeProovedoresActionPerformed(evt);
             }
         });
 
@@ -115,13 +123,13 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(LabelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(BotonIngresar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Boton_cancelar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -129,8 +137,8 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                         .addComponent(TextCostoproduc, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextCodProduct, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(89, 89, 89))
+                        .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +166,9 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TextProovedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonIngresar)
                     .addComponent(Boton_cancelar))
@@ -223,6 +233,10 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         VistaPrincipal retornar = new VistaPrincipal();
         retornar.setVisible(true); //       // TODO add your handling code here:
     }//GEN-LAST:event_Boton_cancelarActionPerformed
+
+    private void LitsadeProovedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LitsadeProovedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LitsadeProovedoresActionPerformed
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -273,6 +287,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     private javax.swing.JLabel LabelDescripcion;
     private javax.swing.JLabel LabelPrecioVent;
     private javax.swing.JLabel LabelProducto;
+    public static javax.swing.JComboBox LitsadeProovedores;
     private javax.swing.JTextField TextCodProduct;
     private javax.swing.JTextField TextCostoproduc;
     private javax.swing.JTextField TextDescripcion;

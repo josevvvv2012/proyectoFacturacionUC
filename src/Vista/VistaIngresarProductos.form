@@ -37,9 +37,9 @@
                               <Component id="LabelProducto" alignment="0" max="32767" attributes="0"/>
                               <Component id="LabelDescripcion" alignment="0" pref="160" max="32767" attributes="0"/>
                               <Component id="LabelPrecioVent" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
                           <Component id="LabelCosto" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" pref="194" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -47,7 +47,7 @@
                       <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Boton_cancelar" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -57,8 +57,8 @@
                       <Component id="TextCodProduct" alignment="0" max="32767" attributes="0"/>
                       <Component id="TextProovedor" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="LitsadeProovedores" min="-2" pref="199" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,7 +94,9 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LitsadeProovedores" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BotonIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Boton_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -160,7 +162,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Proovedor"/>
+        <Property name="text" type="java.lang.String" value="Codigo Proovedor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextProovedor">
@@ -175,6 +177,27 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_cancelarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="LitsadeProovedores">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="7">
+            <StringItem index="0" value="Seleccione opcion"/>
+            <StringItem index="1" value="Alqueria"/>
+            <StringItem index="2" value="Ajax"/>
+            <StringItem index="3" value="Kodak"/>
+            <StringItem index="4" value="Cocacola"/>
+            <StringItem index="5" value="Pepsi"/>
+            <StringItem index="6" value="Postobon"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LitsadeProovedoresActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
