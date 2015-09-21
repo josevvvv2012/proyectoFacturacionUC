@@ -84,7 +84,7 @@ import java.util.logging.Logger;
          
         try {
             String query = " insert into producto(id_producto,descripcion,costo,precio_venta ,id_proveedor)"
-                    + " values (?,?,?,?)";
+                    + " values (?,?,?,?,?)";
 
             // preparo la consulta para mi base de datos .
             PreparedStatement preparedStmt = conexion.prepareStatement(query);

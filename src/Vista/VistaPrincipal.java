@@ -37,6 +37,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnProveedor = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
         BotonClientes = new javax.swing.JButton();
+        Boton_IngresoProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        Boton_IngresoProducto.setText("Productos");
+        Boton_IngresoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_IngresoProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,15 +77,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(BotonClientes)
                 .addGap(38, 38, 38)
-                .addComponent(btnProveedor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConfig)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Boton_IngresoProducto)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnProveedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnConfig)))
                 .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                .addContainerGap(185, Short.MAX_VALUE)
+                .addComponent(Boton_IngresoProducto)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProveedor)
                     .addComponent(btnConfig)
@@ -107,6 +120,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         VistaCliente.setVisible(true);
        
     }//GEN-LAST:event_BotonClientesActionPerformed
+
+    private void Boton_IngresoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_IngresoProductoActionPerformed
+        VistaIngresarProductos = new VistaIngresarProductos();
+                VistaIngresarProductos.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton_IngresoProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +166,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonClientes;
+    private javax.swing.JButton Boton_IngresoProducto;
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnProveedor;
     // End of variables declaration//GEN-END:variables
