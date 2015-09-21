@@ -78,7 +78,16 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Ingreso de Productos ");
 
+        BotonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.JPG"))); // NOI18N
         BotonIngresar.setText("Ingresar");
+        BotonIngresar.setBorder(null);
+        BotonIngresar.setContentAreaFilled(false);
+        BotonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonIngresar.setDefaultCapable(false);
+        BotonIngresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonIngresar.setIconTextGap(-3);
+        BotonIngresar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        BotonIngresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BotonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonIngresarActionPerformed(evt);
@@ -93,7 +102,16 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             }
         });
 
+        Boton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cancelar.JPG"))); // NOI18N
         Boton_cancelar.setText("Cancelar");
+        Boton_cancelar.setBorder(null);
+        Boton_cancelar.setBorderPainted(false);
+        Boton_cancelar.setContentAreaFilled(false);
+        Boton_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Boton_cancelar.setIconTextGap(-3);
+        Boton_cancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Boton_cancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_cancelarActionPerformed(evt);
@@ -129,16 +147,16 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(BotonIngresar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Boton_cancelar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(TextPrecio, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextCostoproduc, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextCodProduct, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,10 +186,10 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                             .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonIngresar)
-                    .addComponent(Boton_cancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Boton_cancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonIngresar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(30, 30, 30))
         );
 

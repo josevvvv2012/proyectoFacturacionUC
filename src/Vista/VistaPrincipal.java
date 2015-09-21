@@ -38,76 +38,132 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnConfig = new javax.swing.JButton();
         BotonClientes = new javax.swing.JButton();
         Boton_IngresoProducto = new javax.swing.JButton();
-        BotonFacturar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnProveedor.setText("Proveedor");
+        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/proveedor.jpg"))); // NOI18N
+        btnProveedor.setText("PROVEEDORES");
+        btnProveedor.setBorder(null);
+        btnProveedor.setBorderPainted(false);
+        btnProveedor.setContentAreaFilled(false);
+        btnProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProveedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProveedor.setIconTextGap(-3);
+        btnProveedor.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnProveedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProveedorActionPerformed(evt);
             }
         });
 
-        btnConfig.setText("Configuracion");
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Captura.JPG"))); // NOI18N
+        btnConfig.setText("CONFIGURACION");
+        btnConfig.setBorder(null);
+        btnConfig.setBorderPainted(false);
+        btnConfig.setContentAreaFilled(false);
+        btnConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConfig.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConfig.setIconTextGap(-3);
+        btnConfig.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConfig.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfigActionPerformed(evt);
             }
         });
 
-        BotonClientes.setText("Clientes");
+        BotonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/clientes.jpg"))); // NOI18N
+        BotonClientes.setText("CLIENTES");
+        BotonClientes.setBorder(null);
+        BotonClientes.setBorderPainted(false);
+        BotonClientes.setContentAreaFilled(false);
+        BotonClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonClientes.setIconTextGap(-3);
+        BotonClientes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        BotonClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BotonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonClientesActionPerformed(evt);
             }
         });
 
-        Boton_IngresoProducto.setText("Productos");
+        Boton_IngresoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/producto.jpg"))); // NOI18N
+        Boton_IngresoProducto.setText("PRODUCTOS");
+        Boton_IngresoProducto.setBorder(null);
+        Boton_IngresoProducto.setBorderPainted(false);
+        Boton_IngresoProducto.setContentAreaFilled(false);
+        Boton_IngresoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_IngresoProducto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Boton_IngresoProducto.setIconTextGap(-3);
+        Boton_IngresoProducto.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Boton_IngresoProducto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Boton_IngresoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_IngresoProductoActionPerformed(evt);
             }
         });
 
-        BotonFacturar.setText("Facturar");
-        BotonFacturar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonFacturarActionPerformed(evt);
-            }
-        });
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/factura.jpg"))); // NOI18N
+        jButton1.setText("FACTURACION");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setIconTextGap(-3);
+        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/consulta.jpg"))); // NOI18N
+        jButton2.setText("CONSULTA GENERAL");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setIconTextGap(-3);
+        jButton2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonClientes, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonFacturar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(38, 38, 38)
+                    .addComponent(BotonClientes)
+                    .addComponent(jButton1))
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Boton_IngresoProducto)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnProveedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Boton_IngresoProducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(btnProveedor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConfig)))
-                .addGap(48, 48, 48))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Boton_IngresoProducto)
-                    .addComponent(BotonFacturar))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProveedor)
-                    .addComponent(btnConfig)
-                    .addComponent(BotonClientes))
-                .addGap(74, 74, 74))
+                    .addComponent(Boton_IngresoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,12 +193,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         VistaIngresarProductos = new VistaIngresarProductos();
                 VistaIngresarProductos.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_Boton_IngresoProductoActionPerformed
-
-    private void BotonFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFacturarActionPerformed
-       VistaFactura = new VistaFactura();
-                VistaFactura.setVisible(true);        // TODO add your handling code here:
-   // TODO add your handling code here:
-    }//GEN-LAST:event_BotonFacturarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,9 +234,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonClientes;
-    private javax.swing.JButton BotonFacturar;
     private javax.swing.JButton Boton_IngresoProducto;
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnProveedor;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
