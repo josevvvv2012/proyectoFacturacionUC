@@ -390,7 +390,7 @@ public class VistaFactura extends javax.swing.JFrame {
                 rs = ControllerSql.ConsultarProducto(nombreproducto);
 
                 while (rs.next()) {
-                    txtDescripcion.setText(rs.getString("nom_cliente"));
+                    txtDescripcion.setText(rs.getString("descripcion"));
                    
            
                 }

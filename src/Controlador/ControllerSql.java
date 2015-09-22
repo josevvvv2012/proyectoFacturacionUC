@@ -198,7 +198,7 @@ import javax.swing.JOptionPane;
     public ResultSet ConsultarCliente(int id_cliente) {
         try {
 
-            String query = "SELECT nom_cliente,tel_cliente FROM cliente WHERE id_cliente =" + id_cliente + "";
+            String query = "SELECT nom_cliente,tel_cliente,dir_cliente FROM cliente WHERE id_cliente =" + id_cliente + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
             return rs;
@@ -214,7 +214,7 @@ import javax.swing.JOptionPane;
     public ResultSet ConsultarProducto(String descripcion) {
         try {
 
-            String query = "SELECT descripcion,precio_venta FROM producto where descripcion = " + descripcion + "";
+            String query = "SELECT descripcion,precio_venta FROM producto WHERE descripcion = " + descripcion + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
             return rs;
