@@ -19,8 +19,9 @@ import javax.swing.JTextField;
  */
 public class VistaFactura extends javax.swing.JFrame {
 
-  ControllerSql ControllerSql;  
-  VistaCliente VistaCliente; 
+    ControllerSql ControllerSql;
+    VistaCliente VistaCliente;
+
     /**
      * Creates new form VistaFactura
      */
@@ -70,6 +71,8 @@ public class VistaFactura extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +175,15 @@ public class VistaFactura extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Guadar");
+
+        jButton8.setText("Cancelar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,7 +265,11 @@ public class VistaFactura extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
-                .addGap(269, 269, 269))
+                .addGap(27, 27, 27)
+                .addComponent(jButton5)
+                .addGap(37, 37, 37)
+                .addComponent(jButton8)
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +324,10 @@ public class VistaFactura extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton5)
+                    .addComponent(jButton8)))
         );
 
         pack();
@@ -316,7 +335,7 @@ public class VistaFactura extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-     if (ValidarCamposVacios(txtCedula)) {
+        if (ValidarCamposVacios(txtCedula)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
@@ -332,15 +351,14 @@ public class VistaFactura extends javax.swing.JFrame {
                     txtDireccion.setText("" + rs.getString("dir_cliente"));
                     txtNombreCliente.setText(rs.getString("nom_cliente"));
                     txtTelefonoCliente.setText("" + rs.getString("tel_cliente"));
-                    
-           
+
                 }
             } catch (SQLException ex) {
                 //Logger.getLogger(VistaCalculosMensuales.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtTelefonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoClienteActionPerformed
@@ -350,9 +368,8 @@ public class VistaFactura extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         txtNombreProducto.setEnabled(false);
-      
-                
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -375,8 +392,8 @@ public class VistaFactura extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-         if (ValidarCamposVacios(txtCedula)) {
+
+        if (ValidarCamposVacios(txtCedula)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
@@ -390,29 +407,35 @@ public class VistaFactura extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     txtDescripcion.setText(rs.getString("descripcion"));
-                   
-           
+
                 }
             } catch (SQLException ex) {
                 //Logger.getLogger(VistaCalculosMensuales.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        VistaPrincipal VistaPrincipal = new VistaPrincipal();
+        VistaPrincipal.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /*
-    @autor  Jose Vanegas jvanegasv@ucentral.edu.co
-    */
-      public boolean ValidarCamposVacios(JTextField... textFields) {
+     @autor  Jose Vanegas jvanegasv@ucentral.edu.co
+     */
+    public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
                 return true;
             }
         }
         return false;
-      }
-    
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -454,8 +477,10 @@ public class VistaFactura extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
