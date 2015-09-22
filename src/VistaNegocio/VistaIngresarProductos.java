@@ -9,7 +9,9 @@ import Controlador.ControllerSql;
 import Funciones.Funciones;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import Decorador.*;
+import Modelo.Producto;
+ 
 /**
  *
  * @author negro
@@ -221,6 +223,10 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     }      
     
     else {
+        //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
+            //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
+            //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
+            
             // TODO add your handling code here:
             int id_producto = Integer.parseInt(TextCodProduct.getText());
             String Descripcion_prod = TextDescripcion.getText();

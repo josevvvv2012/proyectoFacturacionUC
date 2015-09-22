@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author negro
  */
-public class Producto {
+public abstract class Producto {
     int idProducto;
     String NombreProducto;
     double PrecioVenta;
@@ -74,5 +74,5 @@ public class Producto {
         this.stock = stock;
     }
 
-    
+    public abstract String getPesoYMarca_product();
 }
