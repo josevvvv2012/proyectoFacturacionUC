@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,7 +105,7 @@ import java.util.logging.Logger;
     
     
     //funcion AgregarCliente
-    public boolean AgregarCliente(String dir_cliente, String nom_cliente,  int tel_cliente ) {
+    public boolean AgregarCliente(String dir_cliente, String nom_cliente,  String tel_cliente ) {
 
          
         try {
@@ -115,7 +116,7 @@ import java.util.logging.Logger;
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
             preparedStmt.setString(1, dir_cliente);
             preparedStmt.setString(2, nom_cliente);
-            preparedStmt.setInt(3, tel_cliente);
+            preparedStmt.setString(3, tel_cliente);
             
             // ejecuto mi query
             preparedStmt.execute();
@@ -162,7 +163,66 @@ import java.util.logging.Logger;
         }
     }
     
+         public Object[] tablecombox(String tabla, String nombrecolIde,String nombreCampo, String sql){
+      int registros = 0;      
+      PreparedStatement ps ;
+      try{
+         ps = conexion.prepareStatement("SELECT count(*) as total FROM " + tabla);
+         rs = ps.executeQuery();
+         rs.next();
+         registros = rs.getInt("total");
+         rs.close();
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+
+    Object[] datos = new Object[registros];
+      try{
+         ps = conexion.prepareStatement(sql);
+         rs = ps.executeQuery();
+         int i = 0;
+         while(rs.next()){
+            datos[i] = rs.getObject(nombrecolIde);
+            datos[i] = rs.getObject(nombreCampo);
+            i++;
+         }
+         rs.close();
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+    return datos;
+ }
+   /*
+    //funcion ConsultarCliente
+    */
+    public ResultSet ConsultarCliente(int id_cliente) {
+        try {
+
+            String query = "SELECT nom_cliente,tel_cliente FROM cliente WHERE id_cliente =" + id_cliente + "";
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            return rs;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            return null;
+        }
+    }
     
-   
+   /*
+    //funcion ConsultarCliente
+    */
+    public ResultSet ConsultarProducto(String descripcion) {
+        try {
+
+            String query = "SELECT descripcion,precio_venta FROM producto where descripcion = " + descripcion + "";
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            return rs;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            return null;
+        }
+    }
+    
     
 }

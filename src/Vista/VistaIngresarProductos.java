@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.ControllerSql;
+import Funciones.Funciones;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -15,12 +16,18 @@ import javax.swing.JTextField;
  */
 public class VistaIngresarProductos extends javax.swing.JFrame {
     private ControllerSql obj;
-
+    Funciones cc = new Funciones();
     /**
      * Creates new form VistaIngresarProductos
      */
     public VistaIngresarProductos() {
         initComponents();
+        
+        Object[] tipo_doc = cc.combox("proveedor","idProveedor","nombreProveedor");
+        LitsadeProovedores.removeAllItems();
+        for(int i=0;i<tipo_doc.length;i++){
+        LitsadeProovedores.addItem(tipo_doc[i]);
+        }
     }
 
     /**
@@ -143,11 +150,12 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                                 .addComponent(LabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                 .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(BotonIngresar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonIngresar)
+                        .addGap(68, 68, 68)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(TextPrecio, javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +164,9 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                         .addComponent(TextCodProduct, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextProovedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(Boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +196,11 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                             .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Boton_cancelar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonIngresar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(30, 30, 30))
+                    .addComponent(BotonIngresar)
+                    .addComponent(Boton_cancelar))
+                .addContainerGap())
         );
 
         pack();
@@ -216,6 +226,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
             double Precio_prod = Double.parseDouble(TextPrecio.getText());
             int Codigo_proveedor = Integer.parseInt(TextProovedor.getText());
+            
             try {
                 obj =new ControllerSql();
                 boolean res= obj.AgregarProducto(id_producto,Descripcion_prod, Costo_Venta_prod, Precio_prod, Codigo_proveedor);

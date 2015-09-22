@@ -107,7 +107,7 @@ public class Conexion {
 "  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,\n" +
 "  `dir_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `nom_cliente` varchar(50) DEFAULT NULL,\n" +
-"  `tel_cliente` int(11) DEFAULT NULL,\n" +
+"  `tel_cliente` varchar(50) DEFAULT NULL,\n" +
 "  PRIMARY KEY (`id_cliente`)\n" +
 ") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;";
                 String myTableName2 ="CREATE TABLE IF NOT EXISTS `producto` (\n" +

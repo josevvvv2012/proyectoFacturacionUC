@@ -152,7 +152,8 @@ public class VistaCliente extends javax.swing.JFrame {
             
             String NombreCliente = txt_nombre_cliente.getText();
             String Direccion = txtDireccion.getText();
-            int Telefono =Integer.valueOf( txtTelefono.getText());
+            String Telefono = txtTelefono.getText();
+            
 
             try {
                 obj = new ControllerSql();

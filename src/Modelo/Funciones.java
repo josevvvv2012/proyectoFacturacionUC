@@ -12,6 +12,8 @@ import javax.swing.JTextField;
  * @author negro
  */
 public class Funciones {
+    
+    Controlador.ControllerSql controllerSql;
  
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
@@ -21,5 +23,5 @@ public class Funciones {
         }
         return false;
     }
-    
+
 }
