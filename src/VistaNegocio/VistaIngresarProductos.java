@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Funciones.Funciones;
@@ -95,6 +95,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         BotonIngresar.setIconTextGap(-3);
         BotonIngresar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         BotonIngresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.JPG")));
         BotonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonIngresarActionPerformed(evt);

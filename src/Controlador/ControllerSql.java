@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Proveedor;
-import Vista.VistaProveedor;
+import VistaNegocio.VistaProveedor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -215,7 +215,7 @@ import javax.swing.JOptionPane;
     public ResultSet ConsultarProducto(String descripcion) {
         try {
 
-            String query = "SELECT descripcion,precio_venta FROM producto WHERE descripcion = " + descripcion + "";
+            String query = "SELECT descripcion,precio_venta FROM producto WHERE descripcion like " + descripcion + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
             return rs;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package VistaNegocio;
 
 import Controlador.ControllerSql;
 import java.sql.ResultSet;
@@ -393,7 +393,7 @@ public class VistaFactura extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        if (ValidarCamposVacios(txtCedula)) {
+        if (ValidarCamposVacios(txtNombreProducto)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
@@ -420,8 +420,6 @@ public class VistaFactura extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        VistaPrincipal VistaPrincipal = new VistaPrincipal();
-        VistaPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /*

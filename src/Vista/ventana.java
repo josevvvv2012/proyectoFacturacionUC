@@ -4,14 +4,14 @@
  */
 
 /*
- * @autor jose vanegas
+ * ventana.java
  *
  * 
  */
 package Vista;
 
-
-import Funciones.cargar;
+import VistaNegocio.VistaPrincipal;
+import clases.cargar;
 import com.sun.awt.AWTUtilities;
 
 
@@ -19,12 +19,12 @@ import com.sun.awt.AWTUtilities;
  *
  * @author IsraelCM
  */
-public final class VistaBienvenida extends javax.swing.JFrame {
+public final class ventana extends javax.swing.JFrame {
 
     /** Creates new form ventana */
     double i=50, j=1;
     cargar hilo;
-    public VistaBienvenida() {
+    public ventana() {
         initComponents();
         iniciar();
     }
@@ -56,9 +56,9 @@ public final class VistaBienvenida extends javax.swing.JFrame {
                 ProgresoStateChanged(evt);
             }
         });
-        getContentPane().add(Progreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 300, 30));
+        getContentPane().add(Progreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/splash.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/splash.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -75,7 +75,7 @@ private void ProgresoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
     if(Progreso.getValue()==100){
         VistaPrincipal v=new VistaPrincipal();
         v.setVisible(true);
-        
+        this.dispose();
     }
 }//GEN-LAST:event_ProgresoStateChanged
 
@@ -96,17 +96,14 @@ private void ProgresoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaBienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaBienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaBienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaBienvenida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -114,7 +111,7 @@ private void ProgresoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
 
             @Override
             public void run() {
-                new VistaBienvenida().setVisible(true);
+                new ventana().setVisible(true);
             }
         });
     }
