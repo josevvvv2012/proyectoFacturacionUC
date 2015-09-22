@@ -104,7 +104,7 @@ public class Conexion {
         dbName = VistaConexionBD.txtNombreBD.getText();
 
         String myTableName1 ="CREATE TABLE IF NOT EXISTS `cliente` (\n" +
-"  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,\n" +
+"  `id_cliente` int(11) NOT NULL,\n" +
 "  `dir_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `nom_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `tel_cliente` varchar(50) DEFAULT NULL,\n" +

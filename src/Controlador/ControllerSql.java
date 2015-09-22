@@ -105,18 +105,19 @@ import javax.swing.JOptionPane;
     
     
     //funcion AgregarCliente
-    public boolean AgregarCliente(String dir_cliente, String nom_cliente,  String tel_cliente ) {
+    public boolean AgregarCliente(int idCliente ,String dir_cliente, String nom_cliente,  String tel_cliente ) {
 
          
         try {
-            String query = " insert into cliente(dir_cliente,nom_cliente,tel_cliente)"
-                    + " values (?,?,?)";
+            String query = " insert into cliente(id_cliente,dir_cliente,nom_cliente,tel_cliente)"
+                    + " values (?,?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, dir_cliente);
-            preparedStmt.setString(2, nom_cliente);
-            preparedStmt.setString(3, tel_cliente);
+            preparedStmt.setInt(1, idCliente);
+            preparedStmt.setString(2, dir_cliente);
+            preparedStmt.setString(3, nom_cliente);
+            preparedStmt.setString(4, tel_cliente);
             
             // ejecuto mi query
             preparedStmt.execute();
