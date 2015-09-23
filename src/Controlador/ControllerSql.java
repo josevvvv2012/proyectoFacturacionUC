@@ -212,12 +212,22 @@ import javax.swing.JOptionPane;
    /*
     //funcion ConsultarCliente
     */
-    public ResultSet ConsultarProducto(int id_producto) {
+    public ResultSet ConsultarProducto(int id_producto,int band) {
         try {
+            if(band==1){
 
             String query = "SELECT descripcion FROM producto WHERE id_producto like " + id_producto + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
+            
+            }
+            if(band==2){
+
+            String query = "SELECT precio_venta FROM producto WHERE id_producto like " + id_producto + "";           
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            }
             return rs;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error");
