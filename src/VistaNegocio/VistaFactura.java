@@ -50,7 +50,7 @@ public class VistaFactura extends javax.swing.JFrame {
         txtNombreCliente = new javax.swing.JTextField();
         txtTelefonoCliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtNombreProducto = new javax.swing.JTextField();
+        txtCodigoProducto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -109,7 +109,7 @@ public class VistaFactura extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Nombre del producto");
+        jLabel6.setText("Codigo Producto");
 
         jLabel7.setText("Fecha de Factura:");
 
@@ -246,7 +246,7 @@ public class VistaFactura extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2))))
                     .addGroup(layout.createSequentialGroup()
@@ -297,7 +297,7 @@ public class VistaFactura extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -367,7 +367,7 @@ public class VistaFactura extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        txtNombreProducto.setEnabled(false);
+        txtCodigoProducto.setEnabled(false);
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -393,7 +393,7 @@ public class VistaFactura extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        if (ValidarCamposVacios(txtNombreProducto)) {
+        if (ValidarCamposVacios(txtCodigoProducto)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
@@ -401,9 +401,9 @@ public class VistaFactura extends javax.swing.JFrame {
             try {
                 // TODO add your handling cod e here:
                 ResultSet rs;
-                String nombreproducto = txtNombreProducto.getText();
+                int id_producto = Integer.parseInt(txtCodigoProducto.getText());
                 ControllerSql = new ControllerSql();
-                rs = ControllerSql.ConsultarProducto(nombreproducto);
+                rs = ControllerSql.ConsultarProducto(id_producto);
 
                 while (rs.next()) {
                     txtDescripcion.setText(rs.getString("descripcion"));
@@ -500,10 +500,10 @@ public class VistaFactura extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField txtCantidadProducto;
     private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCodigoProducto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombreCliente;
-    private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtTelefonoCliente;
     // End of variables declaration//GEN-END:variables
 }

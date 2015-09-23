@@ -212,10 +212,10 @@ import javax.swing.JOptionPane;
    /*
     //funcion ConsultarCliente
     */
-    public ResultSet ConsultarProducto(String descripcion) {
+    public ResultSet ConsultarProducto(int id_producto) {
         try {
 
-            String query = "SELECT descripcion,precio_venta FROM producto WHERE descripcion like " + descripcion + "";
+            String query = "SELECT descripcion FROM producto WHERE id_producto like " + id_producto + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
             return rs;
