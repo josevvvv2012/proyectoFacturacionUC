@@ -116,6 +116,7 @@ public class Conexion {
 "  `costo` double NOT NULL,\n" +
 "  `precio_venta` double NOT NULL,\n" +
 "  `id_proveedor` int(11) NOT NULL,\n" +
+"  `Porcentaje_producto` double NOT NULL,\n" +                        
 "  PRIMARY KEY (`id_producto`),\n" +
 "  UNIQUE KEY `UQ_Producto_id_proveedor` (`id_proveedor`)\n" +
 ") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;";

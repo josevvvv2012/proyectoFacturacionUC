@@ -80,12 +80,12 @@ import javax.swing.JOptionPane;
     }
     
       //funcion AgregarProducto
-    public boolean AgregarProducto(int id_producto,String descripcion, Double costo,  Double precio_venta , int id_proveedor) {
+    public boolean AgregarProducto(int id_producto,String descripcion, Double costo,  Double precio_venta , int id_proveedor,double Porcentaje_producto ) {
 
          
         try {
-            String query = " insert into producto(id_producto,descripcion,costo,precio_venta ,id_proveedor)"
-                    + " values (?,?,?,?,?)";
+            String query = " insert into producto(id_producto,descripcion,costo,precio_venta ,id_proveedor,Porcentaje_producto)"
+                    + " values (?,?,?,?,?,?)";
 
             // preparo la consulta para mi base de datos .
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
@@ -94,6 +94,8 @@ import javax.swing.JOptionPane;
             preparedStmt.setDouble(3, costo);
             preparedStmt.setDouble(4, precio_venta);
             preparedStmt.setInt(5, id_proveedor);
+            preparedStmt.setDouble(6, Porcentaje_producto);
+ 
           
             // ejecuto mi query
             preparedStmt.execute();

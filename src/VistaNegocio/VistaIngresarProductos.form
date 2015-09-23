@@ -24,45 +24,51 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="LabelProducto" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LabelDescripcion" alignment="0" pref="160" max="32767" attributes="0"/>
+                      <Component id="LabelPrecioVent" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="LabelCosto" min="-2" pref="171" max="-2" attributes="0"/>
+                  <Component id="LabelPorcentaje" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="LitsadeProovedores" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" min="-2" pref="194" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="TextProovedor" pref="110" max="32767" attributes="0"/>
+                                  <Component id="TextPrecio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextCostoproduc" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextDescripcion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextCodProduct" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextPorcentaje" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="86" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="200" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="LabelProducto" alignment="0" max="32767" attributes="0"/>
-                              <Component id="LabelDescripcion" alignment="0" pref="160" max="32767" attributes="0"/>
-                              <Component id="LabelPrecioVent" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="LabelCosto" min="-2" pref="171" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="194" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="TextPrecio" alignment="0" max="32767" attributes="0"/>
-                      <Component id="TextCostoproduc" alignment="0" max="32767" attributes="0"/>
-                      <Component id="TextDescripcion" alignment="0" max="32767" attributes="0"/>
-                      <Component id="TextCodProduct" alignment="0" max="32767" attributes="0"/>
-                      <Component id="TextProovedor" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="LitsadeProovedores" min="-2" pref="199" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="Boton_cancelar" min="-2" pref="43" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+              <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="Boton_cancelar" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,41 +77,49 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LabelProducto" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelProducto" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="LabelDescripcion" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="LabelCosto" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="LabelPrecioVent" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <Component id="LabelPorcentaje" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="TextCodProduct" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="TextDescripcion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextCostoproduc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelCosto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="TextCostoproduc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelPrecioVent" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextProovedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="TextPrecio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="TextPorcentaje" min="-2" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="TextProovedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LitsadeProovedores" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
                   <Component id="Boton_cancelar" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -235,6 +249,16 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextPorcentaje">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextPorcentajeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelPorcentaje">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Porcentaje "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
