@@ -53,7 +53,7 @@ import javax.swing.JOptionPane;
        //funcion AgregarProveedor
     public boolean AgregarProveedor(String nombreProveedor, String telefonoProveedor,  String direccionProveedor) {
 
-          this.Proveedor = Proveedor.getInstance(nombreProveedor,telefonoProveedor,direccionProveedor, Proveedor);
+      this.Proveedor = Proveedor.getInstance(nombreProveedor,telefonoProveedor,direccionProveedor, Proveedor);
      
 //          VistaProveedor.txtDireccion.setText(String.valueOf(Proveedor.getNombreProveedor()));
 //          VistaProveedor.txtTelefono.setText(String.valueOf(Proveedor.getTelefonoProveedor()));
@@ -218,7 +218,7 @@ import javax.swing.JOptionPane;
         try {
             if(band==1){
 
-            String query = "SELECT descripcion FROM producto WHERE id_producto like " + id_producto + "";
+            String query = "SELECT descripcion,costo,porcentaje_producto FROM producto WHERE id_producto like " + id_producto + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
             
