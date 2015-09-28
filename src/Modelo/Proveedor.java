@@ -7,20 +7,19 @@ package Modelo;
 
 /**
  *
- * @author negro
  */
 public class Proveedor {
-  
-    
-    
-    String nombreProveedor;
-    String telefonoProveedor;
-    String direccionProveedor;
-    private Proveedor Proveedor;
-    
 
-    private Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
-        
+    private String nombreProveedor;
+    private String telefonoProveedor;
+    private String direccionProveedor;
+    private int idProveedor;
+
+    public Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor, int idProveedor) {
+        this(nombreProveedor, telefonoProveedor, direccionProveedor);
+        this.idProveedor = idProveedor;
+    }
+    public Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         this.nombreProveedor = nombreProveedor;
         this.telefonoProveedor = telefonoProveedor;
         this.direccionProveedor = direccionProveedor;
@@ -49,14 +48,20 @@ public class Proveedor {
     public void setDireccionProveedor(String direccionProveedor) {
         this.direccionProveedor = direccionProveedor;
     }
- 
-    
-       public static Proveedor getInstance(String nombreProveedor, String telefonoProveedor,String direccionProveedor, Proveedor Proveedor){
-        if(Proveedor==null){
-            Proveedor = new Proveedor(nombreProveedor, telefonoProveedor,direccionProveedor);
-        }
-        return Proveedor;
+
+    public int getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    @Override
+    public String toString() {
+        return getNombreProveedor() + " " + getIdProveedor();
     }
     
     
+
 }

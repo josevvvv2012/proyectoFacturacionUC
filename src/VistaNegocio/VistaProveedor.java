@@ -7,6 +7,8 @@ package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Modelo.Funciones;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -24,6 +26,13 @@ public class VistaProveedor extends javax.swing.JFrame {
      */
     public VistaProveedor() {
         initComponents();
+        
+        ValidadCaracteres(txtProveedor);
+        ValidadCaracteres(txtDireccion);
+        ValidadCaracteres(txtTelefono);
+   
+       
+        
     }
 
     /**
@@ -44,7 +53,7 @@ public class VistaProveedor extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.JPG"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -148,10 +157,7 @@ public class VistaProveedor extends javax.swing.JFrame {
                 boolean res = obj.AgregarProveedor(NombreProvedor, Direccion, Telefono);
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
-                    this.setVisible(false);
-                    VistaPrincipal retornar = new VistaPrincipal();
-                    //  retornar.desactivarBotonesInterfaz();
-                    retornar.setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevoEmpleado ya existe en la base"
                             + "de datos");
@@ -181,40 +187,46 @@ public class VistaProveedor extends javax.swing.JFrame {
         return false;
     }
 
+
+    public  void ValidadSoloNumeros(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
+        }
+    }
+            });
+}
+    
+    
+     public  void ValidadCaracteres(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (Character.isDigit(e.getKeyChar())) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
+        }
+        
+    }
+            });
+}
+    
+    
     /**
+     * 
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaProveedor().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

@@ -13,8 +13,8 @@ import Modelo.Producto;
  */
 public class Producto_tipo_comida extends Producto{
 
-    public Producto_tipo_comida(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
-        super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
+    public Producto_tipo_comida(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
+        super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
     }
 
     @Override

@@ -6,6 +6,8 @@
 package Funciones;
 
 import Controlador.ControllerSql;
+import Modelo.Proveedor;
+import java.util.List;
 
 
 
@@ -26,5 +28,9 @@ private ControllerSql sen;
      public Object[] combox(String tabla, String campoId ,String campo)
      {
         return sen.tablecombox(tabla, campoId,campo, "select "+campoId+" , "+campo+" from "+tabla+";");
+     }
+     
+     public List<Proveedor> listaProvee(){
+         return sen.listaProveedores();
      }
 }

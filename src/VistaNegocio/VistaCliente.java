@@ -7,6 +7,8 @@ package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Modelo.Funciones;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -15,7 +17,8 @@ import javax.swing.JTextField;
  * @author negro
  */
 public class VistaCliente extends javax.swing.JFrame {
-     Funciones Funciones;
+
+    Funciones Funciones;
     ControllerSql obj;
 
     /**
@@ -23,6 +26,14 @@ public class VistaCliente extends javax.swing.JFrame {
      */
     public VistaCliente() {
         initComponents();
+        
+           ValidadSoloNumeros(txtIdCliente);
+        ValidadCaracteres(txt_nombre_cliente);
+        ValidadCaracteres(txtDireccion);
+        ValidadCaracteres(txtTelefono);
+         
+        
+        
     }
 
     /**
@@ -44,8 +55,9 @@ public class VistaCliente extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtIdCliente = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txt_nombre_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,16 +105,12 @@ public class VistaCliente extends javax.swing.JFrame {
 
         jLabel4.setText("Identificacion");
 
+        jButton1.setText("Reporte Clientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,6 +125,14 @@ public class VistaCliente extends javax.swing.JFrame {
                     .addComponent(txtTelefono)
                     .addComponent(txtIdCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(172, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +153,16 @@ public class VistaCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar))
-                .addGap(102, 102, 102))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnGuardar))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(45, 45, 45))))
         );
 
         pack();
@@ -153,7 +174,7 @@ public class VistaCliente extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-         if (ValidarCamposVacios(txtIdCliente,txt_nombre_cliente, txtDireccion, txtTelefono)) {
+        if (ValidarCamposVacios(txtIdCliente, txt_nombre_cliente, txtDireccion, txtTelefono)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
@@ -162,17 +183,13 @@ public class VistaCliente extends javax.swing.JFrame {
             String NombreCliente = txt_nombre_cliente.getText();
             String Direccion = txtDireccion.getText();
             String Telefono = txtTelefono.getText();
-            
 
             try {
                 obj = new ControllerSql();
-                boolean res = obj.AgregarCliente(idCliente,NombreCliente, Direccion, Telefono);
+                boolean res = obj.AgregarCliente(idCliente, NombreCliente, Direccion, Telefono);
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
-                    this.setVisible(false);
-                    VistaPrincipal retornar = new VistaPrincipal();
-                    //  retornar.desactivarBotonesInterfaz();
-                    retornar.setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo Empleado ya existe en la base"
                             + "de datos");
@@ -184,13 +201,15 @@ public class VistaCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-         this.setVisible(false);
+        this.setVisible(false);
         VistaPrincipal retornar = new VistaPrincipal();
         retornar.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
-public boolean ValidarCamposVacios(JTextField... textFields) {
+    public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
                 return true;
@@ -198,45 +217,47 @@ public boolean ValidarCamposVacios(JTextField... textFields) {
         }
         return false;
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+
+
+ public  void ValidadSoloNumeros(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaCliente().setVisible(true);
-            }
-        });
     }
-
+            });
+}
+    
+    
+     public  void ValidadCaracteres(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (Character.isDigit(e.getKeyChar())) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
+        }
+        
+    }
+            });
+}    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

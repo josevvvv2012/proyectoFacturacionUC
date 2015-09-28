@@ -25,9 +25,9 @@ public class Conexion {
     public static String dbAddress = "jdbc:mysql://localhost:3306/";
     public final static String driver = "com.mysql.jdbc.Driver";
     public static Connection conn = null;
-    public static String login = VistaConexionBD.txtNombre.getText();
-    public static String password = VistaConexionBD.txtPassword.getText();
-    public static String dbName = VistaConexionBD.txtNombreBD.getText();
+    public static String login;
+    public static String password;
+    public static String dbName;
 
     private static Conexion conex = null;
 
@@ -48,11 +48,7 @@ public class Conexion {
 
     //metodo para conectar con la BD
     public static boolean conectar() throws Exception {
-        login = VistaConexionBD.txtNombre.getText();
-        password = VistaConexionBD.txtPassword.getText();
-        dbName = VistaConexionBD.txtNombreBD.getText();
         try {
-
             url = "jdbc:mysql://localhost:3306/" + dbName;
             Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, login, password);
@@ -72,9 +68,6 @@ public class Conexion {
 
     public static boolean createDatabase() throws Exception {
 
-        login = VistaConexionBD.txtNombre.getText();
-        password = VistaConexionBD.txtPassword.getText();
-        dbName = VistaConexionBD.txtNombreBD.getText();
         try {
 
             url = "jdbc:mysql://localhost:3306/";
@@ -103,49 +96,65 @@ public class Conexion {
         password = VistaConexionBD.txtPassword.getText();
         dbName = VistaConexionBD.txtNombreBD.getText();
 
-        String myTableName1 ="CREATE TABLE IF NOT EXISTS `cliente` (\n" +
+       String myTableName1="CREATE TABLE IF NOT EXISTS `cliente` (\n" +
 "  `id_cliente` int(11) NOT NULL,\n" +
 "  `dir_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `nom_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `tel_cliente` varchar(50) DEFAULT NULL,\n" +
 "  PRIMARY KEY (`id_cliente`)\n" +
-") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;";
-                String myTableName2 ="CREATE TABLE IF NOT EXISTS `producto` (\n" +
-"  `id_producto` int(11) NOT NULL AUTO_INCREMENT,\n" +
-"  `descripcion` varchar(50) NOT NULL,\n" +
-"  `costo` double NOT NULL,\n" +
-"  `precio_venta` double NOT NULL,\n" +
-"  `id_proveedor` int(11) NOT NULL,\n" +
-"  `Porcentaje_producto` double NOT NULL,\n" +                        
-"  PRIMARY KEY (`id_producto`),\n" +
-"  UNIQUE KEY `UQ_Producto_id_proveedor` (`id_proveedor`)\n" +
-") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;";
-                        String myTableName3 ="CREATE TABLE IF NOT EXISTS `proveedor` (\n" +
+")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+             
+       
+       
+       String myTableName2="CREATE TABLE IF NOT EXISTS `proveedor` (\n" +
 "  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,\n" +
 "  `nombreProveedor` varchar(100) NOT NULL,\n" +
 "  `telefonoProveedor` varchar(50) DEFAULT NULL,\n" +
 "  `Direccion` varchar(50) DEFAULT NULL,\n" +
-"  PRIMARY KEY (`idProveedor`),\n" +
-"  CONSTRAINT `FK_Proveedor_Producto` FOREIGN KEY (`idProveedor`) REFERENCES `producto` (`id_proveedor`)\n" +
-") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;";
-                        
-                        String myTableName4="CREATE TABLE IF NOT EXISTS `factura` (\n" +
+"  PRIMARY KEY (`idProveedor`)\n" +
+")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+       
+       String myTableName3="CREATE TABLE IF NOT EXISTS `producto` (\n" +
+"  `id_producto` int(11) NOT NULL,\n" +
+"  `descripcion` varchar(50) NOT NULL,\n" +
+"  `costo` double NOT NULL,\n" +
+"  `precio_venta` double NOT NULL,\n" +
+"  `id_proveedor` int(11) NOT NULL,\n" +
+"  `ivaproducto` double NOT NULL,\n" +
+"  PRIMARY KEY (`id_producto`),\n" +
+"  KEY `id_proveedor` (`id_proveedor`),\n" +
+"  CONSTRAINT `FK_producto_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`idProveedor`)\n" +
+")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
+       String myTableName4="CREATE TABLE IF NOT EXISTS `factura` (\n" +
 "  `id_factura` int(11) NOT NULL AUTO_INCREMENT,\n" +
 "  `fecha_fact` varchar(50) DEFAULT NULL,\n" +
-"  `cantidad` int(11) DEFAULT NULL,\n" +
 "  `subtotal` decimal(10,0) DEFAULT NULL,\n" +
 "  `valor_iva` decimal(10,0) DEFAULT NULL,\n" +
 "  `total_fact` double DEFAULT NULL,\n" +
-"  `descuento_fact` decimal(10,0) DEFAULT NULL,\n" +
 "  `neto_fact` double DEFAULT NULL,\n" +
 "  `id_cliente` int(11) DEFAULT NULL,\n" +
-"  `id_producto` int(11) DEFAULT NULL,\n" +
 "  PRIMARY KEY (`id_factura`),\n" +
-"  UNIQUE KEY `UQ_Factura_id_producto` (`id_producto`),\n" +
 "  KEY `id_cliente` (`id_cliente`),\n" +
-"  CONSTRAINT `FK_Factura_Cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)\n" +
-") ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs";
-                        
+"  CONSTRAINT `FK_factura_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)\n" +
+")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+       
+       
+       String myTableName5="CREATE TABLE IF NOT EXISTS `facpr` (\n" +
+"  `id_facpr` int(11) NOT NULL AUTO_INCREMENT,\n" +
+"  `id_factura` int(11) NOT NULL,\n" +
+"  `id_producto_f` int(11) NOT NULL,\n" +
+"  `cantidad` int(11) NOT NULL,\n" +
+"  `valor` double NOT NULL,\n" +
+"  PRIMARY KEY (`id_facpr`),\n" +
+"  KEY `id_factura` (`id_factura`),\n" +
+"  KEY `id_producto_f` (`id_producto_f`),\n" +
+"  CONSTRAINT `FK_facpr_producto` FOREIGN KEY (`id_producto_f`) REFERENCES `producto` (`id_producto`),\n" +
+"  CONSTRAINT `FK_facpr_factura` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`)\n" +
+")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+       
+
+        
                         
         try {
             Class.forName(driver);
@@ -157,6 +166,10 @@ public class Conexion {
             s.executeUpdate(myTableName2);
             s.executeUpdate(myTableName3);
             s.executeUpdate(myTableName4);
+            s.executeUpdate(myTableName5);
+            
+            
+        
             System.out.println("Tables Created");
 
             if (conn != null) {

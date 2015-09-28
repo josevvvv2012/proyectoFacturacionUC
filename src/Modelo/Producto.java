@@ -7,7 +7,6 @@ package Modelo;
 
 /**
  *
- * @author negro
  */
 public abstract class Producto {
     int idProducto;
@@ -16,6 +15,8 @@ public abstract class Producto {
     double PrecioCosto;
     double IvaProducto;
     double stock;
+    int cantidad;
+    int idproveedor;
 
     public Producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         this.idProducto = idProducto;
@@ -73,6 +74,29 @@ public abstract class Producto {
     public void setStock(double stock) {
         this.stock = stock;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad1(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getIdproveedor() {
+        return idproveedor;
+    }
+
+    public void setIdproveedor(int idproveedor) {
+        this.idproveedor = idproveedor;
+    }
+
+    @Override
+    public String toString() {
+        return getNombreProducto() + " " + getPrecioVenta();
+    }
+    
+    
 
     public abstract String getPesoYMarca_product();
 }

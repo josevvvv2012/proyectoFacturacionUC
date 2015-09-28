@@ -7,29 +7,34 @@ package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Funciones.Funciones;
+import Modelo.Proveedor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import Decorador.*;
-import Modelo.Producto;
- 
+
 /**
  *
  * @author negro
  */
 public class VistaIngresarProductos extends javax.swing.JFrame {
+
     private ControllerSql obj;
     Funciones cc = new Funciones();
+
     /**
      * Creates new form VistaIngresarProductos
      */
     public VistaIngresarProductos() {
         initComponents();
+     ValidadSoloNumeros(TextCodProduct);
+        ValidadCaracteres(TextDescripcion);
+        ValidadSoloNumeros(TextPrecio);
+        ValidadSoloNumeros(TextCostoproduc);
+        ValidadSoloNumeros(txtIvap);
         
-        Object[] tipo_doc = cc.combox("proveedor","idProveedor","nombreProveedor");
-        LitsadeProovedores.removeAllItems();
-        for(int i=0;i<tipo_doc.length;i++){
-        LitsadeProovedores.addItem(tipo_doc[i]);
-        }
+        
+        LitsadeProovedores.setModel(new javax.swing.DefaultComboBoxModel(cc.listaProvee().toArray()));
     }
 
     /**
@@ -52,14 +57,12 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         BotonIngresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        TextProovedor = new javax.swing.JTextField();
         Boton_cancelar = new javax.swing.JButton();
         LitsadeProovedores = new javax.swing.JComboBox();
-        TextPorcentaje = new javax.swing.JTextField();
-        LabelPorcentaje = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtIvap = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LabelProducto.setText("Codigo de Producto");
 
@@ -109,12 +112,6 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
 
         jLabel6.setText("Codigo Proovedor");
 
-        TextProovedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextProovedorActionPerformed(evt);
-            }
-        });
-
         Boton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cancelar.JPG"))); // NOI18N
         Boton_cancelar.setText("Cancelar");
         Boton_cancelar.setBorder(null);
@@ -138,55 +135,44 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             }
         });
 
-        TextPorcentaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPorcentajeActionPerformed(evt);
-            }
-        });
-
-        LabelPorcentaje.setText("Porcentaje ");
-
-        jLabel1.setText("Nombre del proovedor");
+        jLabel1.setText("Iva");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(LabelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                 .addComponent(LabelPrecioVent, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(LabelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextProovedor)
-                            .addComponent(TextPrecio)
-                            .addComponent(TextCostoproduc)
-                            .addComponent(TextDescripcion)
-                            .addComponent(TextCodProduct)
-                            .addComponent(TextPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(137, 137, 137))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(BotonIngresar)
-                .addGap(92, 92, 92)
-                .addComponent(Boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonIngresar)
+                        .addGap(68, 68, 68)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(Boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextPrecio)
+                    .addComponent(TextCostoproduc)
+                    .addComponent(TextDescripcion)
+                    .addComponent(TextCodProduct)
+                    .addComponent(LitsadeProovedores, 0, 149, Short.MAX_VALUE)
+                    .addComponent(txtIvap))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,43 +181,38 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelProducto)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(LabelDescripcion)
-                                .addGap(34, 34, 34)
-                                .addComponent(LabelCosto)
-                                .addGap(37, 37, 37)
-                                .addComponent(LabelPrecioVent)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LabelProducto)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextCodProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelPorcentaje))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                            .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelDescripcion))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelCosto))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelPrecioVent))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(TextProovedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(jLabel6))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonIngresar)
                     .addComponent(Boton_cancelar))
-                .addGap(41, 41, 41))
+                .addContainerGap())
         );
 
         pack();
@@ -246,47 +227,43 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_TextPrecioActionPerformed
 
     private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
-    if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio, TextProovedor,TextPorcentaje)) {
-                JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
-    }      
-    
-    else {
+        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && LitsadeProovedores.getSelectedIndex() > 0) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+        } else {
         //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
             //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
             //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
-            
+
             // TODO add your handling code here:
             int id_producto = Integer.parseInt(TextCodProduct.getText());
             String Descripcion_prod = TextDescripcion.getText();
             double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
             double Precio_prod = Double.parseDouble(TextPrecio.getText());
-            int Codigo_proveedor = Integer.parseInt(TextProovedor.getText());
-            double Porcentaje_producto=Double.parseDouble(TextPorcentaje.getText());
+            int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+            double ivaproducto = Double.parseDouble(txtIvap.getText());
+            
             try {
-                obj =new ControllerSql();
-                boolean res= obj.AgregarProducto(id_producto,Descripcion_prod, Costo_Venta_prod, Precio_prod, Codigo_proveedor,Porcentaje_producto);
-            if (res == true) {
+                obj = new ControllerSql();
+                boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
+                        Costo_Venta_prod, 
+                        Precio_prod,
+                        Codigo_proveedor,
+                        ivaproducto);
+                if (res == true) {
                     JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
-                    this.setVisible(false);
-                    VistaPrincipal retornar = new VistaPrincipal();
-                    //  retornar.desactivarBotonesInterfaz();
-                    retornar.setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
                             + "de datos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
             }
-        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
 
         }
-               
-}
-    // TODO add your handling code here:
-    }//GEN-LAST:event_BotonIngresarActionPerformed
-
-    private void TextProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextProovedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextProovedorActionPerformed
+    }//GEN-LAST:event_BotonIngresarActionPerformed
 
     private void TextCodProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodProductActionPerformed
         // TODO add your handling code here:
@@ -301,10 +278,6 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     private void LitsadeProovedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LitsadeProovedoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LitsadeProovedoresActionPerformed
-
-    private void TextPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPorcentajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextPorcentajeActionPerformed
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -313,58 +286,62 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         }
         return false;
     }
+    
+    
+
+ public  void ValidadSoloNumeros(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
+        }
+    }
+            });
+}
+    
+    
+     public  void ValidadCaracteres(JTextField a)
+{
+    a.addKeyListener(new KeyAdapter(){
+        public void keyTyped(KeyEvent e)
+    {
+        Character ch = e.getKeyChar(); 
+        if (Character.isDigit(e.getKeyChar())) { 
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+   
+            getToolkit().beep();
+            e.consume();;
+        }
+        
+    }
+            });
+}    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaIngresarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaIngresarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaIngresarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaIngresarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaIngresarProductos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIngresar;
     private javax.swing.JButton Boton_cancelar;
     private javax.swing.JLabel LabelCosto;
     private javax.swing.JLabel LabelDescripcion;
-    private javax.swing.JLabel LabelPorcentaje;
     private javax.swing.JLabel LabelPrecioVent;
     private javax.swing.JLabel LabelProducto;
     public static javax.swing.JComboBox LitsadeProovedores;
     private javax.swing.JTextField TextCodProduct;
     private javax.swing.JTextField TextCostoproduc;
     private javax.swing.JTextField TextDescripcion;
-    private javax.swing.JTextField TextPorcentaje;
     private javax.swing.JTextField TextPrecio;
-    private javax.swing.JTextField TextProovedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtIvap;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,10 @@
  */
 package Controlador;
 
+import Decorador.Producto_tipo_comida;
+import Modelo.Factura;
+import Modelo.Producto;
 import Modelo.Proveedor;
-import VistaNegocio.VistaProveedor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,16 +26,11 @@ import javax.swing.JOptionPane;
  *
  * @author negro
  */
-
-  
-    public class ControllerSql {//public 
+public class ControllerSql {//public 
 
     Connection conexion;
     Statement stm;
     ResultSet rs;
-    private static Proveedor Proveedor;
-    
-    
 
     public ControllerSql() {  //class public
 
@@ -49,28 +48,22 @@ import javax.swing.JOptionPane;
         }
 
     }
-    
-       //funcion AgregarProveedor
-    public boolean AgregarProveedor(String nombreProveedor, String telefonoProveedor,  String direccionProveedor) {
 
-      this.Proveedor = Proveedor.getInstance(nombreProveedor,telefonoProveedor,direccionProveedor, Proveedor);
-     
-//          VistaProveedor.txtDireccion.setText(String.valueOf(Proveedor.getNombreProveedor()));
-//          VistaProveedor.txtTelefono.setText(String.valueOf(Proveedor.getTelefonoProveedor()));
-//        VistaProveedor.txtDireccion.setText(String.valueOf(Proveedor.getDireccionProveedor()));
+    //funcion AgregarProveedor
+    public boolean AgregarProveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
 
-                   
+        Proveedor proveedor = new Proveedor(nombreProveedor, telefonoProveedor, direccionProveedor);
+
         try {
             String query = " insert into proveedor(nombreProveedor,telefonoProveedor,Direccion)"
                     + " values (?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1,Proveedor.getNombreProveedor());
-            preparedStmt.setString(2, Proveedor.getTelefonoProveedor());
-            preparedStmt.setString(3, Proveedor.getDireccionProveedor());
-            
-          
+            preparedStmt.setString(1, proveedor.getNombreProveedor());
+            preparedStmt.setString(2, proveedor.getTelefonoProveedor());
+            preparedStmt.setString(3, proveedor.getDireccionProveedor());
+
             // ejecuto mi query
             preparedStmt.execute();
             return true;
@@ -78,13 +71,30 @@ import javax.swing.JOptionPane;
             return false;
         }
     }
-    
-      //funcion AgregarProducto
-    public boolean AgregarProducto(int id_producto,String descripcion, Double costo,  Double precio_venta , int id_proveedor,double Porcentaje_producto ) {
 
-         
+    //funcion AgregarProducto
+    public boolean AgregarProducto(
+            int id_producto, 
+            String descripcion,
+            Double costo, 
+            Double precio_venta, 
+            int id_proveedor,
+            Double ivaproducto ) {
+
+        
+        
+               
+                       
+               
+               
         try {
-            String query = " insert into producto(id_producto,descripcion,costo,precio_venta ,id_proveedor,Porcentaje_producto)"
+            String query = " insert into producto("
+                    + "id_producto,"
+                    + "descripcion,"
+                    + "costo,"
+                    + "precio_venta ,"
+                    + "id_proveedor,"
+                    + "ivaproducto)"
                     + " values (?,?,?,?,?,?)";
 
             // preparo la consulta para mi base de datos .
@@ -94,9 +104,8 @@ import javax.swing.JOptionPane;
             preparedStmt.setDouble(3, costo);
             preparedStmt.setDouble(4, precio_venta);
             preparedStmt.setInt(5, id_proveedor);
-            preparedStmt.setDouble(6, Porcentaje_producto);
- 
-          
+            preparedStmt.setDouble(6, ivaproducto);
+            
             // ejecuto mi query
             preparedStmt.execute();
             return true;
@@ -104,12 +113,10 @@ import javax.swing.JOptionPane;
             return false;
         }
     }
-    
-    
-    //funcion AgregarCliente
-    public boolean AgregarCliente(int idCliente ,String dir_cliente, String nom_cliente,  String tel_cliente ) {
 
-         
+    //funcion AgregarCliente
+    public boolean AgregarCliente(int idCliente, String dir_cliente, String nom_cliente, String tel_cliente) {
+
         try {
             String query = " insert into cliente(id_cliente,dir_cliente,nom_cliente,tel_cliente)"
                     + " values (?,?,?,?)";
@@ -120,7 +127,7 @@ import javax.swing.JOptionPane;
             preparedStmt.setString(2, dir_cliente);
             preparedStmt.setString(3, nom_cliente);
             preparedStmt.setString(4, tel_cliente);
-            
+
             // ejecuto mi query
             preparedStmt.execute();
             return true;
@@ -128,36 +135,52 @@ import javax.swing.JOptionPane;
             return false;
         }
     }
-    
-    //funcion AgregarFactura
-    public boolean AgregarFactura(String fecha_fact, 
-                                    int cantidad,  
-                                    Double subtotal,
-                                    Double valor_iva,
-                                    Double total_fact,
-                                    int descuento_fact,
-                                    Double neto_fact,
-                                    int id_cliente,
-                                    int id_producto) {
 
-         
+    //funcion AgregarFactura
+    public boolean AgregarFactura(Factura factura) {
+
         try {
-            String query = " insert into factura(dir_cliente,nom_cliente,tel_cliente)"
-                    + " values (?,?,?)";
+            String query = " insert into factura(fecha_fact,subtotal,valor_iva, total_fact, neto_fact, id_cliente)"
+                    + " values (?,?,?,?,?,?)";
+            
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, fecha_fact);
-            preparedStmt.setInt(2, cantidad);
-            preparedStmt.setDouble(3, subtotal);
-            preparedStmt.setDouble(4, valor_iva);
-            preparedStmt.setDouble(5, total_fact);
-            preparedStmt.setInt(6, descuento_fact);
-            preparedStmt.setDouble(7, neto_fact);
-            preparedStmt.setInt(8, id_cliente);
-            preparedStmt.setInt(9, id_producto);
+            preparedStmt.setString(1, factura.getFecha_fact()+"");
+            preparedStmt.setDouble(2, factura.getSubtotal());
+            preparedStmt.setDouble(3, factura.getValor_iva());
+            preparedStmt.setDouble(4, factura.getTotal_fact());
+            preparedStmt.setDouble(5, factura.getNeto_fact());
+            preparedStmt.setInt(6, factura.getId_cliente());
+            // ejecuto mi query
+            preparedStmt.execute();
             
+            preparedStmt = conexion.prepareStatement("SELECT max(id_factura)  FROM factura");
+            rs = preparedStmt.executeQuery();
+            if(rs.next()){
+                factura.setId_factura(rs.getInt(1));
+            }
             
+            for (Producto p : factura.getProductos()){
+                agregarProductoFactura(p, factura.getId_factura());
+            }
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean agregarProductoFactura(Producto p, int id_factura){
+        try {
+            String query = " insert into facpr(id_factura,id_producto,cantidad, valor)"
+                    + " values (?,?,?,?)";
+            
+            // preparo la consulta para mi base de datos
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setInt(1, id_factura);
+            preparedStmt.setInt(2, p.getIdProducto());
+            preparedStmt.setInt(3, p.getCantidad());
+            preparedStmt.setDouble(3, p.getCantidad() * p.getPrecioVenta());
             // ejecuto mi query
             preparedStmt.execute();
             return true;
@@ -166,38 +189,79 @@ import javax.swing.JOptionPane;
         }
     }
     
-         public Object[] tablecombox(String tabla, String nombrecolIde,String nombreCampo, String sql){
-      int registros = 0;      
-      PreparedStatement ps ;
-      try{
-         ps = conexion.prepareStatement("SELECT count(*) as total FROM " + tabla);
-         rs = ps.executeQuery();
-         rs.next();
-         registros = rs.getInt("total");
-         rs.close();
-      }catch(SQLException e){
-         System.out.println(e);
-      }
-
-    Object[] datos = new Object[registros];
-      try{
-         ps = conexion.prepareStatement(sql);
-         rs = ps.executeQuery();
-         int i = 0;
-         while(rs.next()){
-            datos[i] = rs.getObject(nombrecolIde);
-            datos[i] = rs.getObject(nombreCampo);
-            i++;
-         }
-         rs.close();
-          }catch(SQLException e){
-         System.out.println(e);
+    public List<Producto> listaProductos(){
+        List<Producto> productos = new Stack<Producto>();
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Producto p = new Producto_tipo_comida(rs.getInt(1), 
+                        rs.getString(2), 
+                        rs.getDouble(4), 
+                        rs.getDouble(3), 
+                        rs.getDouble(6));
+                p.setIdproveedor(rs.getInt(5));
+                productos.add(p);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return productos;
     }
-    return datos;
- }
-   /*
-    //funcion ConsultarCliente
-    */
+    
+    public List<Proveedor> listaProveedores(){
+        List<Proveedor> proveedores = new Stack<Proveedor>();
+        PreparedStatement ps;
+        try {
+            //String nombreProveedor, String telefonoProveedor, String direccionProveedor, int idProveedor
+            ps = conexion.prepareStatement("SELECT nombreProveedor ,telefonoProveedor ,direccion,idProveedor  FROM proveedor");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Proveedor p = new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                proveedores.add(p);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return proveedores;
+    }
+
+    public Object[] tablecombox(String tabla, String nombrecolIde, String nombreCampo, String sql) {
+        int registros = 0;
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement("SELECT count(*) as total FROM " + tabla);
+            rs = ps.executeQuery();
+            rs.next();
+            registros = rs.getInt("total");
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        Object[] datos = new Object[registros];
+        try {
+            ps = conexion.prepareStatement(sql);
+            rs = ps.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                datos[i] = rs.getObject(nombrecolIde);
+                datos[i] = rs.getObject(nombreCampo);
+                i++;
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return datos;
+    }
+    /*
+     //funcion ConsultarCliente
+     */
+
     public ResultSet ConsultarCliente(int id_cliente) {
         try {
 
@@ -210,32 +274,21 @@ import javax.swing.JOptionPane;
             return null;
         }
     }
-    
-   /*
-    //funcion ConsultarCliente
-    */
-    public ResultSet ConsultarProducto(int id_producto,int band) {
+
+    /*
+     //funcion ConsultarCliente
+     */
+    public ResultSet ConsultarProducto(int id_producto) {
         try {
-            if(band==1){
 
-            String query = "SELECT descripcion,costo,porcentaje_producto FROM producto WHERE id_producto like " + id_producto + "";
+            String query = "SELECT precio_venta FROM producto WHERE id_producto like " + id_producto + "";
             Statement st = conexion.createStatement();
             rs = st.executeQuery(query);
-            
-            }
-            if(band==2){
-
-            String query = "SELECT precio_venta FROM producto WHERE id_producto like " + id_producto + "";           
-            Statement st = conexion.createStatement();
-            rs = st.executeQuery(query);
-            
-            }
             return rs;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error");
             return null;
         }
     }
-    
-    
+
 }

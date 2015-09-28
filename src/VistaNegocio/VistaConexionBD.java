@@ -6,6 +6,9 @@
 package VistaNegocio;
 
 import Controlador.Conexion;
+import static Controlador.Conexion.dbName;
+import static Controlador.Conexion.login;
+import static Controlador.Conexion.password;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -38,7 +41,6 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         btnTest = new javax.swing.JButton();
         btnCreaBd = new javax.swing.JButton();
@@ -51,8 +53,9 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(102, 255, 255));
         jLabel1.setText("DRIVER");
@@ -63,9 +66,8 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(102, 255, 255));
         jLabel3.setText("PASSWORD");
 
-        txtPassword.setBackground(new java.awt.Color(204, 204, 204));
-
         txtNombre.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombre.setText("root");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -95,6 +97,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel4.setText("NOMBRE BASE DE DATOS");
 
         txtNombreBD.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombreBD.setText("factura");
         txtNombreBD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreBDActionPerformed(evt);
@@ -115,6 +118,9 @@ public class VistaConexionBD extends javax.swing.JFrame {
 
         jLabel8.setText("@Jose Vanegas");
 
+        txtPassword.setBackground(new java.awt.Color(204, 204, 204));
+        txtPassword.setText("root");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,23 +134,17 @@ public class VistaConexionBD extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNombre))
-                        .addGap(80, 80, 80))
+                            .addComponent(txtPassword)
+                            .addComponent(txtNombre)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ComboBoxDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNombreBD)
-                                .addGap(1, 1, 1))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreBD)
+                            .addComponent(ComboBoxDrivers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(btnTest)
@@ -152,7 +152,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
                 .addComponent(btnCreaBd)
                 .addGap(57, 57, 57))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -226,14 +226,15 @@ public class VistaConexionBD extends javax.swing.JFrame {
 
         if (ValidarCamposVacios(txtNombre, txtNombreBD)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
-
         } else {
-
+            login = txtNombre.getText();
+            password = txtPassword.getText();
+            dbName = txtNombreBD.getText();
             try {
                 if (Conexion.conectar()) {
                     txtRespuesta.setText("Conexion Exitosa");
 
-                    this.setVisible(false);
+                    this.dispose();
                     /*        
                     Vista.VistaPrincipal.btnCalculosMensuales.setEnabled(true);
                     Vista.VistaPrincipal.btnCargarEmpleado.setEnabled(true);
@@ -272,7 +273,9 @@ public class VistaConexionBD extends javax.swing.JFrame {
             } else {
 
                 try {
-
+                    login = txtNombre.getText();
+                    password = txtPassword.getText();
+                    dbName = txtNombreBD.getText();
                     if (Conexion.createDatabase()) {
                         txtRespuesta.setText("Creacion Exitosa Base de datos");
                         
@@ -280,7 +283,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
                         if (Conexion.createTable()) {
                             txtRespuesta.setText("Creacion Exitosa script sql");
                             
-                                this.setVisible(false);
+                                this.dispose();
 /*
                      Vista.VistaPrincipal.btnCalculosMensuales.setEnabled(true);
                     Vista.VistaPrincipal.btnCargarEmpleado.setEnabled(true);
@@ -337,42 +340,6 @@ public class VistaConexionBD extends javax.swing.JFrame {
     
    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaConexionBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaConexionBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaConexionBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaConexionBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaConexionBD().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox ComboBoxDrivers;
     public static javax.swing.JButton btnCreaBd;
@@ -388,7 +355,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
     public static javax.swing.JLabel jlSalida;
     public static javax.swing.JTextField txtNombre;
     public static javax.swing.JTextField txtNombreBD;
-    public static javax.swing.JTextField txtPassword;
+    public static javax.swing.JPasswordField txtPassword;
     public static javax.swing.JLabel txtRespuesta;
     // End of variables declaration//GEN-END:variables
 }
