@@ -5,12 +5,27 @@
  */
 package VistaNegocio;
 
+import Controlador.Conexion;
 import Controlador.ControllerSql;
 import Modelo.Funciones;
+import java.awt.Desktop;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -18,7 +33,7 @@ import javax.swing.JTextField;
  */
 public class VistaCliente extends javax.swing.JFrame {
 
-    Funciones Funciones;
+  
     ControllerSql obj;
 
     /**
@@ -106,6 +121,11 @@ public class VistaCliente extends javax.swing.JFrame {
         jLabel4.setText("Identificacion");
 
         jButton1.setText("Reporte Clientes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,6 +229,16 @@ public class VistaCliente extends javax.swing.JFrame {
         VistaPrincipal retornar = new VistaPrincipal();
         retornar.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here:
+        
+        pdf();
+        String jasper="reporteclientes";
+        ver(jasper);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -253,7 +283,63 @@ public class VistaCliente extends javax.swing.JFrame {
     }
             });
 }    
-    
+ 
+  /**
+  * Ver reporte
+  */
+  public void ver( String jasper ){
+     JasperReport jasperReport;
+     JasperPrint jasperPrint;
+     Conexion database1 = new Conexion();
+     try{
+        URL  in=this.getClass().getResource( "reporteclientes.jasper" );
+        jasperReport=(JasperReport)JRLoader.loadObject(in);
+        
+        jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap() , database1.getConn());
+        JasperViewer.viewReport(jasperPrint,false);
+    }catch (JRException ex){
+        System.err.println( "Error iReport: " + ex.getMessage() );
+    }
+  }
+
+  /**
+   * Imprimir reporte
+   */
+  public void pdf(){
+      
+      Conexion database1 = new Conexion();
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;                
+        try
+        {
+          //se carga el reporte
+          URL  in=this.getClass().getResource( "reporteclientes.jasper");
+          jasperReport=(JasperReport)JRLoader.loadObject(in);
+          //se procesa el archivo jasper
+          jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn() );
+          //se crea el archivo PDF
+          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteclientes.pdf");
+          //Se ejecuta directamete PDF
+//          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
+          
+            try {
+        Desktop desktop = Desktop.getDesktop();
+        if (desktop.isSupported(Desktop.Action.OPEN)) {
+            desktop.open(new File("reporteclientes.pdf"));
+        } else {
+            System.out.println("Open is not supported");
+        }
+    } catch (IOException exp) {
+        exp.printStackTrace();
+    }
+        }
+        catch (JRException ex)
+        {
+          System.err.println( "Error iReport: " + ex.getMessage() );
+        }
+  }     
+     
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

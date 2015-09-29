@@ -24,14 +24,14 @@ public class Conexion {
     public static String url;
     public static String dbAddress = "jdbc:mysql://localhost:3306/";
     public final static String driver = "com.mysql.jdbc.Driver";
-    public static Connection conn = null;
+    private static Connection conn = null;
     public static String login;
     public static String password;
     public static String dbName;
 
     private static Conexion conex = null;
 
-    private Conexion() {
+    public Conexion() {
         try {
             conectar();
         } catch (Exception ex) {
@@ -185,7 +185,7 @@ public class Conexion {
     }
 
     public Connection getConn() {
-        return conn;
+        return this.conn;
     }
 
 }//fin de la clase

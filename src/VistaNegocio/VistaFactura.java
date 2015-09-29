@@ -7,7 +7,7 @@ package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Decorador.Producto_tipo_comida;
-import Funciones.Funciones;
+import Funciones.FuncionesController;
 import Modelo.Factura;
 import Modelo.Producto;
 import java.sql.ResultSet;
@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 public class VistaFactura extends javax.swing.JFrame {
 
     ControllerSql ControllerSql = new ControllerSql();
-     Funciones cc = new Funciones();
+     FuncionesController cc = new FuncionesController();
     Factura factura;
     public int nunfac;
   

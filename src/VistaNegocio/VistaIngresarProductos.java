@@ -6,7 +6,7 @@
 package VistaNegocio;
 
 import Controlador.ControllerSql;
-import Funciones.Funciones;
+import Funciones.FuncionesController;
 import Modelo.Proveedor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 public class VistaIngresarProductos extends javax.swing.JFrame {
 
     private ControllerSql obj;
-    Funciones cc = new Funciones();
+    FuncionesController cc = new FuncionesController();
 
     /**
      * Creates new form VistaIngresarProductos
