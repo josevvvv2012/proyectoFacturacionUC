@@ -290,5 +290,19 @@ public class ControllerSql {//public
             return null;
         }
     }
+    
+    
+        public ResultSet ConsultarIdFactura() {
+        try {
+
+            String query = "select * from factura";
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            return rs;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            return null;
+        }
+    }
 
 }
