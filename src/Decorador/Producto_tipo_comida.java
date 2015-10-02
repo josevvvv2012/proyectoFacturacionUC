@@ -17,9 +17,15 @@ public class Producto_tipo_comida extends Producto{
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
     }
 
+
     @Override
-    public String getPesoYMarca_product() {
-        return null;
+    public double getPeso_product() {
+        return 240; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getMarca_product() {
+        return "Zenu"; 
     }
     
 }

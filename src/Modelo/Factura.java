@@ -120,17 +120,18 @@ public class Factura implements Observer{
 
     public void calcular(){
 
-        valor_iva = 0;
+   valor_iva = 0;
         valor_iva_total=0;
         total_fact =0;
-        Producto  Producto  ;
+        subtotal = 0;
         for (Producto p : productos){
             subtotal += (p.getPrecioVenta()/(p.getIvaProducto()+1.0))*p.getCantidad();
-            System.out.println(subtotal);
-             valor_iva += p.getIvaProducto();
+            valor_iva += p.getIvaProducto();
+            total_fact += p.getPrecioVenta() * p.getCantidad();
         }
-       valor_iva_total = subtotal*valor_iva;
-       total_fact = subtotal+valor_iva_total;
+//       valor_iva_total = subtotal*valor_iva;
+       valor_iva_total = total_fact - subtotal;
+//       total_fact = subtotal+valor_iva_total;
        System.out.println(total_fact);
     }
     
@@ -142,5 +143,9 @@ public class Factura implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         
+    }
+
+    public void quitarProducto(Producto p) {
+        productos.remove(p);
     }
 }

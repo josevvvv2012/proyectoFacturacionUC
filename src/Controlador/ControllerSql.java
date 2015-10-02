@@ -21,19 +21,26 @@ import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import observer.ActualizaFacturas;
 
 /**
  *
  * @author negro
  */
-public class ControllerSql {//public 
+public class ControllerSql extends ActualizaFacturas{//public 
 
     Connection conexion;
     Statement stm;
     ResultSet rs;
-
+    
+    private static ControllerSql cs = new ControllerSql();//instancia para que el patron observer se ejecute solamente cuando se abre la aplicacion
+    
+      public static ControllerSql getInstancia(){
+        return cs;
+    }
+    
     public ControllerSql() {  //class public
-
+        super(null);
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -74,21 +81,34 @@ public class ControllerSql {//public
 
     //funcion AgregarProducto
     public boolean AgregarProducto(
+//            int id_producto, 
+//            String descripcion,
+//            Double costo, 
+//            Double precio_venta, 
+//            int id_proveedor,
+//            Double ivaproducto,
+//            String tipoProducto) {
+            
+            
             int id_producto, 
             String descripcion,
             Double costo, 
             Double precio_venta, 
             int id_proveedor,
-            Double ivaproducto ) {
-
-        
-        
-               
-                       
-               
-               
+            Double ivaproducto) {
+           
         try {
-            String query = " insert into producto("
+//            String query = " insert into producto("
+//                    + "id_producto,"
+//                    + "descripcion,"
+//                    + "costo,"
+//                    + "precio_venta,"
+//                    + "id_proveedor,"
+//                    + "ivaproducto,"
+//                    + "tipoproducto)"
+//                    + " values (?,?,?,?,?,?,?)";
+            
+               String query = " insert into producto("
                     + "id_producto,"
                     + "descripcion,"
                     + "costo,"
@@ -105,6 +125,7 @@ public class ControllerSql {//public
             preparedStmt.setDouble(4, precio_venta);
             preparedStmt.setInt(5, id_proveedor);
             preparedStmt.setDouble(6, ivaproducto);
+//            preparedStmt.setString(7, tipoProducto);
             
             // ejecuto mi query
             preparedStmt.execute();
@@ -292,6 +313,28 @@ public class ControllerSql {//public
     }
     
     
+    public Producto consultarProducto(int idProducto) {
+        Producto p = null;
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto");    
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                p = new Producto_tipo_comida(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getDouble(4),
+                        rs.getDouble(3),
+                        rs.getDouble(6));
+                        p.setIdproveedor(rs.getInt(5));
+            //            rs.getString(7);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return p;
+    }
+    
         public ResultSet ConsultarIdFactura() {
         try {
 
@@ -304,5 +347,27 @@ public class ControllerSql {//public
             return null;
         }
     }
+        
+        //metodo  para actualizar todas las facturas que tenga guardadas en la BD
+    public boolean actualizarFactura(Factura factura) {
+
+        try {
+            String query = " update factura set subtotal = ? ,valor_iva = ? , total_fact = ?, neto_fact = ? where id_factura = ?";
+
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setDouble(1, factura.getSubtotal());
+            preparedStmt.setDouble(2, factura.getValor_iva());
+            preparedStmt.setDouble(3, factura.getTotal_fact());
+            preparedStmt.setDouble(4, factura.getNeto_fact());
+            preparedStmt.setInt(5, factura.getId_factura());
+            preparedStmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+        
 
 }

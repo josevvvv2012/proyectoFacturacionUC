@@ -97,12 +97,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel4.setText("NOMBRE BASE DE DATOS");
 
         txtNombreBD.setBackground(new java.awt.Color(204, 204, 204));
-        txtNombreBD.setText("factura");
-        txtNombreBD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreBDActionPerformed(evt);
-            }
-        });
+        txtNombreBD.setText("pt2");
 
         txtRespuesta.setBackground(new java.awt.Color(102, 255, 102));
         txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -119,7 +114,11 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel8.setText("@Jose Vanegas");
 
         txtPassword.setBackground(new java.awt.Color(204, 204, 204));
-        txtPassword.setText("root");
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,10 +254,6 @@ public class VistaConexionBD extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTestActionPerformed
 
-    private void txtNombreBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreBDActionPerformed
-
     private void btnCreaBdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaBdActionPerformed
         // TODO add your handling code here:
 
@@ -306,6 +301,10 @@ public class VistaConexionBD extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCreaBdActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /*
      @autor Jose Vanegas

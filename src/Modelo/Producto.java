@@ -96,7 +96,8 @@ public abstract class Producto {
         return getNombreProducto() + " " + getPrecioVenta();
     }
     
-    
+   public abstract double getPeso_product();
+   public abstract String getMarca_product();
 
-    public abstract String getPesoYMarca_product();
+    
 }

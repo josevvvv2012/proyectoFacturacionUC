@@ -17,9 +17,15 @@ public class Producto_tipo_ropa extends Producto{
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
     }
 
+
     @Override
-    public String getPesoYMarca_product() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double getPeso_product() {
+        return 300; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getMarca_product() {
+        return "Pronto"; 
     }
     
 }

@@ -6,26 +6,28 @@
 
 package observer;
 
+import Modelo.Producto;
 import java.util.Observable;
 
 /**
  *
  */
+//CLASE PARA ACTUALIZAR LAS FACTURAS
 public class ActualizaFacturas extends Observable{
     
-    private int estado = 0;//Estado inicial
+    private Producto estado = null;//Estado inicial
 
-    public ActualizaFacturas(int estado) {
+    public ActualizaFacturas(Producto estado) {
         this.estado = estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Producto estado) {
         this.estado = estado;
         setChanged();
         notifyObservers();
     }
 
-    public int getEstado() {
+    public Producto getEstado() {
         return estado;
     }
     

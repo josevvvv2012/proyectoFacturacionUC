@@ -13,13 +13,19 @@ import Modelo.Producto;
  */
 public class Marca_del_producto extends Decorador_producto{
 
-    public Marca_del_producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
+    public Marca_del_producto(Producto producto,int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
+                this.producto=producto;
+    }
+    
+    @Override
+    public double getPeso_product() {
+        return producto.getPeso_product()+100;
     }
 
     @Override
-    public String getPesoYMarca_product() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getMarca_product() {
+        return producto.getMarca_product()+"Rancheras"; //To change body of generated methods, choose Tools | Templates.
     }
-    
+  
 }
