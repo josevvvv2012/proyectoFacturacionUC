@@ -371,32 +371,52 @@ public class VistaCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
  
-    
+  /*
+  @autor jose vanegas -jvanegasv@ucentral.edu.co
+  */  
      private void Selecionaarticulo(){
        
 //         DefaultTableModel modelo = (DefaultTableModel) Factura.jtableDetalle.getModel();
-//        int row=jTable1.getSelectedRow();
-//        String id=jTable1.getValueAt(row, 0).toString();
+//         int row=jTable1.getSelectedRow();
+//         String id=jTable1.getValueAt(row, 0).toString();
 //         String nom=jTable1.getValueAt(row, 1).toString();
-//        String det=jTable1.getValueAt(row, 2).toString();
+//         String det=jTable1.getValueAt(row, 2).toString();
 //         String pre=jTable1.getValueAt(row, 4).toString();
+        
+         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        //ahora obtenemos la fila selccionada
+        int fila_select = jTable1.getSelectedRow(); 
+
+        if(fila_select<0){
+            // no se puede eliminar
+            JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
+        }else {
+          // la eliminamos del modelo:
+        modelo.removeRow(fila_select);
+        
+        String id=jTable1.getValueAt(row, 0).toString();
+        String nom=jTable1.getValueAt(row, 1).toString();
+        String ape=jTable1.getValueAt(row, 2).toString();
+        String dni=jTable1.getValueAt(row, 4).toString();
+        txtIdCliente.setText(id);
+       // this.dispose();
+        
+        }
+        
           
-         
+         /*
             int row=jTable1.getSelectedRow();
         String id=jTable1.getValueAt(row, 0).toString();
          String nom=jTable1.getValueAt(row, 1).toString();
         String ape=jTable1.getValueAt(row, 2).toString();
         String dni=jTable1.getValueAt(row, 4).toString();
-  
-         
+    
         txtIdCliente.setText(id);
-       
         
         this.dispose();
-         
+         */
 
-         
-       
+
  }
     
     
