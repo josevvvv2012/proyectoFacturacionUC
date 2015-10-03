@@ -121,10 +121,9 @@ public class Conexion {
 "  `precio_venta` double NOT NULL,\n" +
 "  `id_proveedor` int(11) NOT NULL,\n" +
 "  `ivaproducto` double NOT NULL,\n" +
-"  `tipoproducto` varchar(50) NOT NULL,\n" +
-               //nuevo
-               //"  `marcaproducto` varchar(50) NOT NULL,\n" +
-               //"  `pesoproducto` double NOT NULL,\n" +
+"  `tipoproducto` varchar(50),\n" +
+"  `marcaproducto` varchar(50) ,\n" +
+"  `pesoproducto` double,\n" +
 "  PRIMARY KEY (`id_producto`),\n" +
 "  KEY `id_proveedor` (`id_proveedor`),\n" +
 "  CONSTRAINT `FK_producto_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`idProveedor`)\n" +
@@ -157,8 +156,15 @@ public class Conexion {
 "  CONSTRAINT `FK_facpr_factura` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`)\n" +
 ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
        
+String prodfiltraClienteId="CREATE PROCEDURE `filtraClienteId`(IN `cod` INT)\n" +
+"	\n" +
+"SELECT * FROM cliente WHERE id_cliente = cod ";
 
-        
+
+String prodfiltraProductoId="CREATE PROCEDURE `filtraProductoId`(IN `cod` INT)\n" +
+"	\n" +
+"SELECT * FROM producto WHERE id_producto = cod ";
+       
                         
         try {
             Class.forName(driver);
@@ -171,6 +177,7 @@ public class Conexion {
             s.executeUpdate(myTableName3);
             s.executeUpdate(myTableName4);
             s.executeUpdate(myTableName5);
+            s.executeUpdate(prodfiltraClienteId);
             
             
         

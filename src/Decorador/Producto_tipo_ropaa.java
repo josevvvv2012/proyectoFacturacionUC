@@ -11,22 +11,17 @@ import Modelo.Producto;
  *
  * @author USER
  */
-public class Producto_tipo_ropa extends Producto{
+public class Producto_tipo_ropaa extends Producto{
 
-    public Producto_tipo_ropa(int idProducto, String tipoproducto) {
+    public Producto_tipo_ropaa(int idProducto, String tipoproducto) {
         super(idProducto, tipoproducto);
     }
 
-    public Producto_tipo_ropa(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
-        super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
+    public Producto_tipo_ropaa(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
+        super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
     }
 
-   public double agregarmarca()
-    {
-        System.out.println("holamundo");
-        return 0;
-    }
-    
+
     @Override
     public double getPeso_product() {
         return 300; //To change body of generated methods, choose Tools | Templates.

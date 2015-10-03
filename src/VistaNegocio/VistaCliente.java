@@ -39,32 +39,30 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class VistaCliente extends javax.swing.JFrame {
 
-  
     ControllerSql obj;
-     CallableStatement cts;
-       Connection cn;
-      ResultSet r;
-    
+    CallableStatement cts;
+    Connection cn;
+    ResultSet r;
 
     /**
      * Creates new form VistaClientes
      */
     public VistaCliente() {
         initComponents();
-        
-           ValidadSoloNumeros(txtIdCliente);
+
+        ValidadSoloNumeros(txtIdCliente);
         ValidadCaracteres(txt_nombre_cliente);
         ValidadCaracteres(txtDireccion);
         ValidadSoloNumeros(txtTelefono);
-         
-        cn=Conexion.getConn();
-         cargar();
-         
-        
+
+        cn = Conexion.getConn();
+        cargar();
+
     }
- public void cargar(){
-        
-         DefaultTableModel tabla = new DefaultTableModel();
+
+    public void cargar() {
+
+        DefaultTableModel tabla = new DefaultTableModel();
         PreparedStatement ps;
         try {
             tabla.addColumn("id_cliente");
@@ -92,7 +90,7 @@ public class VistaCliente extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +116,7 @@ public class VistaCliente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        btnSelectEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -196,6 +195,13 @@ public class VistaCliente extends javax.swing.JFrame {
             }
         });
 
+        btnSelectEditar.setText("Seleccionar");
+        btnSelectEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,7 +241,9 @@ public class VistaCliente extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
-                                .addComponent(jButton2)))
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSelectEditar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -273,7 +281,8 @@ public class VistaCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2)
+                        .addComponent(btnSelectEditar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -292,6 +301,7 @@ public class VistaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
+
             // TODO add your handling code here:
             int idCliente = Integer.parseInt(txtIdCliente.getText());
             String NombreCliente = txt_nombre_cliente.getText();
@@ -315,8 +325,7 @@ public class VistaCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    
-    
+
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -327,21 +336,20 @@ public class VistaCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
-        
         pdf();
-        String jasper="reporteclientes";
+        String jasper = "reporteclientes";
         ver(jasper);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         log("a");
-                String x = jTextField1.getText();
-                log(String.valueOf(x));
-                PreparedStatement ps;
+        String x = jTextField1.getText();
+        log(String.valueOf(x));
+        PreparedStatement ps;
         DefaultTableModel tabla = new DefaultTableModel();
-        
+
         try {
             tabla.addColumn("id_cliente");
             tabla.addColumn("nom_cliente");
@@ -350,17 +358,16 @@ public class VistaCliente extends javax.swing.JFrame {
             cts = cn.prepareCall("{call procedimiento(?)}");
             cts.setString(1, x);
             r = cts.executeQuery();
-            
+
 //            ps = cn.prepareStatement("SELECT * FROM cliente WHERE idcliente like " + x + "");
 //            ps.setString(1, x);
 //            r = ps.executeQuery();
-            
             while (r.next()) {
                 Object dato[] = new Object[4];
                 for (int i = 0; i < 4; i++) {
                     dato[i] = r.getString(i + 1);
-                    
-                   log(String.valueOf(dato[i])); 
+
+                    log(String.valueOf(dato[i]));
                 }
                 tabla.addRow(dato);
             }
@@ -368,58 +375,16 @@ public class VistaCliente extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
- 
-  /*
-  @autor jose vanegas -jvanegasv@ucentral.edu.co
-  */  
-     private void Selecionaarticulo(){
-       
-//         DefaultTableModel modelo = (DefaultTableModel) Factura.jtableDetalle.getModel();
-//         int row=jTable1.getSelectedRow();
-//         String id=jTable1.getValueAt(row, 0).toString();
-//         String nom=jTable1.getValueAt(row, 1).toString();
-//         String det=jTable1.getValueAt(row, 2).toString();
-//         String pre=jTable1.getValueAt(row, 4).toString();
-        
-         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        //ahora obtenemos la fila selccionada
-        int fila_select = jTable1.getSelectedRow(); 
 
-        if(fila_select<0){
-            // no se puede eliminar
-            JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
-        }else {
-          // la eliminamos del modelo:
-        modelo.removeRow(fila_select);
-        
-     /*   String id=jTable1.getValueAt(row, 0).toString();
-        String nom=jTable1.getValueAt(row, 1).toString();
-        String ape=jTable1.getValueAt(row, 2).toString();
-        String dni=jTable1.getValueAt(row, 4).toString();
-        txtIdCliente.setText(id);
-       // this.dispose();*/
-        
-        }
-        
-          
-         /*
-            int row=jTable1.getSelectedRow();
-        String id=jTable1.getValueAt(row, 0).toString();
-         String nom=jTable1.getValueAt(row, 1).toString();
-        String ape=jTable1.getValueAt(row, 2).toString();
-        String dni=jTable1.getValueAt(row, 4).toString();
-    
-        txtIdCliente.setText(id);
-        
-        this.dispose();
-         */
+    private void btnSelectEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectEditarActionPerformed
+        // TODO add your handling code here:
 
+        seleccionarfila(0);
 
- }
-    
-    
+    }//GEN-LAST:event_btnSelectEditarActionPerformed
+
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -429,106 +394,136 @@ public class VistaCliente extends javax.swing.JFrame {
         return false;
     }
 
-
-
- public  void ValidadSoloNumeros(JTextField a)
-{
-    a.addKeyListener(new KeyAdapter(){
-        public void keyTyped(KeyEvent e)
-    {
-        Character ch = e.getKeyChar(); 
-        if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')) { 
+    public void ValidadSoloNumeros(JTextField a) {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                Character ch = e.getKeyChar();
+                if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE) && (ch != '.')) {
          // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
-   
-            getToolkit().beep();
-            e.consume();;
-        }
-    }
-            });
-}
-    
-    
-     public  void ValidadCaracteres(JTextField a)
-{
-    a.addKeyListener(new KeyAdapter(){
-        public void keyTyped(KeyEvent e)
-    {
-        Character ch = e.getKeyChar(); 
-        if (Character.isDigit(e.getKeyChar())) { 
-         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
-   
-            getToolkit().beep();
-            e.consume();;
-        }
-        
-    }
-            });
-}    
- 
-  /**
-  * Ver reporte
-  */
-  public void ver( String jasper ){
-     JasperReport jasperReport;
-     JasperPrint jasperPrint;
-     Conexion database1 = new Conexion();
-     try{
-        URL  in=this.getClass().getResource( "reporteclientes.jasper" );
-        jasperReport=(JasperReport)JRLoader.loadObject(in);
-        
-        jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap() , database1.getConn());
-        JasperViewer.viewReport(jasperPrint,false);
-    }catch (JRException ex){
-        System.err.println( "Error iReport: " + ex.getMessage() );
-    }
-  }
 
-  /**
-   * Imprimir reporte
-   */
-  public void pdf(){
-      
-      Conexion database1 = new Conexion();
+                    getToolkit().beep();
+                    e.consume();;
+                }
+            }
+        });
+    }
+
+    public void ValidadCaracteres(JTextField a) {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                Character ch = e.getKeyChar();
+                if (Character.isDigit(e.getKeyChar())) {
+         // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
+
+                    getToolkit().beep();
+                    e.consume();;
+                }
+
+            }
+        });
+    }
+
+    /**
+     * Ver reporte
+     */
+    public void ver(String jasper) {
         JasperReport jasperReport;
-        JasperPrint jasperPrint;                
-        try
-        {
-          //se carga el reporte
-          URL  in=this.getClass().getResource( "reporteclientes.jasper");
-          jasperReport=(JasperReport)JRLoader.loadObject(in);
-          //se procesa el archivo jasper
-          jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn() );
-          //se crea el archivo PDF
-          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteclientes.pdf");
+        JasperPrint jasperPrint;
+        Conexion database1 = new Conexion();
+        try {
+            URL in = this.getClass().getResource("reporteclientes.jasper");
+            jasperReport = (JasperReport) JRLoader.loadObject(in);
+
+            jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            System.err.println("Error iReport: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * Imprimir reporte
+     */
+    public void pdf() {
+
+        Conexion database1 = new Conexion();
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;
+        try {
+            //se carga el reporte
+            URL in = this.getClass().getResource("reporteclientes.jasper");
+            jasperReport = (JasperReport) JRLoader.loadObject(in);
+            //se procesa el archivo jasper
+            jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn());
+            //se crea el archivo PDF
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "./reporteclientes.pdf");
           //Se ejecuta directamete PDF
 //          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
-          
+
             try {
-        Desktop desktop = Desktop.getDesktop();
-        if (desktop.isSupported(Desktop.Action.OPEN)) {
-            desktop.open(new File("reporteclientes.pdf"));
-        } else {
-            System.out.println("Open is not supported");
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(new File("reporteclientes.pdf"));
+                } else {
+                    System.out.println("Open is not supported");
+                }
+            } catch (IOException exp) {
+                exp.printStackTrace();
+            }
+        } catch (JRException ex) {
+            System.err.println("Error iReport: " + ex.getMessage());
         }
-    } catch (IOException exp) {
-        exp.printStackTrace();
     }
+
+    public int seleccionarfila(int a) {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        //ahora obtenemos la fila selccionada
+        int fila_select = jTable1.getSelectedRow();
+
+        if (fila_select < 0) {
+            // no se puede eliminar
+            JOptionPane.showMessageDialog(this, "Tabla vacia o no ha seleccionado uan fila.");
+        } else {
+            // la eliminamos del modelo:
+            //modelo.removeRow(fila_select);
+            String idIdentificacion = jTable1.getValueAt(row, 0).toString();
+            String nombre = jTable1.getValueAt(row, 1).toString();
+            String direccion = jTable1.getValueAt(row, 2).toString();
+            String telefono = jTable1.getValueAt(row, 3).toString();
+            txtIdCliente.setText(idIdentificacion);
+            txtIdCliente.setEnabled(false);
+            txt_nombre_cliente.setText(nombre);
+            txtDireccion.setText(direccion);
+            txtTelefono.setText(telefono);
+            btnSelectEditar.setText("Editar");
+            a = 1;
+            
         }
-        catch (JRException ex)
-        {
-          System.err.println( "Error iReport: " + ex.getMessage() );
-        }
-  }     
+        
+        editarCliente();
+        log(String.valueOf(a));
+        return a;
+    }
+    
+ public void editarCliente()
+ {
+     log("funcion editar Ciente");
      
- public void log(String a)
-    {
-   System.out.println("la valor  = "+" "+a);   
-    } 
-  
      
+     
+     
+ }
+    public void log(String a) {
+        System.out.println("la valor  = " + " " + a);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnSelectEditar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

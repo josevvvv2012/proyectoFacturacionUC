@@ -7,7 +7,10 @@ package VistaNegocio;
 
 import Controlador.ControllerSql;
 import Decorador.Marca_del_producto;
+import Decorador.Producto_tipo_automotor;
 import Decorador.Producto_tipo_comida;
+import Decorador.Producto_tipo_electronico;
+import Decorador.Producto_tipo_ropa;
 import Funciones.FuncionesController;
 import Modelo.Producto;
 import Modelo.Proveedor;
@@ -362,12 +365,12 @@ log("entro");
                 
                 obj.actualizaProducto(prodAc);
                 JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
-                this.dispose();
+                
             }
 
         }
          
-        
+       this.dispose(); 
         
     }//GEN-LAST:event_BotonIngresarActionPerformed
 
@@ -385,6 +388,7 @@ log("entro");
         // TODO add your handling code here:
     }//GEN-LAST:event_LitsadeProovedoresActionPerformed
 
+    /*implementacion patron decorador*/
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id_producto = Integer.parseInt(TextCodProduct.getText());
         String Descripcion_prod = TextDescripcion.getText();
@@ -392,18 +396,42 @@ log("entro");
         double Precio_prod = Double.parseDouble(TextPrecio.getText());
         int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
         double ivaproducto = Double.parseDouble(txtIvap.getText());
-
+        Producto p;
+        
         ////le nuevo
                 Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
                 switch((String) tipodelproducto)
                 {
+                    
                     case "Alimentos":
-                        Producto p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
+                        log(String.valueOf(tipodelproducto));
+                        p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
+                        log(String.valueOf(p));
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+                    break;
+                    case "Ropa": 
+                        p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+
+                     break;
                         
-                        
+                    case "Automotor": 
+                        p = new Producto_tipo_automotor(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
                         break;
-                }
+                        
+                    case "Electronico": 
+                        p = new Producto_tipo_electronico(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+
+                        break;    
+                        
+                        
+                }  
                 ////
                 
         //        Producto producto =new Producto_tipo_comida(id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto);

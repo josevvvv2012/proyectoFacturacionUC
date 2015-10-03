@@ -38,11 +38,11 @@ public ControllerSql obj;
         String marca=getMarca_product();
         obj = ControllerSql.getInstancia();
         try {
-                    boolean res = obj.Agregarmarca(idProducto,
-                            marca);
+                    boolean res = obj.Agregarmarca(idProducto,marca);
+                    
                     if (res == true) {
                         JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
-                        //this.dispose();
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
                                 + "de datos");

@@ -80,6 +80,7 @@ public class ControllerSql extends ActualizaFacturas{//public
         }
     }
 
+    
     public boolean Agregarmarca(
             int id_producto,
             String marca) {

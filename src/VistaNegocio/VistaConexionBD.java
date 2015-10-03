@@ -97,7 +97,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel4.setText("NOMBRE BASE DE DATOS");
 
         txtNombreBD.setBackground(new java.awt.Color(204, 204, 204));
-        txtNombreBD.setText("pt2");
+        txtNombreBD.setText("baaa1");
 
         txtRespuesta.setBackground(new java.awt.Color(102, 255, 102));
         txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

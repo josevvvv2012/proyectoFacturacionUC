@@ -17,7 +17,7 @@ public abstract class Producto {
     double stock;
     int cantidad;
     int idproveedor;
-    String tipoproducto;
+    public  String tipoproducto;
 
     public Producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         this.idProducto = idProducto;

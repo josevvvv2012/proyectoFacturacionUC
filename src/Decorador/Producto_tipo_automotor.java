@@ -11,13 +11,13 @@ import Modelo.Producto;
  *
  * @author USER
  */
-public class Producto_tipo_ropa extends Producto{
+public class Producto_tipo_automotor extends Producto{
 
-    public Producto_tipo_ropa(int idProducto, String tipoproducto) {
+    public Producto_tipo_automotor(int idProducto, String tipoproducto) {
         super(idProducto, tipoproducto);
     }
 
-    public Producto_tipo_ropa(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
+    public Producto_tipo_automotor(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
     }
 
@@ -29,12 +29,12 @@ public class Producto_tipo_ropa extends Producto{
     
     @Override
     public double getPeso_product() {
-        return 300; //To change body of generated methods, choose Tools | Templates.
+        return 3000000; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getMarca_product() {
-        return "Pronto"; 
+        return "AUDI"; 
     }
     
 }
