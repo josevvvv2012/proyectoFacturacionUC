@@ -178,6 +178,7 @@ String prodfiltraProductoId="CREATE PROCEDURE `filtraProductoId`(IN `cod` INT)\n
             s.executeUpdate(myTableName4);
             s.executeUpdate(myTableName5);
             s.executeUpdate(prodfiltraClienteId);
+            s.executeUpdate(prodfiltraProductoId);
             
             
         

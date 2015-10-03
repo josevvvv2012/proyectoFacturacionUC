@@ -52,8 +52,8 @@ public class BuscarProductoFactura extends javax.swing.JFrame {
             r = ps.executeQuery();
 
             while (r.next()) {
-                Object dato[] = new Object[4];
-                for (int i = 0; i < 4; i++) {
+                Object dato[] = new Object[3];
+                for (int i = 0; i < 3; i++) {
                     dato[i] = r.getString(i + 1);
                     log(String.valueOf(dato[i]));
                 }
