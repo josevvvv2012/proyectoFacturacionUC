@@ -32,6 +32,7 @@ public class ControllerSql extends ActualizaFacturas{//public
     Connection conexion;
     Statement stm;
     ResultSet rs;
+    Producto Producto;
     
     private static ControllerSql cs = new ControllerSql();//instancia para que el patron observer se ejecute solamente cuando se abre la aplicacion
     
@@ -311,30 +312,7 @@ public class ControllerSql extends ActualizaFacturas{//public
             return null;
         }
     }
-    
-    
-    public Producto consultarProducto(int idProducto) {
-        Producto p = null;
-        PreparedStatement ps;
-        try {
-            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto");    
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                p = new Producto_tipo_comida(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getDouble(4),
-                        rs.getDouble(3),
-                        rs.getDouble(6));
-                        p.setIdproveedor(rs.getInt(5));
-            //            rs.getString(7);
-            }
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return p;
-    }
-    
+      
         public ResultSet ConsultarIdFactura() {
         try {
 
@@ -368,6 +346,53 @@ public class ControllerSql extends ActualizaFacturas{//public
         }
     }
 
-        
+    public boolean actualizaProducto(Producto producto){
+        try {
+            String query = " update producto set costo = ? , precio_venta = ?, ivaproducto = ? where id_producto = ?";
+
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setDouble(1, producto.getPrecioCosto());
+            preparedStmt.setDouble(2, producto.getPrecioVenta());
+            preparedStmt.setDouble(3, producto.getIvaProducto());
+            preparedStmt.setInt(4, producto.getIdProducto());
+
+            preparedStmt.execute();
+            
+            super.setEstado(producto);
+            
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+   
+   public Producto consultarProductoObserver(int idProducto) {
+        Producto p = null;
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                p = new Producto_tipo_comida(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getDouble(4),
+                        rs.getDouble(3),
+                        rs.getDouble(6));
+                p.setIdproveedor(rs.getInt(5));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return p;
+    }
+
+    
+  public void log(String a)
+    {
+   System.out.println("la valor  = "+" "+a);   
+    }     
+
+   
 
 }

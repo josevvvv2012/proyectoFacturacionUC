@@ -394,12 +394,12 @@ public class VistaCliente extends javax.swing.JFrame {
           // la eliminamos del modelo:
         modelo.removeRow(fila_select);
         
-        String id=jTable1.getValueAt(row, 0).toString();
+     /*   String id=jTable1.getValueAt(row, 0).toString();
         String nom=jTable1.getValueAt(row, 1).toString();
         String ape=jTable1.getValueAt(row, 2).toString();
         String dni=jTable1.getValueAt(row, 4).toString();
         txtIdCliente.setText(id);
-       // this.dispose();
+       // this.dispose();*/
         
         }
         
