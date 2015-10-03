@@ -15,5 +15,6 @@ public abstract class Decorador_producto extends Producto{
     public Decorador_producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
     }
+   
     
 }

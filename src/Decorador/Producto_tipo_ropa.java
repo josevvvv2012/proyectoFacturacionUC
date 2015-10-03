@@ -13,6 +13,10 @@ import Modelo.Producto;
  */
 public class Producto_tipo_ropa extends Producto{
 
+    public Producto_tipo_ropa(int idProducto, String tipoproducto) {
+        super(idProducto, tipoproducto);
+    }
+
     public Producto_tipo_ropa(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, stock);
     }

@@ -13,11 +13,20 @@ import Modelo.Producto;
  */
 public class Producto_tipo_comida extends Producto{
 
+    public Producto_tipo_comida(int idProducto, String tipoproducto) {
+        super(idProducto, tipoproducto);
+    }
+
     public Producto_tipo_comida(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
     }
 
-
+   public double agregarmarca()
+    {
+        System.out.println("holamundo");
+        return 0;
+    }
+    
     @Override
     public double getPeso_product() {
         return 240; //To change body of generated methods, choose Tools | Templates.
@@ -25,7 +34,7 @@ public class Producto_tipo_comida extends Producto{
 
     @Override
     public String getMarca_product() {
-        return "Zenu"; 
+        return "Carrefour"; 
     }
     
 }

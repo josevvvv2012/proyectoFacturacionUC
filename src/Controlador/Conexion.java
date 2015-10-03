@@ -121,7 +121,10 @@ public class Conexion {
 "  `precio_venta` double NOT NULL,\n" +
 "  `id_proveedor` int(11) NOT NULL,\n" +
 "  `ivaproducto` double NOT NULL,\n" +
-//"  `tipoproducto` varchar(50) NOT NULL,\n" +
+"  `tipoproducto` varchar(50) NOT NULL,\n" +
+               //nuevo
+               //"  `marcaproducto` varchar(50) NOT NULL,\n" +
+               //"  `pesoproducto` double NOT NULL,\n" +
 "  PRIMARY KEY (`id_producto`),\n" +
 "  KEY `id_proveedor` (`id_proveedor`),\n" +
 "  CONSTRAINT `FK_producto_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`idProveedor`)\n" +

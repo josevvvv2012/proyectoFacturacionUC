@@ -9,7 +9,7 @@ package Modelo;
  *
  */
 public abstract class Producto {
-    int idProducto;
+    public int idProducto;
     String NombreProducto;
     double PrecioVenta;
     double PrecioCosto;
@@ -17,6 +17,7 @@ public abstract class Producto {
     double stock;
     int cantidad;
     int idproveedor;
+    String tipoproducto;
 
     public Producto(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto, double stock) {
         this.idProducto = idProducto;
@@ -27,6 +28,11 @@ public abstract class Producto {
         this.stock = stock;
     }
 
+    public Producto(int idProducto, String tipoproducto)
+    {
+       this.idProducto = idProducto;
+       this.tipoproducto = tipoproducto;
+    }
     public int getIdProducto() {
         return idProducto;
     }

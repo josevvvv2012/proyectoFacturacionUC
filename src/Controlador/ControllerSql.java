@@ -80,43 +80,62 @@ public class ControllerSql extends ActualizaFacturas{//public
         }
     }
 
+    public boolean Agregarmarca(
+            int id_producto,
+            String marca) {
+        try {
+            String query = " insert into producto("
+                    + "marcaproducto,"
+                    + " values (?)";
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setString(1, marca);
+            // ejecuto mi query
+            preparedStmt.execute();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    
+    
     //funcion AgregarProducto
     public boolean AgregarProducto(
-//            int id_producto, 
-//            String descripcion,
-//            Double costo, 
-//            Double precio_venta, 
-//            int id_proveedor,
-//            Double ivaproducto,
-//            String tipoProducto) {
-            
-            
             int id_producto, 
             String descripcion,
             Double costo, 
             Double precio_venta, 
             int id_proveedor,
-            Double ivaproducto) {
-           
-        try {
-//            String query = " insert into producto("
-//                    + "id_producto,"
-//                    + "descripcion,"
-//                    + "costo,"
-//                    + "precio_venta,"
-//                    + "id_proveedor,"
-//                    + "ivaproducto,"
-//                    + "tipoproducto)"
-//                    + " values (?,?,?,?,?,?,?)";
+            Double ivaproducto,
+            String tipoProducto) {
             
-               String query = " insert into producto("
+            
+//            int id_producto, 
+//            String descripcion,
+//            Double costo, 
+//            Double precio_venta, 
+//            int id_proveedor,
+//            Double ivaproducto) {
+//           
+        try {
+            String query = " insert into producto("
                     + "id_producto,"
                     + "descripcion,"
                     + "costo,"
-                    + "precio_venta ,"
+                    + "precio_venta,"
                     + "id_proveedor,"
-                    + "ivaproducto)"
-                    + " values (?,?,?,?,?,?)";
+                    + "ivaproducto,"
+                    + "tipoproducto)"
+                    + " values (?,?,?,?,?,?,?)";
+            
+//               String query = " insert into producto("
+//                    + "id_producto,"
+//                    + "descripcion,"
+//                    + "costo,"
+//                    + "precio_venta ,"
+//                    + "id_proveedor,"
+//                    + "ivaproducto)"
+//                    + " values (?,?,?,?,?,?)";
 
             // preparo la consulta para mi base de datos .
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
@@ -126,7 +145,7 @@ public class ControllerSql extends ActualizaFacturas{//public
             preparedStmt.setDouble(4, precio_venta);
             preparedStmt.setInt(5, id_proveedor);
             preparedStmt.setDouble(6, ivaproducto);
-//            preparedStmt.setString(7, tipoProducto);
+            preparedStmt.setString(7, tipoProducto);
             
             // ejecuto mi query
             preparedStmt.execute();
