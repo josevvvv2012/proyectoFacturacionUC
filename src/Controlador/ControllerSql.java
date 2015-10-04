@@ -61,19 +61,20 @@ public class ControllerSql extends ActualizaFacturas{//public
     }
 
     //funcion AgregarProveedor
-    public boolean AgregarProveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
+    public boolean AgregarProveedor(int idProveedor,String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
 
-        Proveedor proveedor = new Proveedor(nombreProveedor, telefonoProveedor, direccionProveedor);
+        Proveedor proveedor = new Proveedor(idProveedor,nombreProveedor, telefonoProveedor, direccionProveedor);
 
         try {
-            String query = " insert into proveedor(nombreProveedor,telefonoProveedor,Direccion)"
-                    + " values (?,?,?)";
+            String query = " insert into proveedor(idProveedor,nombreProveedor,telefonoProveedor,Direccion)"
+                    + " values (?,?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, proveedor.getNombreProveedor());
-            preparedStmt.setString(2, proveedor.getTelefonoProveedor());
-            preparedStmt.setString(3, proveedor.getDireccionProveedor());
+            preparedStmt.setInt(1, proveedor.getIdProveedor());
+            preparedStmt.setString(2, proveedor.getNombreProveedor());
+            preparedStmt.setString(3, proveedor.getTelefonoProveedor());
+            preparedStmt.setString(4, proveedor.getDireccionProveedor());
 
             // ejecuto mi query
             preparedStmt.execute();
@@ -262,7 +263,7 @@ public class ControllerSql extends ActualizaFacturas{//public
             ps = conexion.prepareStatement("SELECT nombreProveedor ,telefonoProveedor ,direccion,idProveedor  FROM proveedor");
             rs = ps.executeQuery();
             while(rs.next()){
-                Proveedor p = new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                Proveedor p = new Proveedor(rs.getInt(4),rs.getString(1), rs.getString(2), rs.getString(3));
                 proveedores.add(p);
             }
             rs.close();
@@ -411,23 +412,25 @@ public class ControllerSql extends ActualizaFacturas{//public
         }
     }
    
-   public boolean actualizaProveedor(Proveedor Proveedor){
+    public boolean actualizaProveedor(int idProveedor,String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         try {
-            String query = " UPDATE proveedor SET nombreProveedor=?, telefonoProveedor =?, Direccion=? WHERE  idProveedor=?;";
+            String query = " UPDATE proveedor SET nombreProveedor=?, telefonoProveedor =?, Direccion = ?  WHERE  idProveedor=?";
 
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
-            preparedStmt.setString(1, Proveedor.getNombreProveedor());
-            preparedStmt.setString(2, Proveedor.getTelefonoProveedor());
-            preparedStmt.setString(3, Proveedor.getDireccionProveedor());
             
+            
+            preparedStmt.setString(1,nombreProveedor);
+            preparedStmt.setString(2,telefonoProveedor );
+            preparedStmt.setString(3, direccionProveedor);
+            preparedStmt.setInt(4, idProveedor);
+
             preparedStmt.execute();
-            
-           
+
             return true;
         } catch (SQLException e) {
             return false;
         }
-    }     
+    }
         
         
    public Producto consultarProductoObserver(int idProducto) {

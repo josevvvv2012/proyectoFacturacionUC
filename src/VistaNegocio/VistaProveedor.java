@@ -5,12 +5,18 @@
  */
 package VistaNegocio;
 
+import Controlador.Conexion;
 import Controlador.ControllerSql;
 import Modelo.Funciones;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,21 +26,56 @@ public class VistaProveedor extends javax.swing.JFrame {
 
     Funciones Funciones;
     ControllerSql obj;
+    CallableStatement cts;
+    Connection cn;
+    ResultSet r;
 
     /**
      * Creates new form VistaProveedor
      */
     public VistaProveedor() {
         initComponents();
-        
+     
+        ValidadSoloNumeros(txtNit);
         ValidadCaracteres(txtProveedor);
         ValidadCaracteres(txtDireccion);
-        ValidadCaracteres(txtTelefono);
-   
-       
-        
+        ValidadSoloNumeros(txtTelefono);
+
+        cn = Conexion.getConn();
+        cargar();
+
     }
 
+    public void cargar() {
+
+        
+        log("hola soy cargar");
+        DefaultTableModel tabla = new DefaultTableModel();
+        PreparedStatement ps;
+        try {
+            tabla.addColumn("idProveedor");
+            tabla.addColumn("nombreProveedor");
+            tabla.addColumn("Direccion");
+            tabla.addColumn("telefonoProveedor");
+           
+
+            ps = cn.prepareStatement("SELECT idProveedor,nombreProveedor ,telefonoProveedor ,Direccion FROM proveedor");
+            r = ps.executeQuery();
+            log("hola soy cargar 2");
+            while (r.next()) {
+                Object dato[] = new Object[4];
+                for (int i = 0; i < 4; i++) {
+                    dato[i] = r.getString(i + 1);
+                    log(String.valueOf(dato[i]));
+                }
+                tabla.addRow(dato);
+            }
+            this.jTable2.setModel(tabla);
+
+        } catch (Exception e) {
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +85,8 @@ public class VistaProveedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -52,6 +95,29 @@ public class VistaProveedor extends javax.swing.JFrame {
         txtProveedor = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        txtNit = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,49 +158,133 @@ public class VistaProveedor extends javax.swing.JFrame {
 
         jLabel3.setText("Telefono");
 
+        jLabel4.setText("Buscar");
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Seleccionar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel5.setText("Nit");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("PROVEEDORES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(94, 94, 94)
-                        .addComponent(btnCancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtTelefono))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 25, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtProveedor)
+                                        .addComponent(txtNit)
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(51, 51, 51)
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)
+                        .addGap(29, 29, 29))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(jLabel6)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar))
-                .addGap(52, 52, 52))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -143,18 +293,19 @@ public class VistaProveedor extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
 
-        if (ValidarCamposVacios(txtProveedor, txtDireccion, txtTelefono)) {
+        if (ValidarCamposVacios(txtNit,txtProveedor, txtDireccion, txtTelefono)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
             // TODO add your handling code here:
+            int nit =Integer.parseInt(txtNit.getText());
             String NombreProvedor = txtProveedor.getText();
             String Direccion = txtDireccion.getText();
             String Telefono = txtTelefono.getText();
 
             try {
                 obj = new ControllerSql();
-                boolean res = obj.AgregarProveedor(NombreProvedor, Direccion, Telefono);
+                boolean res = obj.AgregarProveedor(nit,NombreProvedor, Direccion, Telefono);
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
                     this.dispose();
@@ -173,10 +324,53 @@ public class VistaProveedor extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        VistaPrincipal retornar = new VistaPrincipal();
-        retornar.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        seleccionarfila(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        editarCliente();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        log("a");
+        String x = jTextField1.getText();
+        log(String.valueOf(x));
+        PreparedStatement ps;
+        DefaultTableModel tabla = new DefaultTableModel();
+
+        try {
+            tabla.addColumn("idProveedor");
+            tabla.addColumn("nombreProveedor");
+            tabla.addColumn("telefonoProveedor");
+            tabla.addColumn("Direccion");
+
+            cts = cn.prepareCall("{call filtraProveedorId(?)}");
+            cts.setString(1, x);
+            
+            r = cts.executeQuery();
+            
+            while (r.next()) {
+                Object dato[] = new Object[4];
+                for (int i = 0; i < 4; i++) {
+                    dato[i] = r.getString(i + 1);
+
+                    log(String.valueOf(dato[i]));
+                }
+                tabla.addRow(dato);
+            }
+            this.jTable2.setModel(tabla);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
@@ -221,7 +415,78 @@ public class VistaProveedor extends javax.swing.JFrame {
     }
             });
 }
+     
+    public int seleccionarfila(int a) {
+
+        
+        log("hola selecccionar fila");
+        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+        int row = jTable2.getSelectedRow();
+        //ahora obtenemos la fila selccionada
+        int fila_select = jTable2.getSelectedRow();
+
+        if (fila_select < 0) {
+            // no se puede eliminar
+            JOptionPane.showMessageDialog(this, "Tabla vacia o no ha seleccionado uan fila.");
+        } else {
+
+            String nitProveedor = jTable2.getValueAt(row, 0).toString();
+            String nombreProveedor = jTable2.getValueAt(row, 1).toString();
+            String telefonoProveedor = jTable2.getValueAt(row, 2).toString();
+            String Direccion = jTable2.getValueAt(row, 3).toString();
+
+            txtNit.setText(nitProveedor);
+            txtNit.setEnabled(false);
+            txtProveedor.setText(nombreProveedor);
+            txtTelefono.setText(telefonoProveedor);
+            txtDireccion.setText(Direccion);
+            
+        }
+
+        return a;
+    }
     
+ public void editarCliente()
+ {
+       // TODO add your handling code here:
+        if (ValidarCamposVacios(txtProveedor,txtDireccion, txtTelefono)) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+
+        } else {
+            
+            int nitProveedor = Integer.parseInt(txtNit.getText());
+            String nombreProveedor = txtProveedor.getText();
+            String telefonoProveedor = txtTelefono.getText();
+            String direccionProveedor = txtDireccion.getText();
+            
+
+            try {
+                
+                obj = new ControllerSql();
+                   
+                      boolean res = obj.actualizaProveedor(nitProveedor,nombreProveedor,telefonoProveedor,direccionProveedor);
+                        log("EDITAR");
+                  
+                
+                
+                if (res == true) {
+                    JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo Empleado ya existe en la base"
+                            + "de datos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
+
+            }
+        }
+        
+     
+ }
+    public void log(String a) {
+        System.out.println("la valor  = " + " " + a);
+    }
     
     /**
      * 
@@ -231,10 +496,22 @@ public class VistaProveedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     public static javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNit;
     public static javax.swing.JTextField txtProveedor;
     public static javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

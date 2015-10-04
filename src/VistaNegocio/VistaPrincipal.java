@@ -259,7 +259,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         VistaNegocio.VistaFactura VistaFactura = new VistaNegocio.VistaFactura();
         VistaFactura.setVisible(true);
-        VistaFactura.setLocationRelativeTo(this);
+        VistaFactura.setLocation(20, 20);
+        
+      //  VistaFactura.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

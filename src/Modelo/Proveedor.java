@@ -15,11 +15,8 @@ public class Proveedor {
     private String direccionProveedor;
     private int idProveedor;
 
-    public Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor, int idProveedor) {
-        this(nombreProveedor, telefonoProveedor, direccionProveedor);
+    public Proveedor(int idProveedor,String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         this.idProveedor = idProveedor;
-    }
-    public Proveedor(String nombreProveedor, String telefonoProveedor, String direccionProveedor) {
         this.nombreProveedor = nombreProveedor;
         this.telefonoProveedor = telefonoProveedor;
         this.direccionProveedor = direccionProveedor;

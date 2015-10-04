@@ -107,7 +107,7 @@ public class Conexion {
        
        
        String myTableName2="CREATE TABLE IF NOT EXISTS `proveedor` (\n" +
-"  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,\n" +
+"  `idProveedor` int(11) NOT NULL,\n" +
 "  `nombreProveedor` varchar(100) NOT NULL,\n" +
 "  `telefonoProveedor` varchar(50) DEFAULT NULL,\n" +
 "  `Direccion` varchar(50) DEFAULT NULL,\n" +
@@ -164,8 +164,12 @@ String prodfiltraClienteId="CREATE PROCEDURE `filtraClienteId`(IN `cod` INT)\n" 
 String prodfiltraProductoId="CREATE PROCEDURE `filtraProductoId`(IN `cod` INT)\n" +
 "	\n" +
 "SELECT * FROM producto WHERE id_producto = cod ";
+
+
+String prodfiltraProveedorId="CREATE PROCEDURE `filtraProveedorId`(IN `cod` INT)\n" +
+"	\n" +
+"SELECT * FROM proveedor WHERE idProveedor = cod ";
        
-                        
         try {
             Class.forName(driver);
 
@@ -179,6 +183,7 @@ String prodfiltraProductoId="CREATE PROCEDURE `filtraProductoId`(IN `cod` INT)\n
             s.executeUpdate(myTableName5);
             s.executeUpdate(prodfiltraClienteId);
             s.executeUpdate(prodfiltraProductoId);
+            s.executeUpdate(prodfiltraProveedorId);
             
             
         
