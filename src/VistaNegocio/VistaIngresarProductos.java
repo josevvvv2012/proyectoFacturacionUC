@@ -314,7 +314,6 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_TextPrecioActionPerformed
 
     private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
-        log("hola guado");
         
          if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && LitsadeProovedores.getSelectedIndex() > 0) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
@@ -322,8 +321,8 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
             //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
             //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
-log("entro");
-             log(String.valueOf(prodAc));
+
+             
             if (prodAc == null) {
                 // TODO add your handling code here:
                 log(String.valueOf(prodAc == null));

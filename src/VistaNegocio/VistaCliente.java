@@ -7,6 +7,7 @@ package VistaNegocio;
 
 import Controlador.Conexion;
 import Controlador.ControllerSql;
+import Modelo.Cliente;
 import Modelo.Funciones;
 import java.awt.Desktop;
 import java.awt.event.KeyAdapter;
@@ -43,6 +44,8 @@ public class VistaCliente extends javax.swing.JFrame {
     CallableStatement cts;
     Connection cn;
     ResultSet r;
+    boolean editar = false;
+    int valCedula;
 
     /**
      * Creates new form VistaClientes
@@ -117,6 +120,7 @@ public class VistaCliente extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         btnSelectEditar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -202,6 +206,13 @@ public class VistaCliente extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,7 +220,7 @@ public class VistaCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
+                        .addContainerGap(92, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,6 +254,8 @@ public class VistaCliente extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSelectEditar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -282,7 +295,8 @@ public class VistaCliente extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2)
-                        .addComponent(btnSelectEditar)))
+                        .addComponent(btnSelectEditar)
+                        .addComponent(jButton3)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -301,7 +315,7 @@ public class VistaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
-
+            
             // TODO add your handling code here:
             int idCliente = Integer.parseInt(txtIdCliente.getText());
             String NombreCliente = txt_nombre_cliente.getText();
@@ -309,8 +323,16 @@ public class VistaCliente extends javax.swing.JFrame {
             String Telefono = txtTelefono.getText();
 
             try {
+        
+                
                 obj = new ControllerSql();
-                boolean res = obj.AgregarCliente(idCliente, NombreCliente, Direccion, Telefono);
+               
+                    
+                     boolean  res = obj.AgregarCliente(idCliente, NombreCliente, Direccion, Telefono);
+                      log("CREAR");
+                    
+                
+                
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
                     this.dispose();
@@ -323,6 +345,8 @@ public class VistaCliente extends javax.swing.JFrame {
 
             }
         }
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -355,7 +379,7 @@ public class VistaCliente extends javax.swing.JFrame {
             tabla.addColumn("nom_cliente");
             tabla.addColumn("dir_cliente");
             tabla.addColumn("tel_cliente");
-            cts = cn.prepareCall("{call procedimiento(?)}");
+            cts = cn.prepareCall("{call filtraClienteId(?)}");
             cts.setString(1, x);
             r = cts.executeQuery();
 
@@ -384,6 +408,11 @@ public class VistaCliente extends javax.swing.JFrame {
         seleccionarfila(0);
 
     }//GEN-LAST:event_btnSelectEditarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        editarCliente();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
@@ -502,17 +531,48 @@ public class VistaCliente extends javax.swing.JFrame {
             
         }
         
-        editarCliente();
         log(String.valueOf(a));
         return a;
     }
     
  public void editarCliente()
  {
-     log("funcion editar Ciente");
-     
-     
-     
+       // TODO add your handling code here:
+        if (ValidarCamposVacios(txtIdCliente, txt_nombre_cliente, txtDireccion, txtTelefono)) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+
+        } else {
+            
+            // TODO add your handling code here:
+            int idCliente = Integer.parseInt(txtIdCliente.getText());
+            String NombreCliente = txt_nombre_cliente.getText();
+            String Direccion = txtDireccion.getText();
+            String Telefono = txtTelefono.getText();
+
+            try {
+        
+                
+                obj = new ControllerSql();
+               
+                   
+                      boolean res = obj.actualizaCliente(idCliente,NombreCliente, Direccion, Telefono);
+                        log("EDITAR");
+                  
+                
+                
+                if (res == true) {
+                    JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo Empleado ya existe en la base"
+                            + "de datos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
+
+            }
+        }
+        
      
  }
     public void log(String a) {
@@ -526,6 +586,7 @@ public class VistaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnSelectEditar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

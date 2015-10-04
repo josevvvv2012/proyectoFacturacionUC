@@ -6,6 +6,7 @@
 package Controlador;
 
 import Decorador.Producto_tipo_comida;
+import Modelo.Cliente;
 import Modelo.Factura;
 import Modelo.Producto;
 import Modelo.Proveedor;
@@ -33,6 +34,8 @@ public class ControllerSql extends ActualizaFacturas{//public
     Statement stm;
     ResultSet rs;
     Producto Producto;
+    Cliente Cliente;
+    Proveedor Proveedor;
     
     private static ControllerSql cs = new ControllerSql();//instancia para que el patron observer se ejecute solamente cuando se abre la aplicacion
     
@@ -81,9 +84,7 @@ public class ControllerSql extends ActualizaFacturas{//public
     }
 
     
-    public boolean Agregarmarca(
-            int id_producto,
-            String marca) {
+    public boolean Agregarmarca(int id_producto,String marca) {
         try {
             String query = " insert into producto("
                     + "marcaproducto,"
@@ -157,17 +158,17 @@ public class ControllerSql extends ActualizaFacturas{//public
     }
 
     //funcion AgregarCliente
-    public boolean AgregarCliente(int idCliente, String dir_cliente, String nom_cliente, String tel_cliente) {
+    public boolean AgregarCliente(int idCliente, String nom_cliente, String dir_cliente, String tel_cliente) {
 
         try {
-            String query = " insert into cliente(id_cliente,dir_cliente,nom_cliente,tel_cliente)"
+            String query = " insert into cliente(id_cliente,nom_cliente,dir_cliente,tel_cliente)"
                     + " values (?,?,?,?)";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
             preparedStmt.setInt(1, idCliente);
-            preparedStmt.setString(2, dir_cliente);
-            preparedStmt.setString(3, nom_cliente);
+            preparedStmt.setString(2, nom_cliente);
+            preparedStmt.setString(3, dir_cliente);
             preparedStmt.setString(4, tel_cliente);
 
             // ejecuto mi query
@@ -385,7 +386,50 @@ public class ControllerSql extends ActualizaFacturas{//public
             return false;
         }
     }
+    
+        public boolean actualizaCliente(int idCliente,String dir_cliente, String nom_cliente, String tel_cliente){
+        try {
+           
+            //Cliente = new Cliente(idCliente, nom_cliente, dir_cliente, tel_cliente, dir_cliente);
+            
+            String query = " update cliente set dir_cliente = ? , nom_cliente = ?, tel_cliente = ? where id_cliente = ?";
+            log(query);
+
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            
+            preparedStmt.setString(1, dir_cliente);
+            preparedStmt.setString(2, nom_cliente);
+            preparedStmt.setString(3, tel_cliente);
+            preparedStmt.setInt(4,idCliente );
+            
+            preparedStmt.execute();
+        
+            
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
    
+   public boolean actualizaProveedor(Proveedor Proveedor){
+        try {
+            String query = " UPDATE proveedor SET nombreProveedor=?, telefonoProveedor =?, Direccion=? WHERE  idProveedor=?;";
+
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setString(1, Proveedor.getNombreProveedor());
+            preparedStmt.setString(2, Proveedor.getTelefonoProveedor());
+            preparedStmt.setString(3, Proveedor.getDireccionProveedor());
+            
+            preparedStmt.execute();
+            
+           
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }     
+        
+        
    public Producto consultarProductoObserver(int idProducto) {
         Producto p = null;
         PreparedStatement ps;

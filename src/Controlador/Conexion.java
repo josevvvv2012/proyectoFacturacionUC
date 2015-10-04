@@ -98,8 +98,8 @@ public class Conexion {
 
        String myTableName1="CREATE TABLE IF NOT EXISTS `cliente` (\n" +
 "  `id_cliente` int(11) NOT NULL,\n" +
-"  `dir_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `nom_cliente` varchar(50) DEFAULT NULL,\n" +
+"  `dir_cliente` varchar(50) DEFAULT NULL,\n" +
 "  `tel_cliente` varchar(50) DEFAULT NULL,\n" +
 "  PRIMARY KEY (`id_cliente`)\n" +
 ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
