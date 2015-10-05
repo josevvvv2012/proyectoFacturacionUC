@@ -31,7 +31,7 @@ public class BuscarClienteFactura extends javax.swing.JFrame {
      * Creates new form BuscarClienteFactura
      */
     public BuscarClienteFactura() {
-         setUndecorated(true);
+     //    setUndecorated(true);
         initComponents();
             cn = Conexion.getConn();
         cargar();

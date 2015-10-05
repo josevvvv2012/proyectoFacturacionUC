@@ -432,7 +432,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
             //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
             //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
 
-             
+      
             if (prodAc == null) {
                 // TODO add your handling code here:
                 log(String.valueOf(prodAc == null));
@@ -443,6 +443,9 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                 int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
                 Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+                
+                if(Precio_prod > Costo_Venta_prod)
+                {
                 try {
                     boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
                             Costo_Venta_prod,
@@ -461,20 +464,32 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
 
                 }
+                
+            }// fin de if de condiciones
+                JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
             } else {
                 
                 log("actualizo");
                 double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
                 double Precio_prod = Double.parseDouble(TextPrecio.getText());
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
+                if(Precio_prod > Costo_Venta_prod)
+                {
+                
                 
                 prodAc.setPrecioCosto(Costo_Venta_prod);
                 prodAc.setPrecioVenta(Precio_prod);
                 prodAc.setIvaProducto(ivaproducto);
                 
+                
+                
                 obj.actualizaProducto(prodAc);
                 JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
-                
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
+                }
             }
 
         }

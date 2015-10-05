@@ -6,9 +6,12 @@
 package VistaNegocio;
 
 import Controlador.Conexion;
+import static Controlador.Conexion.servidor;
 import static Controlador.Conexion.dbName;
 import static Controlador.Conexion.login;
 import static Controlador.Conexion.password;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -54,6 +57,8 @@ public class VistaConexionBD extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel9 = new javax.swing.JLabel();
+        txtServidor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -120,6 +125,10 @@ public class VistaConexionBD extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("NOMBRE SERVIDOR");
+
+        txtServidor.setText("localhost:3306/");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,7 +151,8 @@ public class VistaConexionBD extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreBD)
-                            .addComponent(ComboBoxDrivers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ComboBoxDrivers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtServidor))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
@@ -171,17 +181,24 @@ public class VistaConexionBD extends javax.swing.JFrame {
                         .addComponent(jlSalida))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(166, 166, 166)
-                        .addComponent(jLabel7)))
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ComboBoxDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(ComboBoxDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNombreBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -201,7 +218,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
                 .addComponent(txtRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -223,9 +240,10 @@ public class VistaConexionBD extends javax.swing.JFrame {
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
         // TODO add your handling code here:
 
-        if (ValidarCamposVacios(txtNombre, txtNombreBD)) {
+        if (ValidarCamposVacios(txtServidor, txtNombre, txtNombreBD)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
         } else {
+            servidor = txtServidor.getText();
             login = txtNombre.getText();
             password = txtPassword.getText();
             dbName = txtNombreBD.getText();
@@ -233,16 +251,17 @@ public class VistaConexionBD extends javax.swing.JFrame {
                 if (Conexion.conectar()) {
                     txtRespuesta.setText("Conexion Exitosa");
 
+                    VistaPrincipal ini = new VistaPrincipal();
+
+                    Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();
+                    //obtenemos el tamaño de la ventana  
+                    Dimension ventan = ini.getSize();
+                    //para centrar la ventana lo hacemos con el siguiente calculo  
+                    ini.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+                    ini.setVisible(true);
+
                     this.dispose();
-                    /*        
-                    Vista.VistaPrincipal.btnCalculosMensuales.setEnabled(true);
-                    Vista.VistaPrincipal.btnCargarEmpleado.setEnabled(true);
-                    Vista.VistaPrincipal.btnNominaGeneral.setEnabled(true);
-                    Vista.VistaPrincipal.btnNominaPorCedula.setEnabled(true);
-                    Vista.VistaPrincipal.btnConfiguracion.setEnabled(false);
-*/
-                    
-                    
+
                 } else {
                     txtRespuesta.setText("Conexion Fallida");
                 }
@@ -257,35 +276,44 @@ public class VistaConexionBD extends javax.swing.JFrame {
     private void btnCreaBdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaBdActionPerformed
         // TODO add your handling code here:
 
-        if (ValidarCamposVacios(txtNombre, txtNombreBD)) {
+        if (ValidarCamposVacios(txtServidor, txtNombre, txtNombreBD)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
 
-            if (ValidarCamposVacios(txtNombre, txtNombreBD)) {
+            if (ValidarCamposVacios(txtServidor, txtNombre, txtNombreBD)) {
                 JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
             } else {
 
                 try {
+                    servidor = txtServidor.getText();
                     login = txtNombre.getText();
                     password = txtPassword.getText();
                     dbName = txtNombreBD.getText();
                     if (Conexion.createDatabase()) {
                         txtRespuesta.setText("Creacion Exitosa Base de datos");
-                        
 
                         if (Conexion.createTable()) {
                             txtRespuesta.setText("Creacion Exitosa script sql");
-                            
-                                this.dispose();
-/*
-                     Vista.VistaPrincipal.btnCalculosMensuales.setEnabled(true);
-                    Vista.VistaPrincipal.btnCargarEmpleado.setEnabled(true);
-                    Vista.VistaPrincipal.btnNominaGeneral.setEnabled(true);
-                    Vista.VistaPrincipal.btnNominaPorCedula.setEnabled(true);
-                    Vista.VistaPrincipal.btnConfiguracion.setEnabled(false);
-*/
+
+                            VistaPrincipal ini = new VistaPrincipal();
+
+                            Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();
+                            //obtenemos el tamaño de la ventana  
+                            Dimension ventan = ini.getSize();
+                            //para centrar la ventana lo hacemos con el siguiente calculo  
+                            ini.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+                            ini.setVisible(true);
+
+                            this.dispose();
+                            /*
+                             Vista.VistaPrincipal.btnCalculosMensuales.setEnabled(true);
+                             Vista.VistaPrincipal.btnCargarEmpleado.setEnabled(true);
+                             Vista.VistaPrincipal.btnNominaGeneral.setEnabled(true);
+                             Vista.VistaPrincipal.btnNominaPorCedula.setEnabled(true);
+                             Vista.VistaPrincipal.btnConfiguracion.setEnabled(false);
+                             */
                         } else {
                             txtRespuesta.setText("Creacion Fallida script sql");
                         }
@@ -313,7 +341,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
         a.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 Character ch = e.getKeyChar();
-                if (Character.isDigit(e.getKeyChar()) && !Character.isDigit(e.getKeyChar()) ) {
+                if (Character.isDigit(e.getKeyChar()) && !Character.isDigit(e.getKeyChar())) {
                     // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
 
                     getToolkit().beep();
@@ -336,8 +364,7 @@ public class VistaConexionBD extends javax.swing.JFrame {
         }
         return false;
     }
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox ComboBoxDrivers;
@@ -351,10 +378,12 @@ public class VistaConexionBD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel jlSalida;
     public static javax.swing.JTextField txtNombre;
     public static javax.swing.JTextField txtNombreBD;
     public static javax.swing.JPasswordField txtPassword;
     public static javax.swing.JLabel txtRespuesta;
+    private javax.swing.JTextField txtServidor;
     // End of variables declaration//GEN-END:variables
 }

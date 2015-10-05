@@ -25,6 +25,7 @@ public class Conexion {
     public static String dbAddress = "jdbc:mysql://localhost:3306/";
     public final static String driver = "com.mysql.jdbc.Driver";
     private static Connection conn = null;
+    public static String servidor;
     public static String login;
     public static String password;
     public static String dbName;
@@ -49,7 +50,7 @@ public class Conexion {
     //metodo para conectar con la BD
     public static boolean conectar() throws Exception {
         try {
-            url = "jdbc:mysql://localhost:3306/" + dbName;
+            url = "jdbc:mysql://"+servidor + dbName;
             Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, login, password);
 
@@ -70,7 +71,7 @@ public class Conexion {
 
         try {
 
-            url = "jdbc:mysql://localhost:3306/";
+            url = "jdbc:mysql://"+servidor;
             Class.forName(driver);
             conn = DriverManager.getConnection(url, login, password);
             Statement s = conn.createStatement();

@@ -18,21 +18,18 @@ public class Principal extends javax.swing.JFrame {
         hilo = new HiloProgreso(progreso);
         //Iniciamos el Hilo
         hilo.start();
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();  
-                    //obtenemos el tamaño de la ventana  
-                    Dimension ventana = this.getSize();  
-                    //para centrar la ventana lo hacemos con el siguiente calculo  
-                    this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2); 
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        //obtenemos el tamaño de la ventana  
+        Dimension ventana = this.getSize();
+        //para centrar la ventana lo hacemos con el siguiente calculo  
+        this.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
         //Le damos tamaño y posición a nuestro Frame
 //        this.setLocation(400, 200);
         this.setSize(598, 260);
-        
-        
-     
+
         //Liberamos recursos
         hilo = null;
-         
-                    
+
     }
 
     public void iniciarSplash() {
@@ -74,18 +71,20 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void progresoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_progresoStateChanged
-if (progreso.getValue()==100){
-    this.dispose();
+    if (progreso.getValue() == 100) {
+        this.dispose();
 //Aqui llamamos al JFrame que queremos que aparezca despues
-    VistaPrincipal ini = new VistaPrincipal();
-    
-    Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
-    //obtenemos el tamaño de la ventana  
-    Dimension ventan = ini.getSize();  
-    //para centrar la ventana lo hacemos con el siguiente calculo  
-    ini.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
-    ini.setVisible(true);
-}// TODO add your handling code here:
+        // VistaPrincipal ini = new VistaPrincipal();
+
+        VistaConexionBD ini = new VistaConexionBD();
+
+        Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();
+        //obtenemos el tamaño de la ventana  
+        Dimension ventan = ini.getSize();
+        //para centrar la ventana lo hacemos con el siguiente calculo  
+        ini.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+        ini.setVisible(true);
+    }// TODO add your handling code here:
 }//GEN-LAST:event_progresoStateChanged
 
 //    public static void main(String args[]) {

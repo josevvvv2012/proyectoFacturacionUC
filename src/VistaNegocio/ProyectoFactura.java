@@ -5,6 +5,10 @@
  */
 package VistaNegocio;
 
+import UpperEssential.UpperEssentialLookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author negro
@@ -16,9 +20,17 @@ public class ProyectoFactura {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        Principal Principal = new Principal ();
+
+        try {
+            UIManager.setLookAndFeel(new UpperEssentialLookAndFeel());
+
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+        Principal Principal = new Principal();
         Principal.setVisible(true);
+
     }
     
 }
