@@ -413,6 +413,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
                         p.getMarca_product();
                         p.getPeso_product();
+                        //ingreso
                     break;
                     case "Ropa": 
                         p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
