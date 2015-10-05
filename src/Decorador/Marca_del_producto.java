@@ -34,17 +34,18 @@ public ControllerSql obj;
 
     @Override
     public String getMarca_product() {
-        
-        String marca=getMarca_product();
+        String marca=producto.getMarca_product();
+                System.out.println("Entro aca la marca en este momento tiene :"+marca);
+
         obj = ControllerSql.getInstancia();
         try {
                     boolean res = obj.Agregarmarca(idProducto,marca);
                     
                     if (res == true) {
-                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
+                        JOptionPane.showMessageDialog(null, "Se agrego la marca al producto");
                         
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                        JOptionPane.showMessageDialog(null, "No se pudo agregar ya existe en la base"
                                 + "de datos");
                     }
                 } catch (Exception e) {
@@ -54,7 +55,9 @@ public ControllerSql obj;
         ///////
       
         ///////
-        return producto.getMarca_product()+"Rancheras"; //To change body of generated methods, choose Tools | Templates.
-    }
+    
   
+        return producto.getMarca_product()+"Rancheras";
+}
+
 }

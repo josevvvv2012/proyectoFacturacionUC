@@ -16,7 +16,11 @@ public class Producto_tipo_comida extends Producto{
     public Producto_tipo_comida(int idProducto, String tipoproducto) {
         super(idProducto, tipoproducto);
     }
-
+    
+//    public void imprimirIDTIPOPRODUCTO(){
+//        System.out.println(idProducto+tipoproducto);
+//    }
+    
     public Producto_tipo_comida(int idProducto, String NombreProducto, double PrecioVenta, double PrecioCosto, double IvaProducto) {
         super(idProducto, NombreProducto, PrecioVenta, PrecioCosto, IvaProducto, IvaProducto);
     }

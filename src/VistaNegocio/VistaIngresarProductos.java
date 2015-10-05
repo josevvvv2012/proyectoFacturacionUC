@@ -369,7 +369,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
 
         }
          
-       this.dispose(); 
+//       this.dispose(); 
         
     }//GEN-LAST:event_BotonIngresarActionPerformed
 
@@ -389,30 +389,37 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
 
     /*implementacion patron decorador*/
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ///Captura los datos que se acaban de ingresar del producto
         int id_producto = Integer.parseInt(TextCodProduct.getText());
         String Descripcion_prod = TextDescripcion.getText();
         double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
         double Precio_prod = Double.parseDouble(TextPrecio.getText());
         int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
         double ivaproducto = Double.parseDouble(txtIvap.getText());
+        //Captura el tipo del producto
+        Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+        //Se crea un nuevo objeto de tipo producto para hacer el llamado al decorador
         Producto p;
-        
-        ////le nuevo
-                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+        //Switch para Ingresar al tipo de producto deseado 
                 switch((String) tipodelproducto)
                 {
-                    
                     case "Alimentos":
                         log(String.valueOf(tipodelproducto));
+                        //Creamos un nuevo producto de tipo en este caso comida y le enviamois
+                        //el id y el tipo de producto
                         p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
-                        log(String.valueOf(p));
+                        //el producto p , ahora tendra una adicion de marca del producto
+                        //ingreso
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
                         p.getMarca_product();
+                        p.getPeso_product();
                     break;
                     case "Ropa": 
                         p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
                         p.getMarca_product();
+                        p.getPeso_product();
+
 
                      break;
                         
@@ -420,22 +427,19 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                         p = new Producto_tipo_automotor(id_producto,(String) tipodelproducto);
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
                         p.getMarca_product();
+                        p.getPeso_product();
+
                         break;
                         
                     case "Electronico": 
                         p = new Producto_tipo_electronico(id_producto,(String) tipodelproducto);
                         p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
                         p.getMarca_product();
+                        p.getPeso_product();
+
 
                         break;    
-                        
-                        
                 }  
-                ////
-                
-        //        Producto producto =new Producto_tipo_comida(id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto);
-        //        producto = new Marca_del_producto(producto);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -85,19 +85,40 @@ public class ControllerSql extends ActualizaFacturas{//public
     }
 
     
+    //Se creo funcion  agregar marca para que ingrese la marca del producto
     public boolean Agregarmarca(int id_producto,String marca) {
         try {
-            String query = " insert into producto("
-                    + "marcaproducto,"
-                    + " values (?)";
+            
+            String query ="UPDATE producto SET marcaproducto=? WHERE id_producto = ? ";             
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
             preparedStmt.setString(1, marca);
+            preparedStmt.setInt(2, id_producto);
+
             // ejecuto mi query
             preparedStmt.execute();
             return true;
         } catch (SQLException e) {
             return false;
-        }
+        }       
+    }
+    
+    //Se creo funcion  agregar peso para que ingrese el peso  del producto
+    public boolean Agregarpeso(int id_producto,double peso) {
+        try {
+            
+            /*String query = " UPDATE proveedor SET nombreProveedor=?, telefonoProveedor =?, Direccion = ?  WHERE  idProveedor=?";
+*/   
+            String query ="UPDATE producto SET pesoproducto=? WHERE id_producto = ? ";             
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setDouble(id_producto, peso);
+            preparedStmt.setInt(2, id_producto);
+
+            // ejecuto mi query
+            preparedStmt.execute();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }       
     }
     
     
