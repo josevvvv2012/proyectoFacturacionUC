@@ -219,7 +219,7 @@ public class BuscarClienteFactura extends javax.swing.JFrame {
             String direccion = jTable1.getValueAt(row, 2).toString();
             String telefono = jTable1.getValueAt(row, 3).toString();
          
-            VistaFactura.txtPrueba.setText(idIdentificacion);
+//            VistaFactura.txtPrueba.setText(idIdentificacion);
             
             
         }

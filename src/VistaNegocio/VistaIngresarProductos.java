@@ -376,9 +376,9 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                             .addComponent(LabelProducto))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(LabelPrecioVent)
-                                .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2))
                             .addComponent(jcboxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -488,9 +488,8 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCodProductActionPerformed
 
     private void Boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_cancelarActionPerformed
-        this.setVisible(false);
-        VistaPrincipal retornar = new VistaPrincipal();
-        retornar.setVisible(true); //       // TODO add your handling code here:
+        this.dispose();
+        
     }//GEN-LAST:event_Boton_cancelarActionPerformed
 
     private void LitsadeProovedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LitsadeProovedoresActionPerformed

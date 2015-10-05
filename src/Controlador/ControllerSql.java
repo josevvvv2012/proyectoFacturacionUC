@@ -213,7 +213,7 @@ public class ControllerSql extends ActualizaFacturas{//public
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
             preparedStmt.setString(1, factura.getFecha_fact()+"");
             preparedStmt.setDouble(2, factura.getSubtotal());
-            preparedStmt.setDouble(3, factura.getValor_iva());
+            preparedStmt.setDouble(3, factura.getSubtotal()* factura.getValor_iva());
             preparedStmt.setDouble(4, factura.getTotal_fact());
             preparedStmt.setDouble(5, factura.getNeto_fact());
             preparedStmt.setInt(6, factura.getId_cliente());
