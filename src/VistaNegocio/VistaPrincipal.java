@@ -89,6 +89,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton8.setText("Reporte Productos");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Reporte Ventas");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -291,6 +296,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String jasper="reporteProveedores";
         verReporteProveedores(jasper);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     
   /**

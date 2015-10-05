@@ -507,6 +507,29 @@ public boolean AgregarDetalleFactura(int nfac, int codpro, int cant,double pre_u
    System.out.println("la valor  = "+" "+a);   
     }     
 
+    public boolean actualizaProducto(int id_producto, String Descripcion_prod, double Costo_Venta_prod, double Precio_prod, int Codigo_proveedor, double ivaproducto, Object tipodelproducto) {
+        try {
+            String query = " UPDATE producto SET id_producto=?, descripcion =?, costo = ?,precio_venta = ?,id_proveedor = ?,ivaproducto = ?,tipoproducto = ?   WHERE  idProveedor=?";
+                
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            
+            
+            preparedStmt.setInt(1,id_producto);
+            preparedStmt.setString(2,Descripcion_prod );
+            preparedStmt.setDouble(3, Costo_Venta_prod);
+            preparedStmt.setDouble(4, Precio_prod);
+            preparedStmt.setInt(5, Codigo_proveedor);
+            preparedStmt.setDouble(6, ivaproducto);
+            preparedStmt.setString(7, (String) tipodelproducto);
+
+            preparedStmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
    
 
 }
