@@ -605,45 +605,38 @@ public class VistaFactura extends javax.swing.JFrame {
     }
 
     public void agregarDetalleFactura() {
-        
-        log("Agregar detalle");
-        
-        for(int i=0;i<jTable1.getRowCount();i++){
-        PreparedStatement ps;  
-        String nfac=txtNoFactura.getText();
-        String codpro=jTable1.getValueAt(i,0).toString();
-        String cant=jTable1.getValueAt(i,2).toString();
-        String pre_u=jTable1.getValueAt(i,3).toString();
-        
-          log("no Factura "+nfac);
-          log("cod producto "+codpro);
-          log("cantidad "+cant);
-          log("precio unitario "+pre_u);
-        
-        try{
-            ps = cn.prepareStatement("INSERT INTO facpr (id_factura,id_producto_f,cantidad,cantidad) "
-                    + "VALUES (?,?,?,?)");
-            log(String.valueOf(ps));
-            r = ps.executeQuery();
-    
+ 
+        log("agregar Detalle de factura vista");
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            int nfac = Integer.parseInt(txtNoFactura.getText());
             
-            
-            ps.setString(1, nfac);
-            log(String.valueOf(nfac));
-            ps.setString(2, codpro);
-            ps.setString(3, cant);
-            ps.setString(4, pre_u);
-            
-            
-            int opcion=ps.executeUpdate();
-            if (opcion==1)
-                JOptionPane.showMessageDialog(this, "Regisjjtrado correctamente!!","aviso",JOptionPane.INFORMATION_MESSAGE);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Error dddal registrar"+e.getMessage());
-            log(e.getMessage());
-                
-        }}
+            int codpro = Integer.parseInt(jTable1.getValueAt(i, 0).toString());
+            int cant = Integer.parseInt(jTable1.getValueAt(i, 2).toString());
+            double pre_u = Double.parseDouble(jTable1.getValueAt(i, 3).toString());
 
+            log("idfactura"+String.valueOf(nfac));
+            log("idproducto_f "+String.valueOf(codpro));
+            log("cantidadProducto "+String.valueOf(cant));
+            log("valorProducto "+String.valueOf(pre_u));
+            
+             try {
+                ControllerSql = new ControllerSql();
+                boolean res = ControllerSql.AgregarDetalleFactura(nfac, codpro, cant,pre_u);
+                if (res == true) {
+                    JOptionPane.showMessageDialog(null, "La factura se  Registrado Correctamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevoEmpleado ya existe en la base"
+                            + "de datos");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
+
+            }
+            
+        }
+        
+        
     }
 
   public void log(String a) {

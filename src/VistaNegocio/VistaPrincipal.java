@@ -82,6 +82,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton7.setText("Reporte Proveedores");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Reporte Productos");
 
@@ -280,6 +285,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         ver(jasper);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        pdfProveedores();
+        String jasper="reporteProveedores";
+        verReporteProveedores(jasper);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     
   /**
   * Ver reporte
@@ -336,6 +348,63 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
   }     
     
+  
+  /**
+  * Ver reporte proveedores
+  */
+  public void verReporteProveedores( String jasper ){
+     JasperReport jasperReport;
+     JasperPrint jasperPrint;
+     Conexion database1 = new Conexion();
+     try{
+        URL  in=this.getClass().getResource( "reporteProveedores.jasper" );
+        jasperReport=(JasperReport)JRLoader.loadObject(in);
+        
+        jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap() , database1.getConn());
+        JasperViewer.viewReport(jasperPrint,false);
+    }catch (JRException ex){
+        System.err.println( "Error iReport: " + ex.getMessage() );
+    }
+  }
+
+  /**
+   * Imprimir reporte proveedores
+   */
+  public void pdfProveedores(){
+      
+      Conexion database1 = new Conexion();
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;                
+        try
+        {
+          //se carga el reporte
+          URL  in=this.getClass().getResource( "reporteProveedores.jasper");
+          jasperReport=(JasperReport)JRLoader.loadObject(in);
+          //se procesa el archivo jasper
+          jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn() );
+          //se crea el archivo PDF
+          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteclientes.pdf");
+          //Se ejecuta directamete PDF
+//          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
+          
+            try {
+        Desktop desktop = Desktop.getDesktop();
+        if (desktop.isSupported(Desktop.Action.OPEN)) {
+            desktop.open(new File("reporteclientes.pdf"));
+        } else {
+            System.out.println("Open is not supported");
+        }
+    } catch (IOException exp) {
+        exp.printStackTrace();
+    }
+        }
+        catch (JRException ex)
+        {
+          System.err.println( "Error iReport: " + ex.getMessage() );
+        }
+  } 
+  
+  
     /**
      * @param args the command line arguments
      */

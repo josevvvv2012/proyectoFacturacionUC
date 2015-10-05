@@ -144,7 +144,7 @@ public class Conexion {
        
        
        String myTableName5="CREATE TABLE IF NOT EXISTS `facpr` (\n" +
-"  `id_facpr` int(11) NOT NULL AUTO_INCREMENT,\n" +
+"  `id_facpr` int(11) AUTO_INCREMENT,\n" +
 "  `id_factura` int(11) NOT NULL,\n" +
 "  `id_producto_f` int(11) NOT NULL,\n" +
 "  `cantidad` int(11) NOT NULL,\n" +
@@ -169,6 +169,12 @@ String prodfiltraProductoId="CREATE PROCEDURE `filtraProductoId`(IN `cod` INT)\n
 String prodfiltraProveedorId="CREATE PROCEDURE `filtraProveedorId`(IN `cod` INT)\n" +
 "	\n" +
 "SELECT * FROM proveedor WHERE idProveedor = cod ";
+
+String insertDetalleFactura="CREATE PROCEDURE insertFacturaDetalle\n" +
+"(IN idfactura INT,idproducto_f INT ,cantidadProducto INT, valorProducto DOUBLE\n" +
+")\n" +
+"INSERT INTO facpr(id_factura,id_producto_f,cantidad,valor) VALUES(idfactura,idproducto_f,cantidadProducto,valorProducto);";
+
        
         try {
             Class.forName(driver);
@@ -184,6 +190,7 @@ String prodfiltraProveedorId="CREATE PROCEDURE `filtraProveedorId`(IN `cod` INT)
             s.executeUpdate(prodfiltraClienteId);
             s.executeUpdate(prodfiltraProductoId);
             s.executeUpdate(prodfiltraProveedorId);
+            s.executeUpdate(insertDetalleFactura);
             
             
         

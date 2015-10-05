@@ -454,6 +454,31 @@ public class ControllerSql extends ActualizaFacturas{//public
         return p;
     }
 
+   
+   
+public boolean AgregarDetalleFactura(int nfac, int codpro, int cant,double pre_u) {
+
+        log("agregrar Detalle de factura");
+
+        try {
+            String query = "INSERT INTO facpr (id_factura,id_producto_f,cantidad,valor) "
+                    + "VALUES (?, ?, ?, ?); ";
+
+            // preparo la consulta para mi base de datos
+            PreparedStatement preparedStmt = conexion.prepareStatement(query);
+            preparedStmt.setInt(1, nfac);
+            preparedStmt.setInt(2, codpro);
+            preparedStmt.setInt(3, cant);
+            preparedStmt.setDouble(4, pre_u);
+
+            // ejecuto mi query
+            preparedStmt.execute();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }   
+   
     
   public void log(String a)
     {
