@@ -642,7 +642,7 @@ public class VistaFactura extends javax.swing.JFrame {
                 boolean res = ControllerSql.AgregarDetalleFactura(nfac, codpro, cant,pre_u,valor_total_pro);
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "La factura se  Registrado Correctamente");
-                    ver_informe_con_parametros(nfac);
+                    
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevoEmpleado ya existe en la base"
@@ -652,10 +652,10 @@ public class VistaFactura extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
 
             }
-            
+       ver_informe_con_parametros(nfac);      
         }
         
-        
+       
         
         
     }
@@ -673,18 +673,18 @@ public class VistaFactura extends javax.swing.JFrame {
            Map <String,Integer> parametros = new HashMap<String,Integer>();             
           parametros.clear(); 
           //se procesa el archivo jasper
-          parametros.put( "p1", 1 );
+          parametros.put( "p1", parametro );
            
           jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, database1.getConn() );
           //se crea el archivo PDF
-          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteProveedores.pdf");
+          JasperExportManager.exportReportToPdfFile( jasperPrint, "./ReporteFactura.pdf");
           //Se ejecuta directamete PDF
 //          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
           
             try {
         Desktop desktop = Desktop.getDesktop();
         if (desktop.isSupported(Desktop.Action.OPEN)) {
-            desktop.open(new File("reporteclientes.pdf"));
+            desktop.open(new File("ReporteFactura.pdf"));
         } else {
             System.out.println("Open is not supported");
         }
