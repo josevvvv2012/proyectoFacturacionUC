@@ -149,6 +149,7 @@ public class Conexion {
 "  `id_producto_f` int(11) NOT NULL,\n" +
 "  `cantidad` int(11) NOT NULL,\n" +
 "  `valor` double NOT NULL,\n" +
+"  `valor_total_pro` double NOT NULL,\n" +
 "  PRIMARY KEY (`id_facpr`),\n" +
 "  KEY `id_factura` (`id_factura`),\n" +
 "  KEY `id_producto_f` (`id_producto_f`),\n" +

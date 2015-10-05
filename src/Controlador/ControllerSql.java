@@ -456,13 +456,13 @@ public class ControllerSql extends ActualizaFacturas{//public
 
    
    
-public boolean AgregarDetalleFactura(int nfac, int codpro, int cant,double pre_u) {
+public boolean AgregarDetalleFactura(int nfac, int codpro, int cant,double pre_u,double valor_total_pro) {
 
         log("agregrar Detalle de factura");
 
         try {
-            String query = "INSERT INTO facpr (id_factura,id_producto_f,cantidad,valor) "
-                    + "VALUES (?, ?, ?, ?); ";
+            String query = "INSERT INTO facpr (id_factura,id_producto_f,cantidad,valor,valor_total_pro) "
+                    + "VALUES (?, ?, ?, ?, ?); ";
 
             // preparo la consulta para mi base de datos
             PreparedStatement preparedStmt = conexion.prepareStatement(query);
@@ -470,6 +470,7 @@ public boolean AgregarDetalleFactura(int nfac, int codpro, int cant,double pre_u
             preparedStmt.setInt(2, codpro);
             preparedStmt.setInt(3, cant);
             preparedStmt.setDouble(4, pre_u);
+            preparedStmt.setDouble(5, valor_total_pro);
 
             // ejecuto mi query
             preparedStmt.execute();

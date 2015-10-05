@@ -383,7 +383,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
           //se procesa el archivo jasper
           jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), database1.getConn() );
           //se crea el archivo PDF
-          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteclientes.pdf");
+          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteProveedores.pdf");
           //Se ejecuta directamete PDF
 //          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
           

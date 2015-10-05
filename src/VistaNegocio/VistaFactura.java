@@ -5,20 +5,34 @@
  */
 package VistaNegocio;
 
+import Controlador.Conexion;
 import Controlador.ControllerSql;
 import Decorador.Producto_tipo_comida;
 import Funciones.FuncionesController;
 import Modelo.Factura;
 import Modelo.Producto;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -514,6 +528,8 @@ public class VistaFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
       agregraFactura();
       agregarDetalleFactura();
+      
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jcProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcProductosActionPerformed
@@ -608,22 +624,25 @@ public class VistaFactura extends javax.swing.JFrame {
  
         log("agregar Detalle de factura vista");
         for (int i = 0; i < jTable1.getRowCount(); i++) {
+
             int nfac = Integer.parseInt(txtNoFactura.getText());
-            
             int codpro = Integer.parseInt(jTable1.getValueAt(i, 0).toString());
             int cant = Integer.parseInt(jTable1.getValueAt(i, 2).toString());
             double pre_u = Double.parseDouble(jTable1.getValueAt(i, 3).toString());
+            double valor_total_pro = Double.parseDouble(jTable1.getValueAt(i, 4).toString());
 
             log("idfactura"+String.valueOf(nfac));
             log("idproducto_f "+String.valueOf(codpro));
             log("cantidadProducto "+String.valueOf(cant));
             log("valorProducto "+String.valueOf(pre_u));
+            log("Valor Total "+String.valueOf(valor_total_pro));
             
              try {
                 ControllerSql = new ControllerSql();
-                boolean res = ControllerSql.AgregarDetalleFactura(nfac, codpro, cant,pre_u);
+                boolean res = ControllerSql.AgregarDetalleFactura(nfac, codpro, cant,pre_u,valor_total_pro);
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "La factura se  Registrado Correctamente");
+                    ver_informe_con_parametros(nfac);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevoEmpleado ya existe en la base"
@@ -637,8 +656,48 @@ public class VistaFactura extends javax.swing.JFrame {
         }
         
         
+        
+        
     }
 
+         public void ver_informe_con_parametros(int parametro){         
+      Conexion database1 = new Conexion();
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;                
+        try
+        {
+          //se carga el reporte
+          URL  in=this.getClass().getResource( "ReporteFactura.jasper");
+          jasperReport=(JasperReport)JRLoader.loadObject(in);
+          
+           Map <String,Integer> parametros = new HashMap<String,Integer>();             
+          parametros.clear(); 
+          //se procesa el archivo jasper
+          parametros.put( "p1", 1 );
+           
+          jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, database1.getConn() );
+          //se crea el archivo PDF
+          JasperExportManager.exportReportToPdfFile( jasperPrint, "./reporteProveedores.pdf");
+          //Se ejecuta directamete PDF
+//          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "/reporteclientes.pdf");
+          
+            try {
+        Desktop desktop = Desktop.getDesktop();
+        if (desktop.isSupported(Desktop.Action.OPEN)) {
+            desktop.open(new File("reporteclientes.pdf"));
+        } else {
+            System.out.println("Open is not supported");
+        }
+    } catch (IOException exp) {
+        exp.printStackTrace();
+    }
+        }
+        catch (JRException ex)
+        {
+          System.err.println( "Error iReport: " + ex.getMessage() );
+        }
+    }
+    
   public void log(String a) {
         System.out.println("la valor  = " + " " + a);
     }    
@@ -685,4 +744,6 @@ public class VistaFactura extends javax.swing.JFrame {
     public static javax.swing.JTextField txtPrueba;
     private javax.swing.JTextField txtTelefonoCliente;
     // End of variables declaration//GEN-END:variables
+
+    
 }
