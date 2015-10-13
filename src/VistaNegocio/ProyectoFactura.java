@@ -6,6 +6,7 @@
 package VistaNegocio;
 
 import UpperEssential.UpperEssentialLookAndFeel;
+import debug.Consola;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -30,6 +31,9 @@ public class ProyectoFactura {
 
         Principal Principal = new Principal();
         Principal.setVisible(true);
+        
+        
+        Consola Consola = new Consola();
 
     }
     

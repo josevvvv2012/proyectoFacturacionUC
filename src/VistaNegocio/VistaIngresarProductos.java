@@ -138,7 +138,6 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         LabelCosto = new javax.swing.JLabel();
         TextPrecio = new javax.swing.JTextField();
         LabelPrecioVent = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         BotonIngresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Boton_cancelar = new javax.swing.JButton();
@@ -191,9 +190,6 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
         });
 
         LabelPrecioVent.setText("Precio de Venta :");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("INGRESO DE PRODUCTO");
 
         BotonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.JPG"))); // NOI18N
         BotonIngresar.setText("Ingresar");
@@ -350,18 +346,13 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(283, 283, 283))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -401,7 +392,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
                                 .addGap(19, 19, 19))
                             .addComponent(Boton_cancelar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(241, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(2, 2, 2)
                         .addComponent(jLabel7)
@@ -696,36 +687,35 @@ public void editarProducto()
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonIngresar;
-    private javax.swing.JButton Boton_cancelar;
+    public static javax.swing.JButton BotonIngresar;
+    public javax.swing.JButton Boton_cancelar;
     private javax.swing.JLabel LabelCosto;
     private javax.swing.JLabel LabelDescripcion;
     private javax.swing.JLabel LabelPrecioVent;
     private javax.swing.JLabel LabelProducto;
     public static javax.swing.JComboBox LitsadeProovedores;
-    private javax.swing.JTextField TextCodProduct;
-    private javax.swing.JTextField TextCostoproduc;
-    private javax.swing.JTextField TextDescripcion;
-    private javax.swing.JTextField TextPrecio;
+    public static javax.swing.JTextField TextCodProduct;
+    public static javax.swing.JTextField TextCostoproduc;
+    public static javax.swing.JTextField TextDescripcion;
+    public static javax.swing.JTextField TextPrecio;
     public static javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public static javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public javax.swing.JButton jButton5;
+    public static javax.swing.JButton jButton6;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox jcboxTipoProducto;
-    private javax.swing.JTextField txtIvap;
+    public static javax.swing.JTable jTable1;
+    public static javax.swing.JComboBox jcboxTipoProducto;
+    public static javax.swing.JTextField txtIvap;
     // End of variables declaration//GEN-END:variables
 
     private boolean ValidarCamposVacios(JTextField TextCodProduct, JTextField TextDescripcion, JTextField TextCostoproduc, JTextField TextPrecio, JComboBox LitsadeProovedores, JTextField txtIvap, JComboBox jcboxTipoProducto) {
