@@ -29,6 +29,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -46,6 +48,8 @@ public class CorrecionDefecto extends javax.swing.JFrame {
     CallableStatement cts;
     Connection cn;
     ResultSet r;
+    JComboBox JComboBox;
+    JCheckBox JCheckBox;
 
     /**
      * Creates new form CorrecionDefecto
@@ -92,19 +96,18 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         txtIvap = new javax.swing.JTextField();
         jcboxTipoProducto = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Codifgo");
+        jLabel1.setText("Codigo");
 
-        jLabel2.setText("Descripcio");
+        jLabel2.setText("Descripcion");
 
         jLabel3.setText("Costo");
 
@@ -124,13 +127,6 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Marca y peso");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -168,97 +164,105 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton6.setText("Cerrar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jCheckBox1.setText("Marca Y Peso");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(248, 248, 248))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
+                                    .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(TextCostoproduc)
+                            .addComponent(TextDescripcion)
+                            .addComponent(TextCodProduct))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel7))
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jcboxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextCodProduct)
-                                        .addComponent(TextDescripcion)
-                                        .addComponent(TextCostoproduc)
-                                        .addComponent(TextPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(31, 31, 31))
+                                    .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(151, 151, 151))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TextCodProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6)))
+                    .addComponent(TextCodProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(TextDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(TextCostoproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(TextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(LitsadeProovedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jcboxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jcboxTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton5))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -267,136 +271,15 @@ public class CorrecionDefecto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && LitsadeProovedores.getSelectedIndex() > 0) {
-            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+        if (jCheckBox1.isSelected() == true) {
+            ingresarProductoConMarcaYPeso();
+          //  agregarMarcayPeso();
+            log("ingresa Producto con Marca y peso");
         } else {
-        //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
-            //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
-            //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
-
-      
-            if (prodAc == null) {
-                // TODO add your handling code here:
-                log(String.valueOf(prodAc == null));
-                int id_producto = Integer.parseInt(TextCodProduct.getText());
-                String Descripcion_prod = TextDescripcion.getText();
-                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
-                double Precio_prod = Double.parseDouble(TextPrecio.getText());
-                int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
-                double ivaproducto = Double.parseDouble(txtIvap.getText());
-                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
-                
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                try {
-                    boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
-                            Costo_Venta_prod,
-                            Precio_prod,
-                            Codigo_proveedor,
-                            ivaproducto,
-                            (String)tipodelproducto);
-                    if (res == true) {
-                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
-                        //this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
-                                + "de datos");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
-
-                }
-                
-            }// fin de if de condiciones
-                JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
-            } else {
-                
-                log("actualizo");
-                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
-                double Precio_prod = Double.parseDouble(TextPrecio.getText());
-                double ivaproducto = Double.parseDouble(txtIvap.getText());
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                
-                
-                prodAc.setPrecioCosto(Costo_Venta_prod);
-                prodAc.setPrecioVenta(Precio_prod);
-                prodAc.setIvaProducto(ivaproducto);
-                
-                
-                
-                obj.actualizaProducto(prodAc);
-                JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
-                }
-            }
-
+            ingresarProducto();
+            log("ingresa Producto sin marca y peso");
         }
-         
-//       this.dispose(); 
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-          ///Captura los datos que se acaban de ingresar del producto
-        int id_producto = Integer.parseInt(TextCodProduct.getText());
-        String Descripcion_prod = TextDescripcion.getText();
-        double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
-        double Precio_prod = Double.parseDouble(TextPrecio.getText());
-        int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
-        double ivaproducto = Double.parseDouble(txtIvap.getText());
-        //Captura el tipo del producto
-        Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
-        //Se crea un nuevo objeto de tipo producto para hacer el llamado al decorador
-        Producto p;
-        //Switch para Ingresar al tipo de producto deseado 
-                switch((String) tipodelproducto)
-                {
-                    case "Alimentos":
-                        log(String.valueOf(tipodelproducto));
-                        //Creamos un nuevo producto de tipo en este caso comida y le enviamois
-                        //el id y el tipo de producto
-                        p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
-                        //el producto p , ahora tendra una adicion de marca del producto
-                        //ingreso
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
-                        //ingreso
-                    break;
-                    case "Ropa": 
-                        p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
-
-
-                     break;
-                        
-                    case "Automotor": 
-                        p = new Producto_tipo_automotor(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
-
-                        break;
-                        
-                    case "Electronico": 
-                        p = new Producto_tipo_electronico(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
-
-
-                        break;    
-                }  
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -469,13 +352,6 @@ public class CorrecionDefecto extends javax.swing.JFrame {
          this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-         this.setVisible(false);
-        VistaPrincipal retornar = new VistaPrincipal();
-        retornar.setVisible(true);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     
     //********************************************************************//
     
@@ -521,6 +397,29 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         return false;
     }
     
+     public boolean ValidarComboxVacios(JComboBox... JComboBox) {
+        for (JComboBox JComboBox1 : JComboBox) {
+            if (JComboBox1.getSelectedIndex() == 0) {
+                log("vacio");
+                return true;
+            }
+        }
+        return false;
+    }
+    
+     
+       public boolean ValidarJCheckBoxVacios(JCheckBox... JCheckBox) {
+        for (JCheckBox JComboBox1 : JCheckBox) {
+            if (JComboBox1.isSelected()  == false) {
+                log("vacio");
+                return true;
+            }
+        }
+        return false;
+    }
+    
+     
+     
     public  void ValidadSoloNumeros(JTextField a)
 {
     a.addKeyListener(new KeyAdapter(){
@@ -553,7 +452,231 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         
     }
             });
-}    
+}
+     
+public void ingresarProducto()
+        {
+          
+        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && ValidarComboxVacios(LitsadeProovedores,jcboxTipoProducto)) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+        } else {
+        //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
+            //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
+            //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
+
+      
+            if (prodAc == null) {
+                // TODO add your handling code here:
+                log(String.valueOf(prodAc == null));
+                int id_producto = Integer.parseInt(TextCodProduct.getText());
+                String Descripcion_prod = TextDescripcion.getText();
+                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+                double Precio_prod = Double.parseDouble(TextPrecio.getText());
+                int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+                double ivaproducto = Double.parseDouble(txtIvap.getText());
+                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+                
+                if(Precio_prod > Costo_Venta_prod)
+                {
+                try {
+                    boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
+                            Costo_Venta_prod,
+                            Precio_prod,
+                            Codigo_proveedor,
+                            ivaproducto,
+                            (String)tipodelproducto);
+                    
+                    if (res == true) {
+                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");                
+                        //this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                                + "de datos");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
+                }
+                
+            }// fin de if de condiciones
+                JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
+            } else {
+                
+                log("actualizo");
+                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+                double Precio_prod = Double.parseDouble(TextPrecio.getText());
+                double ivaproducto = Double.parseDouble(txtIvap.getText());
+                if(Precio_prod > Costo_Venta_prod)
+                {
+                
+                
+                prodAc.setPrecioCosto(Costo_Venta_prod);
+                prodAc.setPrecioVenta(Precio_prod);
+                prodAc.setIvaProducto(ivaproducto);
+                
+                
+                
+                obj.actualizaProducto(prodAc);
+                JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
+                }
+            }
+
+        }
+         
+//       this.dispose(); 
+        
+            
+        }
+     
+
+public void ingresarProductoConMarcaYPeso()
+        {
+          
+        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) || ValidarComboxVacios(LitsadeProovedores,jcboxTipoProducto)) {
+            JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
+        } else {
+        //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
+            //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
+            //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
+
+      
+            if (prodAc == null) {
+                // TODO add your handling code here:
+                log(String.valueOf(prodAc == null));
+                int id_producto = Integer.parseInt(TextCodProduct.getText());
+                String Descripcion_prod = TextDescripcion.getText();
+                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+                double Precio_prod = Double.parseDouble(TextPrecio.getText());
+                int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+                double ivaproducto = Double.parseDouble(txtIvap.getText());
+                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+                
+                if(Precio_prod > Costo_Venta_prod)
+                {
+                try {
+                    boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
+                            Costo_Venta_prod,
+                            Precio_prod,
+                            Codigo_proveedor,
+                            ivaproducto,
+                            (String)tipodelproducto);
+                    
+                    if (res == true) {
+                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
+        
+                        agregarMarcayPeso();
+                        
+                        //this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                                + "de datos");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
+                }
+                
+            }// fin de if de condiciones
+                JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
+            } else {
+                
+                log("actualizo");
+                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+                double Precio_prod = Double.parseDouble(TextPrecio.getText());
+                double ivaproducto = Double.parseDouble(txtIvap.getText());
+                if(Precio_prod > Costo_Venta_prod)
+                {
+                
+                
+                prodAc.setPrecioCosto(Costo_Venta_prod);
+                prodAc.setPrecioVenta(Precio_prod);
+                prodAc.setIvaProducto(ivaproducto);
+                
+                
+                
+                obj.actualizaProducto(prodAc);
+                JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
+                }
+            }
+
+        }
+         
+//       this.dispose(); 
+        
+            
+        }
+    public void agregarMarcayPeso()
+            {
+         // TODO add your handling code here:
+          ///Captura los datos que se acaban de ingresar del producto
+                int id_producto = Integer.parseInt(TextCodProduct.getText());
+                String Descripcion_prod = TextDescripcion.getText();
+                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+                double Precio_prod = Double.parseDouble(TextPrecio.getText());
+                int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+                double ivaproducto = Double.parseDouble(txtIvap.getText());
+                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+
+        //Captura el tipo del producto
+        
+        //Se crea un nuevo objeto de tipo producto para hacer el llamado al decorador
+        Producto p;
+        //Switch para Ingresar al tipo de producto deseado 
+                switch((String) tipodelproducto)
+                {
+                    case "Alimentos":
+                        log(String.valueOf(tipodelproducto));
+                        //Creamos un nuevo producto de tipo en este caso comida y le enviamois
+                        //el id y el tipo de producto
+                        p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
+                        //el producto p , ahora tendra una adicion de marca del producto
+                        //ingreso
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+                        p.getPeso_product();
+                        //ingreso
+                    break;
+                    case "Ropa": 
+                        p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+                        p.getPeso_product();
+
+
+                     break;
+                        
+                    case "Automotor": 
+                        p = new Producto_tipo_automotor(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+                        p.getPeso_product();
+
+                        break;
+                        
+                    case "Electronico": 
+                        p = new Producto_tipo_electronico(id_producto,(String) tipodelproducto);
+                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
+                        p.getMarca_product();
+                        p.getPeso_product();
+
+
+                        break;    
+                }  
+               
+                
+                
+            }
+     
+     
+     
      public void log(String a)
     {
    System.out.println("la valor  = "+" "+a);   
@@ -605,11 +728,10 @@ public class CorrecionDefecto extends javax.swing.JFrame {
     private javax.swing.JTextField TextDescripcion;
     private javax.swing.JTextField TextPrecio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
