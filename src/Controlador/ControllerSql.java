@@ -458,10 +458,10 @@ public class ControllerSql extends ActualizaFacturas{//public
         Producto p = null;
         PreparedStatement ps;
         try {
-            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto");
+            ps = conexion.prepareStatement("SELECT id_producto ,descripcion ,costo,precio_venta, id_proveedor ,ivaproducto FROM producto where id_producto = "+idProducto+"");
             rs = ps.executeQuery();
             if (rs.next()) {
-                p = new Producto_tipo_comida(rs.getInt(1),
+                    p = new Producto_tipo_comida(rs.getInt(1),
                         rs.getString(2),
                         rs.getDouble(4),
                         rs.getDouble(3),

@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  * @author negro
  */
 public class CorrecionDefecto extends javax.swing.JFrame {
-    
+
     public ControllerSql obj;
     FuncionesController cc = new FuncionesController();
     private Producto prodAc;
@@ -56,19 +56,19 @@ public class CorrecionDefecto extends javax.swing.JFrame {
      */
     public CorrecionDefecto() {
         initComponents();
-     ValidadSoloNumeros(TextCodProduct);
+        ValidadSoloNumeros(TextCodProduct);
         ValidadCaracteres(TextDescripcion);
         ValidadSoloNumeros(TextPrecio);
         ValidadSoloNumeros(TextCostoproduc);
         ValidadSoloNumeros(txtIvap);
         cn = Conexion.getConn();
         cargar();
-        
+
         LitsadeProovedores.setModel(new javax.swing.DefaultComboBoxModel(cc.listaProvee().toArray()));
-        
-              obj = ControllerSql.getInstancia();
+
+        obj = ControllerSql.getInstancia();
         proveedores = cc.listaProvee();
-    //    LitsadeProovedores.setModel(new javax.swing.DefaultComboBoxModel(proveedores.toArray()));
+        //    LitsadeProovedores.setModel(new javax.swing.DefaultComboBoxModel(proveedores.toArray()));
         LitsadeProovedores.setSelectedIndex(-1);
     }
 
@@ -186,11 +186,13 @@ public class CorrecionDefecto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(118, 118, 118)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(36, 36, 36)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtIvap, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(122, 122, 122)))))
                         .addContainerGap(56, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,10 +272,10 @@ public class CorrecionDefecto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         if (jCheckBox1.isSelected() == true) {
             ingresarProductoConMarcaYPeso();
-          //  agregarMarcayPeso();
+            //  agregarMarcayPeso();
             log("ingresa Producto con Marca y peso");
         } else {
             ingresarProducto();
@@ -283,9 +285,12 @@ public class CorrecionDefecto extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-           // TODO add your handling code here:
+        // TODO add your handling code here:
         //METODO PARA BUSCAR EL PRODUCTO
         prodAc = obj.consultarProductoObserver(Integer.parseInt(TextCodProduct.getText()));
+        log("Busquedad Producto Observer");
+        log(String.valueOf(obj));
+        log(String.valueOf(prodAc));
         if (prodAc == null) {
             JOptionPane.showMessageDialog(this, "No se encuentra producto con ese ID");
         } else {
@@ -306,33 +311,29 @@ public class CorrecionDefecto extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-          // TODO add your handling code here:
+        // TODO add your handling code here:
         if (ValidarCamposVacios(txtIvap)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
 
         } else {
-            
+
             // TODO add your han......dling code here:
             int id_producto = Integer.parseInt(TextCodProduct.getText());
-        String Descripcion_prod = TextDescripcion.getText();
-        double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
-        double Precio_prod = Double.parseDouble(TextPrecio.getText());
-        int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
-        double ivaproducto = Double.parseDouble(txtIvap.getText());
-        //Captura el tipo del producto
-        Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+            String Descripcion_prod = TextDescripcion.getText();
+            double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+            double Precio_prod = Double.parseDouble(TextPrecio.getText());
+            int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+            double ivaproducto = Double.parseDouble(txtIvap.getText());
+            //Captura el tipo del producto
+            Object tipodelproducto = jcboxTipoProducto.getSelectedItem();
 
             try {
-        
-                
+
                 obj = new ControllerSql();
-               
-                   
-                      boolean res = obj.actualizaProducto(id_producto,Descripcion_prod,Costo_Venta_prod , Precio_prod,Codigo_proveedor,ivaproducto,tipodelproducto);
-                        log("EDITAR");
-                  
-                
-                
+
+                boolean res = obj.actualizaProducto(id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, Codigo_proveedor, ivaproducto, tipodelproducto);
+                log("EDITAR");
+
                 if (res == true) {
                     JOptionPane.showMessageDialog(null, "Usuario Registrado Correctamente");
                     this.dispose();
@@ -344,17 +345,15 @@ public class CorrecionDefecto extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor");
 
             }
-        }  
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
     //********************************************************************//
-    
     public void cargar() {
 
         DefaultTableModel tabla = new DefaultTableModel();
@@ -368,7 +367,6 @@ public class CorrecionDefecto extends javax.swing.JFrame {
             tabla.addColumn("tipoproducto");
             tabla.addColumn("marcaproducto");
             tabla.addColumn("pesoproducto");
-            
 
             ps = cn.prepareStatement("SELECT id_producto ,descripcion ,precio_venta,id_proveedor,ivaproducto,tipoproducto,marcaproducto,pesoproducto FROM producto");
             r = ps.executeQuery();
@@ -386,8 +384,7 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
-    
+
     public boolean ValidarCamposVacios(JTextField... textFields) {
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
@@ -396,8 +393,8 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         }
         return false;
     }
-    
-     public boolean ValidarComboxVacios(JComboBox... JComboBox) {
+
+    public boolean ValidarComboxVacios(JComboBox... JComboBox) {
         for (JComboBox JComboBox1 : JComboBox) {
             if (JComboBox1.getSelectedIndex() == 0) {
                 log("vacio");
@@ -406,65 +403,55 @@ public class CorrecionDefecto extends javax.swing.JFrame {
         }
         return false;
     }
-    
-     
-       public boolean ValidarJCheckBoxVacios(JCheckBox... JCheckBox) {
+
+    public boolean ValidarJCheckBoxVacios(JCheckBox... JCheckBox) {
         for (JCheckBox JComboBox1 : JCheckBox) {
-            if (JComboBox1.isSelected()  == false) {
+            if (JComboBox1.isSelected() == false) {
                 log("vacio");
                 return true;
             }
         }
         return false;
     }
-    
-     
-     
-    public  void ValidadSoloNumeros(JTextField a)
-{
-    a.addKeyListener(new KeyAdapter(){
-        public void keyTyped(KeyEvent e)
-    {
-        Character ch = e.getKeyChar(); 
-        if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')) { 
+
+    public void ValidadSoloNumeros(JTextField a) {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                Character ch = e.getKeyChar();
+                if (!Character.isDigit(e.getKeyChar()) && (ch != KeyEvent.VK_BACK_SPACE) && (ch != '.')) {
          // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
-   
-            getToolkit().beep();
-            e.consume();;
-        }
+
+                    getToolkit().beep();
+                    e.consume();;
+                }
+            }
+        });
     }
-            });
-}
-    
-    
-     public  void ValidadCaracteres(JTextField a)
-{
-    a.addKeyListener(new KeyAdapter(){
-        public void keyTyped(KeyEvent e)
-    {
-        Character ch = e.getKeyChar(); 
-        if (Character.isDigit(e.getKeyChar())) { 
+
+    public void ValidadCaracteres(JTextField a) {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                Character ch = e.getKeyChar();
+                if (Character.isDigit(e.getKeyChar())) {
          // if(((ch < '0') || (ch > '9')) && (ch != KeyEvent.VK_BACK_SPACE)&& (ch !='.')){ 
-   
-            getToolkit().beep();
-            e.consume();;
-        }
-        
+
+                    getToolkit().beep();
+                    e.consume();;
+                }
+
+            }
+        });
     }
-            });
-}
-     
-public void ingresarProducto()
-        {
-          
-        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && ValidarComboxVacios(LitsadeProovedores,jcboxTipoProducto)) {
+
+    public void ingresarProducto() {
+
+        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) && ValidarComboxVacios(LitsadeProovedores, jcboxTipoProducto)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
         } else {
         //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
             //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
             //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
 
-      
             if (prodAc == null) {
                 // TODO add your handling code here:
                 log(String.valueOf(prodAc == null));
@@ -474,76 +461,64 @@ public void ingresarProducto()
                 double Precio_prod = Double.parseDouble(TextPrecio.getText());
                 int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
-                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
-                
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                try {
-                    boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
-                            Costo_Venta_prod,
-                            Precio_prod,
-                            Codigo_proveedor,
-                            ivaproducto,
-                            (String)tipodelproducto);
-                    
-                    if (res == true) {
-                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");                
-                        //this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
-                                + "de datos");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+                Object tipodelproducto = jcboxTipoProducto.getSelectedItem();
 
-                }
-                
-            }// fin de if de condiciones
+                if (Precio_prod > Costo_Venta_prod) {
+                    try {
+                        boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
+                                Costo_Venta_prod,
+                                Precio_prod,
+                                Codigo_proveedor,
+                                ivaproducto,
+                                (String) tipodelproducto);
+
+                        if (res == true) {
+                            JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
+                            //this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                                    + "de datos");
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
+                    }
+
+                }// fin de if de condiciones
                 JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
             } else {
-                
+
                 log("actualizo");
                 double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
                 double Precio_prod = Double.parseDouble(TextPrecio.getText());
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                
-                
-                prodAc.setPrecioCosto(Costo_Venta_prod);
-                prodAc.setPrecioVenta(Precio_prod);
-                prodAc.setIvaProducto(ivaproducto);
-                
-                
-                
-                obj.actualizaProducto(prodAc);
-                JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
-                }
-                else
-                {
+                if (Precio_prod > Costo_Venta_prod) {
+
+                    prodAc.setPrecioCosto(Costo_Venta_prod);
+                    prodAc.setPrecioVenta(Precio_prod);
+                    prodAc.setIvaProducto(ivaproducto);
+
+                    obj.actualizaProducto(prodAc);
+                    JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
+                } else {
                     JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
                 }
             }
 
         }
-         
-//       this.dispose(); 
-        
-            
-        }
-     
 
-public void ingresarProductoConMarcaYPeso()
-        {
-          
-        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) || ValidarComboxVacios(LitsadeProovedores,jcboxTipoProducto)) {
+//       this.dispose(); 
+    }
+
+    public void ingresarProductoConMarcaYPeso() {
+
+        if (ValidarCamposVacios(TextCodProduct, TextDescripcion, TextCostoproduc, TextPrecio) || ValidarComboxVacios(LitsadeProovedores, jcboxTipoProducto)) {
             JOptionPane.showMessageDialog(this, "Faltan datos en los campos.");
         } else {
         //Producto producto = new Producto_tipo_comida( idProducto,  NombreProducto,  PrecioVenta,  PrecioCosto,  IvaProducto,  stock);
             //cliente = new Bono_Dotacion_Ropade_Trabajo(nombre, apellido, Cedula, cargo, sueldo);
             //cliente = new Bonos_hijos_empleado(nombre, apellido, Cedula, cargo, sueldo);
 
-      
             if (prodAc == null) {
                 // TODO add your handling code here:
                 log(String.valueOf(prodAc == null));
@@ -553,138 +528,117 @@ public void ingresarProductoConMarcaYPeso()
                 double Precio_prod = Double.parseDouble(TextPrecio.getText());
                 int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
-                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
-                
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                try {
-                    boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
-                            Costo_Venta_prod,
-                            Precio_prod,
-                            Codigo_proveedor,
-                            ivaproducto,
-                            (String)tipodelproducto);
-                    
-                    if (res == true) {
-                        JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
-        
-                        agregarMarcayPeso();
-                        
-                        //this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
-                                + "de datos");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+                Object tipodelproducto = jcboxTipoProducto.getSelectedItem();
 
-                }
-                
-            }// fin de if de condiciones
+                if (Precio_prod > Costo_Venta_prod) {
+                    try {
+                        boolean res = obj.AgregarProducto(id_producto, Descripcion_prod,
+                                Costo_Venta_prod,
+                                Precio_prod,
+                                Codigo_proveedor,
+                                ivaproducto,
+                                (String) tipodelproducto);
+
+                        if (res == true) {
+                            JOptionPane.showMessageDialog(null, "Producto Registrado Correctamente");
+
+                            agregarMarcayPeso();
+
+                            //this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo ingresar un nuevo producto ya existe en la base"
+                                    + "de datos");
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "por favor verifique la conexion del servidor ");
+
+                    }
+
+                }// fin de if de condiciones
                 JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
             } else {
-                
+
                 log("actualizo");
                 double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
                 double Precio_prod = Double.parseDouble(TextPrecio.getText());
                 double ivaproducto = Double.parseDouble(txtIvap.getText());
-                if(Precio_prod > Costo_Venta_prod)
-                {
-                
-                
-                prodAc.setPrecioCosto(Costo_Venta_prod);
-                prodAc.setPrecioVenta(Precio_prod);
-                prodAc.setIvaProducto(ivaproducto);
-                
-                
-                
-                obj.actualizaProducto(prodAc);
-                JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
-                }
-                else
-                {
+                if (Precio_prod > Costo_Venta_prod) {
+
+                    prodAc.setPrecioCosto(Costo_Venta_prod);
+                    prodAc.setPrecioVenta(Precio_prod);
+                    prodAc.setIvaProducto(ivaproducto);
+
+                    obj.actualizaProducto(prodAc);
+                    JOptionPane.showMessageDialog(this, "Producto actualizado Correctamente");
+                } else {
                     JOptionPane.showMessageDialog(this, "Verifique el precio de venta tiene que se mayor que el del costo");
                 }
             }
 
         }
-         
+
 //       this.dispose(); 
-        
-            
-        }
-    public void agregarMarcayPeso()
-            {
+    }
+
+    public void agregarMarcayPeso() {
          // TODO add your handling code here:
-          ///Captura los datos que se acaban de ingresar del producto
-                int id_producto = Integer.parseInt(TextCodProduct.getText());
-                String Descripcion_prod = TextDescripcion.getText();
-                double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
-                double Precio_prod = Double.parseDouble(TextPrecio.getText());
-                int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
-                double ivaproducto = Double.parseDouble(txtIvap.getText());
-                Object tipodelproducto=jcboxTipoProducto.getSelectedItem();
+        ///Captura los datos que se acaban de ingresar del producto
+        int id_producto = Integer.parseInt(TextCodProduct.getText());
+        String Descripcion_prod = TextDescripcion.getText();
+        double Costo_Venta_prod = Double.parseDouble(TextCostoproduc.getText());
+        double Precio_prod = Double.parseDouble(TextPrecio.getText());
+        int Codigo_proveedor = ((Proveedor) LitsadeProovedores.getSelectedItem()).getIdProveedor();
+        double ivaproducto = Double.parseDouble(txtIvap.getText());
+        Object tipodelproducto = jcboxTipoProducto.getSelectedItem();
 
         //Captura el tipo del producto
-        
         //Se crea un nuevo objeto de tipo producto para hacer el llamado al decorador
         Producto p;
         //Switch para Ingresar al tipo de producto deseado 
-                switch((String) tipodelproducto)
-                {
-                    case "Alimentos":
-                        log(String.valueOf(tipodelproducto));
+        switch ((String) tipodelproducto) {
+            case "Alimentos":
+                log(String.valueOf(tipodelproducto));
                         //Creamos un nuevo producto de tipo en este caso comida y le enviamois
-                        //el id y el tipo de producto
-                        p = new Producto_tipo_comida(id_producto,(String) tipodelproducto);
+                //el id y el tipo de producto
+                p = new Producto_tipo_comida(id_producto, (String) tipodelproducto);
                         //el producto p , ahora tendra una adicion de marca del producto
-                        //ingreso
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
-                        //ingreso
-                    break;
-                    case "Ropa": 
-                        p = new Producto_tipo_ropa(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
+                //ingreso
+                p = new Marca_del_producto(p, id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto, Costo_Venta_prod);
+                p.getMarca_product();
+                p.getPeso_product();
+                //ingreso
+                break;
+            case "Ropa":
+                p = new Producto_tipo_ropa(id_producto, (String) tipodelproducto);
+                p = new Marca_del_producto(p, id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto, Costo_Venta_prod);
+                p.getMarca_product();
+                p.getPeso_product();
 
+                break;
 
-                     break;
-                        
-                    case "Automotor": 
-                        p = new Producto_tipo_automotor(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
+            case "Automotor":
+                p = new Producto_tipo_automotor(id_producto, (String) tipodelproducto);
+                p = new Marca_del_producto(p, id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto, Costo_Venta_prod);
+                p.getMarca_product();
+                p.getPeso_product();
 
-                        break;
-                        
-                    case "Electronico": 
-                        p = new Producto_tipo_electronico(id_producto,(String) tipodelproducto);
-                        p= new Marca_del_producto(p,id_producto, Descripcion_prod,Costo_Venta_prod,Precio_prod,ivaproducto,Costo_Venta_prod);
-                        p.getMarca_product();
-                        p.getPeso_product();
+                break;
 
+            case "Electronico":
+                p = new Producto_tipo_electronico(id_producto, (String) tipodelproducto);
+                p = new Marca_del_producto(p, id_producto, Descripcion_prod, Costo_Venta_prod, Precio_prod, ivaproducto, Costo_Venta_prod);
+                p.getMarca_product();
+                p.getPeso_product();
 
-                        break;    
-                }  
-               
-                
-                
-            }
-     
-     
-     
-     public void log(String a)
-    {
-   System.out.println("la valor  = "+" "+a);   
-    } 
-     
-     
-     
-    
+                break;
+        }
+
+    }
+
+    public void log(String a) {
+        System.out.println("la valor  = " + " " + a);
+    }
+
     //***********************************************************************//
     /**
      * @param args the command line arguments
