@@ -6,7 +6,9 @@
 package VistaNegocio;
 
 import UpperEssential.UpperEssentialLookAndFeel;
+import UpperEssential.UpperTheme;
 import debug.Consola;
+import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -28,13 +30,33 @@ public class ProyectoFactura {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
+        cambioInterfaz();
         Principal Principal = new Principal();
         Principal.setVisible(true);
-        
-        
+
         Consola Consola = new Consola();
 
     }
-    
+
+    public static void cambioInterfaz() {
+        try {
+            UpperEssentialLookAndFeel uelaf = new UpperEssentialLookAndFeel();
+            UpperTheme ut = new UpperTheme();
+            //ut.setPrimary1(Color.red);
+            //ut.setPrimary2(Color.blue); //Color de seleccion
+            //ut.setPrimary3(Color.orange); // color cambio de color de boton
+            //ut.setSecondary1(Color.green);
+            //ut.setSecondary2(Color.LIGHT_GRAY);
+            ut.setSecondary3(Color.gray); // Color fondo
+            // ut.setBlack(Color.magenta);
+            ut.setWhite(Color.white);
+
+            uelaf.setCurrentTheme(ut);
+            UIManager.setLookAndFeel(uelaf);
+
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

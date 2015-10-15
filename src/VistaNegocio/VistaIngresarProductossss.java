@@ -53,7 +53,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author negro
  */
-public class VistaIngresarProductos extends javax.swing.JFrame {
+public class VistaIngresarProductossss extends javax.swing.JFrame {
 
     public ControllerSql obj;
     FuncionesController cc = new FuncionesController();
@@ -66,7 +66,7 @@ public class VistaIngresarProductos extends javax.swing.JFrame {
     /**
      * Creates new form VistaIngresarProductos
      */
-    public VistaIngresarProductos() {
+    public VistaIngresarProductossss() {
         initComponents();
      ValidadSoloNumeros(TextCodProduct);
         ValidadCaracteres(TextDescripcion);

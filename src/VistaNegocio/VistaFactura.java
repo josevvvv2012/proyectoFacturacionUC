@@ -510,7 +510,7 @@ public class VistaFactura extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        VistaIngresarProductos vip = new VistaIngresarProductos();
+        VistaIngresarProductossss vip = new VistaIngresarProductossss();
         vip.setVisible(true);
         vip.setLocationRelativeTo(this);
         cargarProductos();
